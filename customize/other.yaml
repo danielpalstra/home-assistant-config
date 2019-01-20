@@ -1,0 +1,6 @@
+vacuum.xiaomi_vacuum_cleaner:
+  icon: 'mdi:broom'
+
+switch.sonoffpow2:
+  friendly_name: 'Kerstboom'
+  icon: 'mdi:lightbulb'

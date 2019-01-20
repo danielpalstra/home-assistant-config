@@ -1,0 +1,47 @@
+# - alias: Notify iOS app
+#   trigger:
+#   - platform: state
+#     entity_id: input_boolean.auto_covers
+#     from: 'off'
+#     to: 'on'
+#   action:
+#     service: notify.ios_iphone_van_daniel
+#     data:
+#       message: "Something happened at home!"
+#       data:
+#         push:
+#           badge: 5
+#           sound: <SOUND FILE HERE>
+#           category: "alarm" # Needs to match the top level identifier you used in the ios configuration
+#         action_data: # Anything passed in action_data will get echoed back to Home Assistant.
+#           entity_id: light.test
+#           my_custom_data: foo_bar
+
+- alias: Ask for vacuum on leave
+  trigger:
+  - platform: state
+    entity_id: input_boolean.auto_covers
+    from: 'off'
+    to: 'on'
+  action:
+    service: notify.ios_iphone_van_daniel
+    data:
+      message: "Start vacuum?"
+      data:
+        push:
+          badge: 1
+          sound: <SOUND FILE HERE>
+          category: "vacuum" # Needs to match the top level identifier you used in the ios configuration
+        action_data: # Anything passed in action_data will get echoed back to Home Assistant.
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          my_custom_data: foo_bar
+
+- alias: Start vacuum from iOS
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: START_VACUUM
+  action:
+    service: vacuum.start
+    entity_id: vacuum.xiaomi_vacuum_cleaner

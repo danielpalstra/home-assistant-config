@@ -1,0 +1,584 @@
+resources:
+  # - url: /local/custom-lovelace/mini-media-player/mini-media-player-bundle.js?v=0.9.8
+  #   type: module
+  - url: /local/mini-media-player-bundle.js?v=0.9.8
+    type: module
+  - url: /local/custom-lovelace/monster-card/monster-card.js?v=0.2.3
+    type: js
+  - url: /local/custom-lovelace/tracker-card/tracker-card.js?v=0.1.5
+    type: js
+custom_updater:
+  card_urls:
+    - >-
+      https://raw.githubusercontent.com/custom-cards/tracker-card/master/tracker-card.json
+    - >-
+      https://raw.githubusercontent.com/arsaboo/homeassistant-config/master/www/custom_ui/weather-card.json
+    - >-
+      https://raw.githubusercontent.com/kalkih/mini-media-player/master/mini-media-player.json
+    - >-
+      https://raw.githubusercontent.com/matisaul/vertical-style-card/master/tracker.json
+    - >-
+      https://raw.githubusercontent.com/thomasloven/lovelace-long-press/master/long-press.json
+views:
+  - path: dashboard
+    icon: 'mdi:home-assistant'
+    cards:
+      - id: 5fae3b169e7348b19b9b4e34dfdae3e7
+        type: entities
+        title: Scenes
+        show_header_toggle: false
+        entities:
+          - scene.relax
+          - scene.nightlight
+          - scene.movie
+          - scene.concentrate
+          - input_select.last_scene
+      - id: 89768d6afbe04faa985d556c922298f6
+        type: entities
+        title: Triggers
+        show_header_toggle: false
+        entities:
+          - input_boolean.bed_time
+          - input_boolean.wakeup_time
+          - input_boolean.vacuum_on_leave
+          - vacuum.xiaomi_vacuum_cleaner
+      - id: bd3ce1939f364da6a1a57a8b94e836e4
+        type: entities
+        title: Livingroom
+        show_header_toggle: false
+        entities:
+          - climate.woonkamer
+          - sensor.woonkamer_heating
+          - input_select.fanstate
+          - cover.sunshade_left
+          - cover.sunshade_right
+          - light.livingroom
+          - sensor.livingroom_light
+          - sensor.livingroom_temperature
+          - sensor.livingroom_humidity
+      - id: 5311e8c9e1864e29a834e074571c5201
+        # type: entities
+        type: glance
+        title: House Modes
+        show_header_toggle: false
+        entities:
+          - entity: input_boolean.away_mode
+            tap_action:
+              action: toggle
+          - entity:  input_boolean.guest_mode
+            tap_action:
+              action: toggle
+          - entity: input_boolean.vacation_mode
+            tap_action: 
+              action: toggle
+      - id: 5311e8c9e1864e29a834e074571c5200
+        type: glance
+        title: Days before moving
+        show_header_toggle: false
+        entities:
+          - sensor.house_key_handover_new
+          - sensor.house_moving_day
+          - sensor.house_key_handover_old
+      - id: 593660e3ece14563908d8e299ff54dd6
+        type: thermostat
+        entity: climate.woonkamer
+      - id: 576a2901f0c242f59b4d06aece2b4d97
+        type: entity-filter
+        show_header_toggle: false
+        entities:
+          - alarm_control_panel.ha_alarm
+          - binary_sensor.ring_front_door_ding
+          - binary_sensor.ring_front_door_motion
+          - binary_sensor.livingroom_motion
+          - binary_sensor.hall_motion
+          - binary_sensor.door_window_sensor_158d00016363c1
+          - binary_sensor.door_window_sensor_158d0001a044b7
+          - binary_sensor.door_window_sensor_158d00016fde8d
+          - binary_sensor.door_window_sensor_158d00016c8140
+        state_filter:
+          - Detected
+          - 'on'
+        card:
+          type: entities
+          title: Security
+      - id: 6d9d2ab5bedb475bbb4ef03b5c0cefa3
+        type: entity-filter
+        entities:
+          - light.livingroom
+        state_filter:
+          - 'on'
+        card:
+          type: glance
+          title: Lights turned on
+        show_empty: false
+      - id: 16f1aeb6bdf84bc4ba89d4a33a332772
+        type: glance
+        title: People
+        entities:
+          - device_tracker.daniels_iphone
+          - device_tracker.lauras_iphone
+        show_empty: false
+      - id: afad845f26b44c83b4f91cc85ba004ef
+        type: entities
+        title: Trash
+        entities:
+          - entity: sensor.trash_gft
+            name: 'Groente, fruit en tuin afval'
+          - entity: sensor.trash_papier
+            name: Papier
+          - entity: sensor.trash_rest
+            name: Restafval
+      - id: 32ba7996776b4987a243a21359e3dd14
+        type: entities
+        title: System
+        entities:
+          - updater.updater
+          - sensor.ha_installed_version
+          - sensor.ssl_certificate_expiry
+          - sensor.ha_uptime
+  - path: mobile
+    name: Mobile
+    icon: mdi:cellphone-iphone
+    cards:
+    - type: horizontal-stack
+      cards:
+      - type: entity-button
+        entity: light.livingroom
+        icon: mdi:lightbulb-outline
+        tap_action:
+          action: toggle
+      - type: entity-button
+        entity: input_boolean.bed_time
+        tap_action:
+          action: toggle
+    - type: horizontal-stack
+      cards:
+      - type: entity-button
+        name: Radio
+        icon: mdi:radio
+        entity: script.radio
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.radio
+      - type: entity-button
+        entity: input_boolean.tv_time
+        name: TV
+        tap_action:
+          action: toggle
+      - type: entity-button
+        name: Media
+        icon: mdi:power-standby
+        entity: script.turn_off_media
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.turn_off_media
+    - type: horizontal-stack
+      cards:
+      - type: 'custom:mini-media-player'
+        entity: media_player.htzf9
+        hide_controls: true
+        # hide_power: true
+        hide_info: true
+        max_volume: 40
+    - type: horizontal-stack
+      cards:
+      - type: entity-button
+        entity: scene.relax
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.relax
+      - type: entity-button
+        entity: scene.concentrate
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.concentrate
+    - type: horizontal-stack
+      cards:
+      - type: entity-button
+        entity: input_boolean.guest_mode
+        tap_action:
+          action: toggle
+      - type: entity-button
+        name: Turn off house
+        icon: mdi:home-outline
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.powerdown_all
+        entity: script.powerdown_all
+  - path: lights
+    icon: 'mdi:lightbulb'
+    cards:
+      - type: light
+        entity: light.livingroom
+      - type: entities
+        title: Sun
+        entities:
+          - sun.sun
+          - sensor.nextsunrise
+          - sensor.nextsunset
+      - type: entities
+        title: Livingroom lights
+        show_header_toggle: false
+        entities:
+          - light.gateway_light_34ce008129f0
+          - light.kast
+          - light.bank
+          - light.tv
+          - light.tv_kast
+          - light.livingroom
+      - type: entities
+        title: Other
+        show_header_toggle: false
+        entities:
+          - light.gateway_light_34ce008129f0
+      - type: entities
+        title: Scenes
+        show_header_toggle: false
+        entities:
+          - scene.relax
+          - scene.nightlight
+          - scene.movie
+          - scene.concentrate
+  - path: climate
+    name: Climate
+    icon: 'mdi:weather-partlycloudy'
+    cards:
+      - type: sensor
+        entity: sensor.livingroom_light
+        name: Living light
+        height: 50
+        line_color: '#3498db'
+      - type: sensor
+        entity: sensor.livingroom_temperature
+        name: Living temperature
+        height: 50
+        line_color: '#3498db'
+      - type: sensor
+        entity: sensor.livingroom_humidity
+        name: Living humidity
+        height: 50
+        line_color: '#3498db'
+      - id: 62b67ee1ad3c4abc97f54de56314a9fb
+        type: weather-forecast
+        entity: weather.br_unknown_station
+      - id: 3d2256e2cbc1478db8617a03aa620202
+        type: entities
+        title: Livingroom
+        entities:
+          - climate.woonkamer
+          - sensor.woonkamer_humidity
+          - sensor.woonkamer_heating
+          - sensor.livingroom_temperature
+          - sensor.livingroom_humidity
+          - sensor.livingroom_light
+      - id: fe03d7b237b84aeeb5fec66b71abe9c9
+        type: entities
+        title: Bedrooms
+        entities:
+          - sensor.temperature_158d0001a2ad80
+          - sensor.humidity_158d0001a2ad80
+          - sensor.fennaroom_temperature
+          - sensor.fennaroom_humidity
+          - sensor.fennaroom_light
+      - id: a593d0041fd649839b911f7501a79739
+        type: history-graph
+        entities:
+          - climate.woonkamer
+          - sensor.livingroom_temperature
+          - sensor.temperature_158d0001a2ad80
+          - sensor.fennaroom_temperature
+        hours_to_show: 48
+        title: Temperatures 48h
+      - id: e07e747ec3d54f1d98a451f125eef25a
+        type: history-graph
+        entities:
+          - climate.woonkamer
+          - sensor.livingroom_temperature
+          - sensor.temperature_158d0001a2ad80
+          - sensor.fennaroom_temperature
+        hours_to_show: 168
+        title: Temperatures 7 days
+      - id: 4a4e5d9f6b7741649f3d9e90a19e7f14
+        type: history-graph
+        entities:
+          - sensor.livingroom_light
+          - sensor.fennaroom_light
+        hours_to_show: 48
+        title: Light intensity 48h
+      - id: 6a25a94e3e504577a112940d47ae33e9
+        type: entities
+        title: Bathroom
+        entities:
+          - sensor.temperature_158d0001a2e9fc
+          - sensor.humidity_158d0001a2e9fc
+      - id: 3870afb7a2214979bed29123c66289af
+        type: entities
+        title: Hall Downstairs
+        entities:
+          - sensor.temperature_158d0001823fa3
+          - sensor.humidity_158d0001823fa3
+      - id: 72cb3c910508466891c18f90adf14a84
+        type: entities
+        title: Storage
+        entities:
+          - sensor.temperature_158d0001b8d776
+          - sensor.humidity_158d0001b8d776
+  - path: media
+    icon: 'mdi:television-classic'
+    cards:
+      - id: 1224d6b8ea4d493aa24d013296c2d7f9
+        type: entities
+        title: Entertainment
+        show_header_toggle: false
+        entities:
+          - input_boolean.tv_time
+          - input_boolean.game_time
+          - script.turn_off_media
+      - id: bcd37a30efe04c2a95126a36081e5241
+        type: entities
+        title: Radio
+        entities:
+          - input_select.radio_station
+          - input_select.chromecast_radio
+          - script.radio
+      - type: 'custom:mini-media-player'
+        entity: media_player.sony_audio5882
+        name: Livingroom Soundbar Cast
+        icon: 'mdi:radio'
+        artwork: cover
+        artwork_border: false
+        show_source: true
+        max_volume: 40
+      - type: 'custom:mini-media-player'
+        entity: media_player.htzf9
+        name: Livingroom Soundbar
+        icon: 'mdi:radio'
+        show_source: true
+        max_volume: 40
+      - type: 'custom:mini-media-player'
+        entity: media_player.sony_bravia_tv
+        name: Livingroom TV
+        icon: 'mdi:television'
+        show_source: true
+        volume_stateless: true
+        max_volume: 40
+      - type: 'custom:mini-media-player'
+        entity: media_player.woonkamertv
+        name: Livingroom TV Cast
+        show_source: true
+        volume_stateless: true
+        max_volume: 40
+      - type: 'custom:mini-media-player'
+        entity: media_player.mini
+        show_source: true
+        volume_stateless: true
+        max_volume: 40
+  - path: security
+    name: Security
+    icon: 'mdi:security'
+    cards:
+      - id: ba1226d97c9444e6af3faf2de27a3b5c
+        type: entities
+        title: Doors & Windows
+        entities:
+          - binary_sensor.door_window_sensor_158d00016363c1
+          - binary_sensor.door_window_sensor_158d0001a044b7
+          - binary_sensor.door_window_sensor_158d00016fde8d
+          - binary_sensor.door_window_sensor_158d00016c8140
+      - id: 64a2cd02b9e140f7a9b1a6eea4c9e807
+        type: entities
+        title: Motion
+        entities:
+          - binary_sensor.ring_front_door_ding
+          - binary_sensor.ring_front_door_motion
+          - binary_sensor.livingroom_motion
+          - binary_sensor.hall_motion
+      - id: b2abd8f9563644e385da2697ae8626d3
+        type: picture-entity
+        entity: camera.front_door
+  - path: energy
+    name: Energy
+    icon: 'mdi:power-plug'
+    cards:
+      - id: 22072acec7af4ea092814a30ad060f75
+        type: entities
+        title: Energy usage
+        entities:
+          - sensor.power_consumption
+          - sensor.power_costs
+          - sensor.hourly_gas_consumption
+          - sensor.gas_costs
+      - id: b53c018d819d43c58fb828dab0f9d84f
+        type: entities
+        title: Meter readings
+        entities:
+          - sensor.power_tariff
+          - sensor.power_consumption_low
+          - sensor.power_consumption_normal
+          - sensor.gas_consumption
+      - id: c6b8e62de9de43539a2e94223879cccd
+        type: entities
+        title: Kitchen Fridge
+        entities:
+          - sensor.temperature_158d0001826df8
+          - sensor.humidity_158d0001826df8
+          - sensor.fridge_power_consumption
+          - sensor.fridge_power_today
+      - id: 182964fec706461a8fd9c9daf5ef5a1c
+        type: entities
+        title: Storage Fridge
+        entities:
+          - sensor.temperature_158d00019d3006
+          - sensor.humidity_158d00019d3006
+  - path: 3dprinter
+    name: '3D Printer'
+    icon: 'mdi:printer-3d'
+    cards:
+      - id: c0ca7fa3b80f4bb9ba87d30da62f6a70
+        type: entities
+        title: 3D printer status
+        entities:
+          - switch.3d_printer
+          - binary_sensor.octoprint_printing
+          - binary_sensor.octoprint_printing_error
+          - sensor.octoprint_target_bed_temp
+          - sensor.octoprint_actual_bed_temp
+          - sensor.octoprint_target_tool0_temp
+          - sensor.octoprint_actual_tool0_temp
+      - id: a0cfdefd58204ad8b6f1bb17540bbe25
+        type: picture-entity
+        entity: camera.3d_printer_camera
+      - id: fbb27edbdd1c40d7994f6fe519817dc9
+        type: entities
+        title: 3D printer job
+        entities:
+          - sensor.octoprint_current_state
+          - sensor.octoprint_job_percentage
+          - sensor.octoprint_time_elapsed
+          - sensor.octoprint_time_remaining
+  - path: net
+    name: Network
+    icon: 'mdi:server-network'
+    cards:
+      - id: fdef58175aa84ae5a8b128a89615fb76
+        type: entities
+        title: System
+        entities:
+          - updater.updater
+          - sensor.ha_installed_version
+          - sensor.ssl_certificate_expiry
+          - sensor.ha_uptime
+          - sensor.load_1m
+          - sensor.load_5m
+          - sensor.load_15m
+          - sensor.memory_free
+          - sensor.memory_use
+          - sensor.swap_free
+          - sensor.swap_use
+      - id: 1e242c7e0d26435e86f8eab722bc43e0
+        type: entities
+        title: Network
+        entities:
+          - weblink.grafana
+          - weblink.router
+          - sensor.speedtest_download
+          - sensor.speedtest_upload
+          - sensor.braviatv
+          - sensor.denonavr
+          - sensor.philipshue
+  - path: debug
+    name: Debug
+    icon: 'mdi:bug'
+    cards:
+      - type: entities
+        title: Test
+        entities:
+        - input_number.blinds_slider
+      - type: 'custom:tracker-card'
+        title: null
+        trackers:
+          - sensor.custom_card_tracker
+          - sensor.custom_component_tracker
+      - type: 'custom:monster-card'
+        card:
+          type: entities
+          title: All Automations
+          entities:
+            - entity: automation.alarm_triggered_notification
+            - entity: automation.alarm_triggers_while_alarm_armed_away
+            - entity: automation.arm_alarm_when_everybody_leaves
+            - entity: automation.ask_for_vacuum_on_leave
+            - entity: automation.bed_time
+            - entity: automation.bed_time__turn_off
+            - entity: automation.bed_time_by_switch_press
+            - entity: automation.disarm_alarm_when_returned_home
+            - entity: automation.fan_speed_high
+            - entity: automation.game_time
+            - entity: automation.lights_out_after_2230_when_not_at_home
+            - entity: automation.listen_radio
+            - entity: automation.open_covers_when_wakeup_time_is_enabled
+            - entity: automation.set_theme_at_startup
+            - entity: automation.start_vacuum_from_ios
+            - entity: automation.test
+            - entity: automation.trigger_livingroom_presence
+            - entity: automation.trigger_wakeup_time_on_motion_in_the_morning
+            - entity: automation.turn_off_all_media_devices_when_everybody_leaves
+            - entity: automation.turn_off_away_mode_when_somebody_arrives_at_home
+            - entity: automation.turn_off_livingroom_at_sunrise
+            - entity: >-
+                automation.turn_off_the_lights_in_the_morning_when_everybody_leaves
+            - entity: automation.turn_off_wakeup_time
+            - entity: automation.turn_on_away_mode_when_everybody_leaves
+            - entity: >-
+                automation.turn_on_livingroom_lights_before_sunrise_on_wakeup_time
+            - entity: automation.turn_on_livingroom_lights_on_motion_in_the_morning
+            - entity: automation.turn_on_livingroom_lights_when__100_lux
+            - entity: automation.turn_on_nightlamp_when_noone_at_home_at_sunset
+            - entity: automation.turn_on_nightlight_when_everybody_leaves_after_sunset
+            - entity: automation.turn_on_wakeup_light
+            - entity: automation.tv_time
+            - entity: automation.tv_time_by_switch_press
+            - entity: automation.update_available_notifications
+            - entity: automation.vacuum_when_everbody_leaves
+        filter:
+          include:
+            - domain: automation
+              state: 'on'
+      - type: 'custom:monster-card'
+        card:
+          type: entities
+          title: All Scripts
+          entities:
+            - entity: script.radio
+            - entity: script.turn_off_lights
+            - entity: script.turn_off_media
+            - entity: script.turn_off_multimedia_devices
+        filter:
+          include:
+            - domain: script
+      - type: 'custom:monster-card'
+        card:
+          type: entities
+          title: All covers
+          entities:
+            - entity: cover.livingroom_blinds
+            - entity: cover.mqtt_cover
+            - entity: cover.sunshade_left
+            - entity: cover.sunshade_right
+            - entity: input_number.blinds_slider
+        filter:
+          include:
+            - domain: cover
+      - type: entities
+        entities: 
+            - entity: input_select.last_scene

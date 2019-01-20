@@ -1,0 +1,9 @@
+device_tracker.daniels_iphone:
+  friendly_name: Daniel
+  emulated_hue: false
+  hidden: false
+
+device_tracker.lauras_iphone:
+  friendly_name: Laura
+  emulated_hue: false
+  hidden: false

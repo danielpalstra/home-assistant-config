@@ -1,0 +1,7 @@
+- name: family
+  platform: group
+  services:
+    - service: ios_iphone_van_daniel
+    - service: ios_iphone_van_laura
+- name: iOSApp
+  platform: ios

@@ -1,0 +1,29 @@
+<script>
+    function detectmob() {
+        if(window.innerWidth <= 800 || window.innerHeight <= 600) {
+            return true;
+        } 
+        else {
+            return false;
+        }
+    }
+
+    if (window.location.pathname === "/states") {
+        if (detectmob()){
+            window.location.href = "/lovelace/mobile"
+        }
+        else {
+            window.location.href = "/lovelace"
+        }
+    }
+    window.addEventListener("location-changed", function (e) {
+        if (e.currentTarget.location.pathname === "/states") {
+            if (detectmob()){
+                window.location.href = "/lovelace/mobile"
+            }
+            else {
+               window.location.href = "/lovelace" 
+            }
+        }
+    });
+</script>

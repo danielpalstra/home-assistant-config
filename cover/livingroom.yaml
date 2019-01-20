@@ -1,0 +1,11 @@
+- platform: rflink
+  devices:
+    rts_8ae237_01:
+      name: Sunshade Left
+    rts_8be237_01:
+      name: Sunshade Right
+- platform: group
+  name: Livingroom blinds
+  entities:
+    - cover.sunshade_left
+    - cover.sunshade_right

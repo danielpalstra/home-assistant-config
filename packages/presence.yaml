@@ -1,0 +1,21 @@
+input_boolean:
+  presence_livingroom:
+    name: Presence livingroom
+    initial: off
+    icon: mdi:walk
+  presence_first_floor:
+    name: Presence first floor
+    initial: off
+    icon: mdi:walk
+
+automation:
+  - alias: Trigger livingroom presence
+    initial_state: True
+    hide_entity: False
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.livingroom_motion, binary_sensor.hall_motion
+      to: 'on'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.presence_livingroom

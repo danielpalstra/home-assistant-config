@@ -1,0 +1,12 @@
+input_select:
+  last_scene:
+    name: Last scene
+    options:
+      - 'Off'
+      - Nightlight
+      - Relax
+      - Concentrate
+      - Movie
+    initial: 'Off'
+    icon: mdi:floor-lamp
+

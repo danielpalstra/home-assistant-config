@@ -1,0 +1,30 @@
+############################################################
+#
+# Logger  You can filter anything betwen the []'s in the logger.
+#
+############################################################
+
+# Log Severities: notset, debug, info, warn, warning, error, fatal, critical
+
+default: warn
+logs:
+  homeassistant.bootstrap: info
+  homeassistant.core: warn
+  # homeassistant.components.automation: info
+  # homeassistant.components.device_tracker: error
+  homeassistant.components.device_tracker: warn
+  homeassistant.components.tado: warn
+  # homeassistant.components.discovery: warn
+  homeassistant.components.http: error
+  # homeassistant.components.http: info
+  homeassistant.components.media_player: warn
+  homeassistant.components.recorder: warn
+  # homeassistant.helpers.script: info
+  # miio.device: debug
+  # homeassistant.components.vacuum.xiaomi_miio: debug
+  root: warn
+  # rflink: debug
+  # homeassistant.components.rflink: debug
+  #homeassistant.components.zwave: debug
+  #homeassistant.components.openzwave: debug
+  #homeassistant.components.updater: debug

@@ -1,0 +1,109 @@
+group:
+  radio:
+    name: Radio
+    entities:
+    - input_select.radio_station
+    - input_select.chromecast_radio
+    - script.radio
+
+input_boolean:
+  turn_off_media:
+    name: Turn off all media devices
+    initial: off
+    icon: mdi:radio
+
+input_select:
+  radio_station:
+    name: 'Select Radio Station:'
+    options:
+      - SLAM!
+      - Radio 538
+      - Q-Music
+      - 3FM
+      - Radio 2
+      - 100% NL
+      - Veronica
+      - Sky Radio
+      - Arrow Classic Rock
+      - Classic FM
+      - BNR Nieuwsradio
+      - SLAM! Hardstyle
+      - Sleep Radio
+      - Ambient Sleeping Pill
+      - Radio Art - Sleep
+      - Ambi Nature Radio
+      - Calm Radio - Sleep
+      - Dinamo.FM Sleep
+
+  chromecast_radio:
+    name: 'Select Speakers:'
+    options:
+      - Livingroom Soundbar
+      - Mini
+      - Livingroom TV
+    initial: Livingroom Soundbar
+    icon: mdi:speaker-wireless
+
+automation:
+  - alias: Listen Radio
+    hide_entity: True
+    trigger:
+      - platform: state
+        entity_id: input_select.radio_station
+    action: 
+      - service: script.radio
+
+  - alias: Turn off all media devices when everybody leaves
+    hide_entity: True
+    trigger:
+      - platform: state
+        entity_id: input_boolean.away_mode
+        from: 'off'
+        to: 'on'
+        for:
+          minutes: 5
+    action: 
+      - service: script.turn_off_media
+
+script:
+  turn_off_media:
+    alias: Turn off all media devices
+    sequence:
+      - service: media_player.turn_off
+        entity_id:  media_player.mini
+      - service: media_player.turn_off
+        entity_id: media_player.sony_bravia_tv
+      - service: media_player.turn_off
+        entity_id: media_player.woonkamertv
+      - service: media_player.turn_off
+        entity_id: media_player.sony_audio5882
+      - service: media_player.turn_off
+        entity_id: media_player.htzf9
+
+  radio:
+    alias: Listen radio on Chromecast
+    sequence:
+      - service: media_player.play_media
+        data_template:
+          entity_id: >
+           {% if is_state("input_select.chromecast_radio", "Livingroom TV") %} media_player.woonkamertv
+           {% elif is_state("input_select.chromecast_radio", "Mini") %} media_player.mini
+           {% elif is_state("input_select.chromecast_radio", "Livingroom Soundbar") %} media_player.sony_audio5882
+           {% endif %}
+          media_content_id: >
+           {% if is_state("input_select.radio_station", "Radio 538") %} http://playerservices.streamtheworld.com/api/livestream-redirect/RADIO538.mp3
+           {% elif is_state("input_select.radio_station", "SLAM!") %} http://stream.slam.nl/slam
+           {% elif is_state("input_select.radio_station", "Radio 2") %} http://icecast.omroep.nl/radio2-bb-mp3
+           {% elif is_state("input_select.radio_station", "Q-Music") %} http://icecast-qmusic.cdp.triple-it.nl/Qmusic_nl_live_96.mp3
+           {% elif is_state("input_select.radio_station", "BNR Nieuwsradio") %} http://icecast-bnr.cdp.triple-it.nl/bnr_mp3_96_03
+           {% elif is_state("input_select.radio_station", "538 Dance Department") %} http://playerservices.streamtheworld.com/api/livestream-redirect/TLPSTR01.mp3
+           {% elif is_state("input_select.radio_station", "3FM") %} http://icecast.omroep.nl/3fm-bb-mp3
+           {% elif is_state("input_select.radio_station", "Veronica") %} http://8543.live.streamtheworld.com/VERONICACMP3
+           {% elif is_state("input_select.radio_station", "Sky Radio") %} http://8623.live.streamtheworld.com:80/SKYRADIOAAC_SC
+           {% elif is_state("input_select.radio_station", "Arrow Classic Rock") %} http://91.221.151.155/listen.mp3
+           {% endif %}
+          media_content_type: 'audio/mp4'
+      - service: media_player.volume_set
+        entity_id: media_player.sony_audio5882
+        data:
+          volume_level: "0.12"

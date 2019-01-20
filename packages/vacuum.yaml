@@ -1,0 +1,9 @@
+#sensor:
+#  - platform: template
+#    sensors:
+#      last_vacuum:
+#        friendly_name: 'Last vacuum'
+#        unit_of_measurement: "Days"
+#        # value_template: "{{ relative_time(states.vacuum.xiaomi_vacuum_cleaner.last_updated) }}"
+#        value_template: >
+#         '{{ (( as_timestamp(strptime(states.sensor.date__time.state, '%Y-%m-%d, %H:%M')) - as_timestamp(states.vacuum.xiaomi_vacuum_cleaner.last_updated)) / 86400 ) | round(2) }}'

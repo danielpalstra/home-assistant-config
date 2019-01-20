@@ -1,0 +1,29 @@
+binary_sensor:
+  - platform: octoprint
+    monitored_conditions:
+      - Printing
+      - Printing Error
+sensor:
+  - platform: octoprint
+    name: OctoPrint
+    monitored_conditions:
+      - Current State
+      - Temperatures
+      - Job Percentage
+      - Time Elapsed
+      - Time Remaining
+
+# inspiration
+# https://community.home-assistant.io/t/ha-octoprint-wemo-alexa-automation/9255
+automation:
+  - alias: 'Notify on print completion'
+    trigger:
+      platform: state
+      entity_id: binary_sensor.octoprint_printing
+      from: 'on'
+      to: 'off'
+    action:
+    - service: notify.ios_iphone_van_daniel
+      data:
+        title: '3D Printer finished'
+        message: '3D printer finished printing.'

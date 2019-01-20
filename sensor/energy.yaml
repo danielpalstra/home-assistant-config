@@ -1,0 +1,58 @@
+- platform: dsmr
+  port: /dev/ttyUSB0
+  dsmr_version: 4
+
+- platform: template
+  sensors:
+    power_costs:
+      friendly_name: "Power Costs"
+      unit_of_measurement: '€'
+      value_template: "{{ (states('sensor.power_consumption')|float * 0.19082) | round(2) }}"
+    gas_costs:
+      friendly_name: "Gas Costs"
+      unit_of_measurement: '€'
+      value_template: "{{ (states('sensor.power_consumption')|float * 0.59331) | round(2) }}"
+
+# Kitchen Fridge power sensors
+- platform: mqtt  
+  state_topic: "tele/sonoffpow1/ENERGY"
+  name: "Fridge Power Consumption"
+  force_update: true
+  icon: mdi:power-plug
+  unit_of_measurement: "w"
+  value_template: '{{ (value_json.Power|float) | round(2) }}'
+
+- platform: mqtt  
+  state_topic: "tele/sonoffpow1/ENERGY"
+  name: "Fridge Power Today"
+  force_update: true
+  icon: mdi:power-plug
+  unit_of_measurement: "w"
+  value_template: '{{ (value_json.Today | float) | round(2) }}'
+
+- platform: template
+  sensors:
+    thermostat_temperature_setting:
+      friendly_name: "Thermostat temperature setting"
+      unit_of_measurement: 'degrees'
+      value_template: "{{ states.climate.woonkamer.attributes.temperature }}"
+    thermostat_temperature:
+      friendly_name: "Thermostat temperature"
+      unit_of_measurement: 'degrees'
+      value_template: "{{ states.climate.woonkamer.attributes.current_temperature }}"
+    thermostat_away_mode:
+      friendly_name: "Thermostat away mode"
+      unit_of_measurement: 'degrees'
+      value_template: "{{ states.climate.woonkamer.attributes.away_mode }}"
+
+#   {
+#   "Time": "2017-11-01T18:45:08",
+#   "Total": 40.329,
+#   "Yesterday": 0.333,
+#   "Today": 0.258,
+#   "Period": 0,
+#   "Power": 0,
+#   "Factor": 0,
+#   "Voltage": 226,
+#   "Current": 0
+# }

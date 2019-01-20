@@ -1,0 +1,20 @@
+scene.relax:
+  icon: mdi:sofa
+
+scene.romantic:
+  icon: mdi:heart-outline
+
+scene.nightlight:
+  icon: mdi:weather-night  
+
+scene.movie:
+  icon: mdi:movie-roll
+
+scene.concentrate:
+  icon: mdi:book-open-page-variant
+
+scene.outside_relax:
+  icon: mdi:tree
+
+scene.outside_bright:
+  icon: mdi:brightness-7

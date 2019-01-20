@@ -1,0 +1,142 @@
+# Buienradar Sensors
+sensor.br_temperature:
+  friendly_name: 'Outside Temperature'
+
+sensor.br_ground_temperature:
+  friendly_name: 'Ground Temperature'
+
+sensor.br_wind_direction_azimuth:
+  friendly_name: 'Wind Direction'
+
+sensor.br_wind_force:
+  friendly_name: 'Wind Force'
+
+sensor.br_irradiance:
+  friendly_name: 'Irradiance'
+
+sensor.br_symbol:
+  friendly_name: 'Forecast'
+
+sensor.br_wind_speed:
+  friendly_name: 'Windspeed'
+
+sensor.br_wind_direction:
+  friendly_name: 'Winddirection'
+
+sensor.br_humidity:
+  friendly_name: 'Outside'
+
+sensor.br_cloudiness:
+  friendly_name: 'Cloudiness'
+
+# Xiaomi Sensors
+## climate
+sensor.temperature_158d0001a2e9fc:
+  friendly_name: 'Bathroom Temperature'
+
+sensor.humidity_158d0001a2e9fc:
+  friendly_name: 'Bathroom Humidity'
+  icon: 'mdi:water-percent'
+
+sensor.temperature_158d0001823fa3:
+  friendly_name: 'Hall Temperature'
+
+sensor.humidity_158d0001823fa3:
+  friendly_name: 'Hall Humidity'
+  icon: 'mdi:water-percent'
+
+sensor.temperature_158d0001826df8:
+  friendly_name: 'Fridge Temperature'
+
+sensor.humidity_158d0001826df8:
+  friendly_name: 'Fridge Humidity'
+  icon: 'mdi:water-percent'
+
+sensor.temperature_158d0001a2ad80:
+  friendly_name: 'Bedroom Temperature'
+
+sensor.humidity_158d0001a2ad80:
+  friendly_name: 'Bedroom Humidity'
+  icon: 'mdi:water-percent'
+
+sensor.temperature_158d0001b8d776:
+  friendly_name: 'Storage Temperature'
+
+sensor.humidity_158d0001b8d776:
+  friendly_name: 'Storage Humidity'
+  icon: 'mdi:water-percent'
+
+sensor.temperature_158d00019d3006:
+  friendly_name: 'Storage Fridge Temperature'
+
+sensor.humidity_158d00019d3006:
+  friendly_name: 'Storage Fridge Humidity'
+  icon: 'mdi:water-percent'
+
+## Doors & Windows
+binary_sensor.door_window_sensor_158d0001a044b7:
+  friendly_name: "Window Fenna's Room"
+  icon: 'mdi:window-closed'
+
+binary_sensor.door_window_sensor_158d00016fde8d:
+  friendly_name: 'Front Door'
+  icon: 'mdi:door-closed'
+
+binary_sensor.door_window_sensor_158d00016c8140:
+  friendly_name: 'Storage Door'
+  icon: 'mdi:door-closed'
+
+binary_sensor.door_window_sensor_158d00016363c1:
+  friendly_name: 'Bathroom Window'
+  icon: 'mdi:window-closed'
+
+
+## Lights
+light.gateway_light_34ce008129f0:
+  friendly_name: Gateway
+
+## Switches
+
+binary_sensor.switch_158d00014a11c5:
+  friendly_name: Coffeetable switch
+
+# mqtt sensors
+sensor.fennaroom_humidity:
+  icon: mdi:water-percent
+  friendly_name: "Fenna's Room Humidity"
+
+sensor.fennaroom_temperature:
+  friendly_name: "Fenna's Room Temperature"  
+
+sensor.fennaroom_light:
+  icon: mdi:theme-light-dark
+
+sensor.livingroom_humidity:
+  icon: mdi:water-percent
+
+sensor.livingroom_light:
+  icon: mdi:theme-light-dark
+
+sensor.livingroom_motion:
+  icon: mdi:walk
+
+# Miscellaneous
+sensor.ha_installed_version:
+  icon: 'mdi:home-assistant'
+
+sensor.ha_uptime:
+  icon: 'mdi:clock'
+
+# Floorplan
+#binary_sensor.floorplan:
+# custom_ui_state_card: floorplan
+# config: !include /config/floorplan.yaml
+
+# Traveltime
+sensor.work_to_home:
+  icon: mdi:car
+  friendly_name: Daniel Work to Home
+  
+sensor.home_to_work:
+  icon: mdi:car
+  friendly_name: Daniel Home to Work

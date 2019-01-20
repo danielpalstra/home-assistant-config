@@ -1,0 +1,77 @@
+# Arm alarm when everybody leaves the house (and guest mode is off)
+- alias: 'Arm alarm when everybody leaves'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.daniels_iphone, device_tracker.lauras_iphone
+      to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: device_tracker.daniels_iphone
+      state: 'not_home'
+    - condition: state
+      entity_id: device_tracker.lauras_iphone
+      state: 'not_home'      
+  action:
+    service: alarm_control_panel.alarm_arm_away
+    entity_id: alarm_control_panel.ha_alarm
+
+# Disarm alarm from armed_away when someone returns home
+- alias: 'Disarm alarm when returned home'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.daniels_iphone, device_tracker.lauras_iphone
+      to: 'home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+    - condition: state
+      entity_id: alarm_control_panel.ha_alarm
+      state: 'armed_away'
+  action:
+    service: alarm_control_panel.alarm_disarm
+    entity_id: alarm_control_panel.ha_alarm
+
+# Trigger the alarm system when window/ door opened while alarm is armed
+- alias: 'Alarm triggers while alarm armed_away'
+  trigger:
+    - platform: state
+      entity_id: 
+        - binary_sensor.door_window_sensor_158d00016c8140
+        - binary_sensor.door_window_sensor_158d00016fde8d
+        - binary_sensor.door_window_sensor_158d0001a044b7
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.ha_alarm
+      state: armed_away
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.ha_alarm
+
+# Send notifications when the alarm is triggered
+- alias: Alarm triggered notification
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.ha_alarm
+      to: triggered
+  action:
+    - service: notify.family
+      data:
+        title: 'ALERT! Alarm triggered'
+        message: 'Alarm triggered by window/door sensor at {{now().strftime("%d-%m-%Y %H:%M:%S")}}'
+
+# Send a notification when alarm is armed
+# - alias: Alarm armed notification
+#   trigger:
+#     - platform: state
+#       entity_id: alarm_control_panel.ha_alarm
+#       to: armed_away
+#   action:
+#     - service: notify.family
+#       data:
+#         title: 'Alarm enabled'
+#         message: 'Home Alarm is enabled at {{now().strftime("%Y%m%d-%H%M%S")}}'

@@ -1,0 +1,21 @@
+# Clean when clean on leave is enabled
+- alias: 'Vacuum when everbody leaves'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.daniels_iphone, device_tracker.lauras_iphone
+      to: 'not_home'
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacuum_on_leave
+      state: 'on'
+    - condition: state
+      entity_id: device_tracker.daniels_iphone
+      state: 'not_home'
+    - condition: state
+      entity_id: device_tracker.lauras_iphone
+      state: 'not_home'      
+  action:
+    - service: vacuum.turn_on
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.vacuum_on_leave

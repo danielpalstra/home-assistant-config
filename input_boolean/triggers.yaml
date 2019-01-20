@@ -1,0 +1,30 @@
+# Booleans that trigger actions
+tv_time:
+  name: Watch TV
+  initial: off
+  icon: mdi:television
+
+game_time:
+  name: Play a game
+  initial: off
+  icon: mdi:xbox
+
+bed_time:
+  name: Bedtime
+  initial: off
+  icon: mdi:sleep
+
+# wakeup_time:
+#   name: Wake up time
+#   initial: off
+#   icon: mdi:bell-sleep
+
+auto_covers:
+  name: Cover Automations
+  initial: off
+  icon: mdi:white-balance-sunny
+
+vacuum_on_leave:
+  name: Vacuum on Leave
+  initial: off
+  icon: mdi:broom

@@ -1,0 +1,16 @@
+# Modes that make home assistant behave differently
+
+away_mode:
+  name: Away Mode
+  initial: off
+  icon: mdi:human-greeting
+
+guest_mode:
+  name: Guest Mode
+  initial: off
+  icon: mdi:account-check
+
+vacation_mode:
+  name: Vacation Mode
+  initial: off
+  icon: mdi:airplane-takeoff

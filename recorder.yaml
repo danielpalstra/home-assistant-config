@@ -1,0 +1,26 @@
+# Use MariaDB for recorded events
+purge_interval: 1
+purge_keep_days: 5
+db_url: mysql://hass:hass@homeserver.local/hass
+exclude:
+  entities:
+    - sensor.time
+    - sensor.date
+    - sensor.date__time
+    - sensor.ha_uptime
+    - sensor.average_load_1m
+    - sensor.average_load_5m
+    - sensor.average_load_15m
+    - sensor.ram_free
+    - sensor.ram_use
+    - sensor.swap_free
+    - sensor.swap_use
+#    - binary_sensor.livingroom_motion
+#    - binary_sensor.livingroom_motion
+    - sensor.floorplan_time
+    - sensor.floorplan_date
+    - sensor.woonkamer_link
+    - sensor.woonkamer_overlay
+    - sensor.woonkamer_power
+  domains:
+    - group

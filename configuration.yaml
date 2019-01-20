@@ -1,0 +1,359 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Amsterdam
+  customize: !include_dir_merge_named customize
+  packages: !include_dir_named packages
+
+# Home assistant auth providers
+# auth_providers:
+#  - type: homeassistant
+  
+  
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend: !include frontend.yaml
+
+# Enable IOS devices
+ios:
+  push:
+    categories:
+      - name: Vacuum
+        identifier: 'vacuum'
+        actions:
+          - identifier: 'START_VACUUM'
+            title: 'Start vacuum'
+            activationMode: 'background'
+            authenticationRequired: no
+            destructive: no
+            behavior: 'default'
+          # - identifier: 'SILENCE_ALARM'
+          #   title: 'Silence Alarm'
+          #   activationMode: 'background'
+          #   authenticationRequired: yes
+          #   destructive: no
+          #   behavior: 'textInput'
+          #   textInputButtonTitle: 'Silencio!'
+          #   textInputPlaceholder: 'Placeholder'
+      - name: Alarm
+        identifier: 'alarm'
+        actions:
+          - identifier: 'SOUND_ALARM'
+            title: 'Sound Alarm'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: yes
+            behavior: 'default'
+          - identifier: 'SILENCE_ALARM'
+            title: 'Silence Alarm'
+            activationMode: 'background'
+            authenticationRequired: yes
+            destructive: no
+            behavior: 'textInput'
+            textInputButtonTitle: 'Silencio!'
+            textInputPlaceholder: 'Placeholder'
+
+# Enable Alexa
+alexa:
+
+# Emulate hue
+#emulated_hue_hidden:
+
+intent_script:
+  ActivateSceneIntent:
+    action:
+      service: scene.turn_on
+      data_template:
+        entity_id: scene.{{ Scene | replace(" ", "_") }}
+    speech:
+      type: plain
+      text: OK
+
+tts:
+  - platform: google
+
+# Enable Ring doorbell
+ring:
+ username: !secret ring_username
+ password: !secret ring_password
+
+camera:
+ - platform: ring
+ - platform: mjpeg
+   name: 3D Printer Camera
+   mjpeg_url: http://octopi/webcam/?action=stream
+   still_image_url: http://octopi/webcam/?action=snapshot
+
+logger: !include logger.yaml
+recorder: !include recorder.yaml
+influxdb:
+  host: !secret influxdb_host
+  include:
+    domains:
+      - "˚C"
+      - "%"
+      - sensor
+      - binary_sensor
+      - light
+  exclude:
+    entities:
+      - sensor.iphone_van_daniel_battery_level
+      - sensor.iphone_van_daniel_battery_state
+      - sensor.ipad_van_daniel_en_laura_battery_level
+      - sensor.ipad_van_daniel_en_laura_battery_level_2
+      - sensor.ipad_van_daniel_en_laura_battery_state
+      - sensor.ipad_van_daniel_en_laura_battery_state_2
+      - sensor.iphone_van_laura_battery_level
+      - sensor.iphone_van_laura_battery_state
+      - sensor.time
+      - sensor.date
+    domains:
+      - automation
+  tags_attributes:
+    - friendly_name
+
+#zwave:
+#  usb_path: /dev/ttyACM1
+
+# RFLink controller
+rflink:
+  #port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0042_857303138363517161D2-if00
+  port: /dev/ttyACM0
+  #wait_for_ack: False
+  #ignore_devices:
+  #  - newkaku_000001_01
+  #  - digitech_*
+  #  - kaku_1_*
+
+weather:
+  - platform: buienradar
+
+# group: !include_dir_merge_named group
+
+http:
+  # Uncomment this to add a password (recommended!)
+  #api_password: !secret http_password
+  # Uncomment this if you are using SSL or running in Docker etc
+  base_url: !secret hass_url
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.22.0.2
+    - 127.0.0.1
+    - ::1
+  trusted_networks:
+    - 127.0.0.1
+    - 172.22.0.2
+    - ::1
+    - 192.168.1.0/24
+    - fd00::/8
+  #ip_ban_enabled: true
+  ip_ban_enabled: false
+  login_attempts_threshold: 5
+  # use_x_forwarded_for: True
+#  ip_ban_enabled: True
+#  login_attempts_threshold: 5
+
+# Connect to mqtt broker
+mqtt:
+  discovery: true
+  broker: mqtt
+  port: 1883
+  client_id: home-assistant-1
+  keepalive: 60
+  protocol: 3.1 
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
+
+lovelace:
+  mode: yaml
+
+# Checks for available updates
+updater:
+
+# Enable config
+config:
+# Enable cloud
+cloud:
+  alexa:
+    filter:
+      include_domains:
+        - light
+        - input_boolean
+        - cover
+        - scene
+
+# Discover some devices automatically
+# discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+# conversation:
+
+# Enables support for tracking state changes over time.
+history:
+  exclude:
+    domains:
+      - automation
+      - weblink
+    entities:
+      - sensor.time
+      - sensor.date
+      - sensor.date__time
+      - sensor.ha_uptime
+      - sensor.average_load_1m
+      - sensor.average_load_5m
+      - sensor.average_load_15m
+      - sensor.ram_free
+      - sensor.ram_use
+      - sensor.swap_free
+      - sensor.swap_use
+  #    - binary_sensor.livingroom_motion
+  #    - binary_sensor.livingroom_motion
+      - sensor.floorplan_time
+      - sensor.floorplan_date
+      - sensor.woonkamer_link
+      - sensor.woonkamer_overlay
+      - sensor.woonkamer_power
+      # Binary sensors
+
+
+# View all events in a logbook
+logbook:
+  exclude:
+    entities:
+    - binary_sensor.hall_motion
+    - binary_sensor.livingroom_motion
+
+# Track the sun
+sun:
+
+# Manual alarm
+alarm_control_panel:
+  - platform: manual
+    pending_time: 5
+    trigger_time: 10
+
+# Mediaplayers
+media_player:
+  - platform: braviatv
+    host: 192.168.1.21
+  - platform: songpal
+    name: livingroom-soundbar
+    endpoint: http://192.168.1.211:10000/sony
+
+# ChromeCasts
+cast:
+  # media_player:
+  # - host: 192.168.1.224
+
+cover: !include_dir_merge_list cover
+  # - platform: rflink
+  #   devices:
+  #     rts_8ae237_01:
+  #       name: Sunshade Left
+  #     rts_8be237_01:
+  #       name: Sunshade Right
+  # - platform: group
+  #   name: Livingroom blinds
+  #   entities:
+  #     - cover.sunshade_left
+  #     - cover.sunshade_right
+
+# Lights
+hue:
+  bridges:
+    - host: 192.168.1.32
+      allow_unreachable: true
+
+light:
+  - platform: yeelight
+    devices:
+      192.168.1.227:
+        name: TV
+        transition: 1000    
+  - platform: rflink
+  - platform: group
+    name: Livingroom
+    entities:
+      - light.bank
+      - light.tv
+      - light.kast
+      - light.tv_kast
+
+tado:
+    username: !secret tado_username
+    password: !secret tado_password
+
+xiaomi_aqara:
+  gateways:
+    - mac:
+      key: !secret xiaomi_key
+
+vacuum:
+  - platform: xiaomi_miio
+    host: 192.168.1.29
+    token: !secret xiaomi_vacuum_token
+
+custom_updater:
+  track:
+    - components
+    - cards
+  show_installable: true
+    # - python_scripts
+
+#octoprint:
+ # - host: octoprint.local
+ #   api_key: !secret octoprint_key
+ #   bed: true
+ #   number_of_tools: 1
+  #host: octoprint.local
+  #api_key: !secret octoprint_key
+  #bed: true
+  #number_of_tools: 1
+
+weblink:
+  entities:
+    - name: Router
+      url: http://192.168.1.1/
+      icon: mdi:server-network
+    - name: Grafana
+      url: http://grafana.local:3000
+      icon: mdi:chart-bar
+
+# Includes
+automation: !include_dir_merge_list automation
+device_tracker: !include_dir_merge_list device_tracker
+sensor: !include_dir_merge_list sensor
+binary_sensor: !include_dir_merge_list binary_sensor
+script: !include_dir_merge_named script
+switch: !include_dir_merge_list switch
+scene: !include ./scenes.yaml
+notify: !include ./notify.yaml
+input_boolean: !include_dir_merge_named input_boolean
+input_select: !include_dir_merge_named input_select
+
+# Custom panels for Floorplan and the alarm
+# panel_custom:
+#  - name: floorplan
+#    sidebar_title: Floorplan
+#    sidebar_icon: mdi:home
+#    url_path: floorplan
+#    config: !include floorplan.yaml
+#  - name: alarm
+#    sidebar_title: Alarm
+#    sidebar_icon: mdi:security-home
+#    config:
+#        alarmid: alarm_control_panel.house

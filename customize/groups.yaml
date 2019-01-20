@@ -1,0 +1,25 @@
+group.network:
+  friendly_name: 'Network'
+  emulated_hue: False
+  hidden: False
+
+group.weather:
+  friendly_name: 'Weather'  
+
+group.all_automations:
+  friendly_name: 'Automations'
+  hidden: false
+
+group.all_scripts:
+  friendly_name: 'Scripts'
+  hidden: false
+
+group.all_switches:
+  hidden: false
+
+group.all_sensors:
+  hidden: false
+
+group.all_vacuum_cleaners:
+  friendly_name: 'Vacuum cleaners'
+  hidden: false

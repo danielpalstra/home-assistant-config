@@ -1,0 +1,21 @@
+- platform: mqtt
+  name: "sonoff-pow2"
+  state_topic: "stat/sonoff-pow2/POWER"
+  command_topic: "cmnd/sonoff-pow2/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+- platform: mqtt
+  name: "3D Printer"
+  icon: mdi:printer-3d
+  state_topic: "stat/3dprinter/POWER"
+  command_topic: "cmnd/3dprinter/POWER"
+  availability_topic: "tele/3dprinter/LWT"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+  retain: false
