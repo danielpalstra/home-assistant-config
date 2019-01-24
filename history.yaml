@@ -1,12 +1,11 @@
-# Use MariaDB for recorded events
-purge_interval: 1
-purge_keep_days: 5
-db_url: mysql://hass:hass@homeserver.local/hass
 exclude:
+  domains:
+    - automation
+    - weblink
   entities:
     - sensor.time
     - sensor.date
-    # - sensor.date_time
+    - sensor.date_time
     - sensor.ha_uptime
     - sensor.average_load_1m
     - sensor.average_load_5m
@@ -22,5 +21,4 @@ exclude:
     - sensor.woonkamer_link
     - sensor.woonkamer_overlay
     - sensor.woonkamer_power
-  domains:
-    - group
+    # Binary sensors
