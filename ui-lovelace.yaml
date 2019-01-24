@@ -513,43 +513,6 @@ views:
         card:
           type: entities
           title: All Automations
-          entities:
-            - entity: automation.alarm_triggered_notification
-            - entity: automation.alarm_triggers_while_alarm_armed_away
-            - entity: automation.arm_alarm_when_everybody_leaves
-            - entity: automation.ask_for_vacuum_on_leave
-            - entity: automation.bed_time
-            - entity: automation.bed_time__turn_off
-            - entity: automation.bed_time_by_switch_press
-            - entity: automation.disarm_alarm_when_returned_home
-            - entity: automation.fan_speed_high
-            - entity: automation.game_time
-            - entity: automation.lights_out_after_2230_when_not_at_home
-            - entity: automation.listen_radio
-            - entity: automation.open_covers_when_wakeup_time_is_enabled
-            - entity: automation.set_theme_at_startup
-            - entity: automation.start_vacuum_from_ios
-            - entity: automation.test
-            - entity: automation.trigger_livingroom_presence
-            - entity: automation.trigger_wakeup_time_on_motion_in_the_morning
-            - entity: automation.turn_off_all_media_devices_when_everybody_leaves
-            - entity: automation.turn_off_away_mode_when_somebody_arrives_at_home
-            - entity: automation.turn_off_livingroom_at_sunrise
-            - entity: >-
-                automation.turn_off_the_lights_in_the_morning_when_everybody_leaves
-            - entity: automation.turn_off_wakeup_time
-            - entity: automation.turn_on_away_mode_when_everybody_leaves
-            - entity: >-
-                automation.turn_on_livingroom_lights_before_sunrise_on_wakeup_time
-            - entity: automation.turn_on_livingroom_lights_on_motion_in_the_morning
-            - entity: automation.turn_on_livingroom_lights_when__100_lux
-            - entity: automation.turn_on_nightlamp_when_noone_at_home_at_sunset
-            - entity: automation.turn_on_nightlight_when_everybody_leaves_after_sunset
-            - entity: automation.turn_on_wakeup_light
-            - entity: automation.tv_time
-            - entity: automation.tv_time_by_switch_press
-            - entity: automation.update_available_notifications
-            - entity: automation.vacuum_when_everbody_leaves
         filter:
           include:
             - domain: automation
@@ -558,11 +521,6 @@ views:
         card:
           type: entities
           title: All Scripts
-          entities:
-            - entity: script.radio
-            - entity: script.turn_off_lights
-            - entity: script.turn_off_media
-            - entity: script.turn_off_multimedia_devices
         filter:
           include:
             - domain: script
@@ -582,3 +540,15 @@ views:
       - type: entities
         entities: 
             - entity: input_select.last_scene
+      - type: entities
+        title: Zigbee2mqtt
+        entities:
+          - input_boolean.zigbee_permit_join
+          - timer.zigbee_permit_join
+          - sensor.zigbee2mqtt_bridge_state
+          - switch.zigbee2mqtt_main_join
+          - automation.enable_zigbee_joining
+          - automation.disable_zigbee_joining
+          - automation.disable_zigbee_joining_by_timer
+          - input_select.zigbee2mqtt_log_level
+          - automation.zigbee2mqtt_log_level
