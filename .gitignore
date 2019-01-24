@@ -20,3 +20,4 @@ known_devices.yaml
 ip_bans.yaml
 .*
 !/.gitignore
+!.travis.yml
