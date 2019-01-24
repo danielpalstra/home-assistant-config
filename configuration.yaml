@@ -25,43 +25,7 @@ homeassistant:
 frontend: !include frontend.yaml
 
 # Enable IOS devices
-ios:
-  push:
-    categories:
-      - name: Vacuum
-        identifier: 'vacuum'
-        actions:
-          - identifier: 'START_VACUUM'
-            title: 'Start vacuum'
-            activationMode: 'background'
-            authenticationRequired: no
-            destructive: no
-            behavior: 'default'
-          # - identifier: 'SILENCE_ALARM'
-          #   title: 'Silence Alarm'
-          #   activationMode: 'background'
-          #   authenticationRequired: yes
-          #   destructive: no
-          #   behavior: 'textInput'
-          #   textInputButtonTitle: 'Silencio!'
-          #   textInputPlaceholder: 'Placeholder'
-      - name: Alarm
-        identifier: 'alarm'
-        actions:
-          - identifier: 'SOUND_ALARM'
-            title: 'Sound Alarm'
-            activationMode: 'background'
-            authenticationRequired: yes
-            destructive: yes
-            behavior: 'default'
-          - identifier: 'SILENCE_ALARM'
-            title: 'Silence Alarm'
-            activationMode: 'background'
-            authenticationRequired: yes
-            destructive: no
-            behavior: 'textInput'
-            textInputButtonTitle: 'Silencio!'
-            textInputPlaceholder: 'Placeholder'
+ios: !include ios.yaml
 
 # Enable Alexa
 alexa:
@@ -157,11 +121,6 @@ http:
     - 192.168.1.0/24
     - fd00::/8
   #ip_ban_enabled: true
-  ip_ban_enabled: false
-  login_attempts_threshold: 5
-  # use_x_forwarded_for: True
-#  ip_ban_enabled: True
-#  login_attempts_threshold: 5
 
 # Connect to mqtt broker
 mqtt:
