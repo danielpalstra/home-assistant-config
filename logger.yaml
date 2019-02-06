@@ -15,8 +15,8 @@ logs:
   homeassistant.components.device_tracker: warn
   homeassistant.components.tado: warn
   # homeassistant.components.discovery: warn
-  homeassistant.components.http: error
-  # homeassistant.components.http: info
+  # homeassistant.components.http: error
+  homeassistant.components.http: info
   homeassistant.components.media_player: warn
   homeassistant.components.recorder: warn
   # homeassistant.helpers.script: info
