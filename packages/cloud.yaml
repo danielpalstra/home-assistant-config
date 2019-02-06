@@ -1,0 +1,10 @@
+# Enable cloud
+cloud:
+  alexa:
+    filter:
+      include_domains:
+        - light
+        - input_boolean
+        - cover
+        - scene
+        - script

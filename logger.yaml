@@ -19,6 +19,8 @@ logs:
   homeassistant.components.http: info
   homeassistant.components.media_player: warn
   homeassistant.components.recorder: warn
+  homeassistant.loader: error
+  songpal.containers: error
   # homeassistant.helpers.script: info
   # miio.device: debug
   # homeassistant.components.vacuum.xiaomi_miio: debug

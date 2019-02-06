@@ -124,16 +124,6 @@ updater:
 
 # Enable config
 config:
-# Enable cloud
-cloud:
-  alexa:
-    filter:
-      include_domains:
-        - light
-        - input_boolean
-        - cover
-        - scene
-        - script
 
 # Discover some devices automatically
 # discovery:
