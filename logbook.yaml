@@ -1,0 +1,7 @@
+include:
+  domains:
+    - device_tracker
+    - cover
+    - light
+    - switch
+    - media_player

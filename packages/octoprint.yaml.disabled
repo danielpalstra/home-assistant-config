@@ -1,3 +1,13 @@
+octoprint:
+  - host: octoprint.local
+    api_key: !secret octoprint_key
+    bed: true
+    number_of_tools: 1
+  host: octoprint.local
+  api_key: !secret octoprint_key
+  bed: true
+  number_of_tools: 1
+
 binary_sensor:
   - platform: octoprint
     monitored_conditions:

@@ -13,14 +13,6 @@ homeassistant:
   customize: !include_dir_merge_named customize
   packages: !include_dir_named packages
 
-# Home assistant auth providers
-# auth_providers:
-#  - type: homeassistant
-  
-  
-# Show links to resources in log and frontend
-#introduction:
-
 # Enables the frontend
 frontend: !include frontend.yaml
 
@@ -30,18 +22,15 @@ ios: !include ios.yaml
 # Enable Alexa
 alexa:
 
-# Emulate hue
-#emulated_hue_hidden:
-
-intent_script:
-  ActivateSceneIntent:
-    action:
-      service: scene.turn_on
-      data_template:
-        entity_id: scene.{{ Scene | replace(" ", "_") }}
-    speech:
-      type: plain
-      text: OK
+# intent_script:
+#   ActivateSceneIntent:
+#     action:
+#       service: scene.turn_on
+#       data_template:
+#         entity_id: scene.{{ Scene | replace(" ", "_") }}
+#     speech:
+#       type: plain
+#       text: OK
 
 tts:
   - platform: google
@@ -91,18 +80,10 @@ influxdb:
 
 # RFLink controller
 rflink:
-  #port: /dev/serial/by-id/usb-Arduino__www.arduino.cc__0042_857303138363517161D2-if00
   port: /dev/ttyACM0
-  #wait_for_ack: False
-  #ignore_devices:
-  #  - newkaku_000001_01
-  #  - digitech_*
-  #  - kaku_1_*
 
 weather:
   - platform: buienradar
-
-# group: !include_dir_merge_named group
 
 http:
   base_url: !secret hass_url
@@ -152,22 +133,16 @@ cloud:
         - input_boolean
         - cover
         - scene
+        - script
 
 # Discover some devices automatically
 # discovery:
-
-# Allows you to issue voice commands from the frontend in enabled browsers
-# conversation:
 
 # Enables support for tracking state changes over time.
 history: !include history.yaml
 
 # View all events in a logbook
-logbook:
-  exclude:
-    entities:
-    - binary_sensor.hall_motion
-    - binary_sensor.livingroom_motion
+logbook: !include logbook.yaml
 
 # Track the sun
 sun:
@@ -188,21 +163,9 @@ media_player:
 
 # ChromeCasts
 cast:
-  # media_player:
-  # - host: 192.168.1.224
 
+# Include covers
 cover: !include_dir_merge_list cover
-  # - platform: rflink
-  #   devices:
-  #     rts_8ae237_01:
-  #       name: Sunshade Left
-  #     rts_8be237_01:
-  #       name: Sunshade Right
-  # - platform: group
-  #   name: Livingroom blinds
-  #   entities:
-  #     - cover.sunshade_left
-  #     - cover.sunshade_right
 
 # Lights
 hue:
@@ -234,27 +197,12 @@ xiaomi_aqara:
     - mac:
       key: !secret xiaomi_key
 
-vacuum:
-  - platform: xiaomi_miio
-    host: 192.168.1.29
-    token: !secret xiaomi_vacuum_token
-
 custom_updater:
   track:
     - components
     - cards
   show_installable: true
     # - python_scripts
-
-#octoprint:
- # - host: octoprint.local
- #   api_key: !secret octoprint_key
- #   bed: true
- #   number_of_tools: 1
-  #host: octoprint.local
-  #api_key: !secret octoprint_key
-  #bed: true
-  #number_of_tools: 1
 
 weblink:
   entities:
@@ -276,16 +224,3 @@ scene: !include ./scenes.yaml
 notify: !include ./notify.yaml
 input_boolean: !include_dir_merge_named input_boolean
 input_select: !include_dir_merge_named input_select
-
-# Custom panels for Floorplan and the alarm
-# panel_custom:
-#  - name: floorplan
-#    sidebar_title: Floorplan
-#    sidebar_icon: mdi:home
-#    url_path: floorplan
-#    config: !include floorplan.yaml
-#  - name: alarm
-#    sidebar_title: Alarm
-#    sidebar_icon: mdi:security-home
-#    config:
-#        alarmid: alarm_control_panel.house
