@@ -101,15 +101,15 @@ binary_sensor.switch_158d00014a11c5:
   friendly_name: Coffeetable switch
 
 # mqtt sensors
-sensor.fennaroom_humidity:
-  icon: mdi:water-percent
-  friendly_name: "Fenna's Room Humidity"
+# sensor.fennaroom_humidity:
+#   icon: mdi:water-percent
+#   friendly_name: "Fenna's Room Humidity"
 
-sensor.fennaroom_temperature:
-  friendly_name: "Fenna's Room Temperature"  
+# sensor.fennaroom_temperature:
+#   friendly_name: "Fenna's Room Temperature"  
 
-sensor.fennaroom_light:
-  icon: mdi:theme-light-dark
+# sensor.fennaroom_light:
+#   icon: mdi:theme-light-dark
 
 sensor.livingroom_humidity:
   icon: mdi:water-percent

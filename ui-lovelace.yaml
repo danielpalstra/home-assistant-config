@@ -5,8 +5,16 @@ resources:
     type: module
   - url: /local/custom-lovelace/monster-card/monster-card.js?v=0.2.3
     type: js
-  - url: /local/custom-lovelace/tracker-card/tracker-card.js?v=0.1.5
+  - url: /local/custom-lovelace/tracker-card/tracker-card.js?v=0.3.0
     type: js
+  - url: /local/card-modder.js?v=ab8158
+    type: js
+  - url: /local/auto-entities.js?v=1d85a8
+    type: js
+  - url: /local/mini-graph-card-bundle.js?v=0.2.4
+    type: module
+  - url: /local/simple-thermostat.js?v=1
+    type: module
 custom_updater:
   card_urls:
     - >-
@@ -19,6 +27,10 @@ custom_updater:
       https://raw.githubusercontent.com/matisaul/vertical-style-card/master/tracker.json
     - >-
       https://raw.githubusercontent.com/thomasloven/lovelace-long-press/master/long-press.json
+    - >-
+      https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
+    - >-
+      https://raw.githubusercontent.com/nervetattoo/simple-thermostat/master/tracker.json
 views:
   - path: dashboard
     icon: 'mdi:home-assistant'
@@ -151,6 +163,8 @@ views:
         entity: input_boolean.bed_time
         tap_action:
           action: toggle
+      # - type: thermostat
+      #   entity: climate.woonkamer
     - type: horizontal-stack
       cards:
       - type: entity-button
@@ -440,32 +454,32 @@ views:
         entities:
           - sensor.temperature_158d00019d3006
           - sensor.humidity_158d00019d3006
-  - path: 3dprinter
-    name: '3D Printer'
-    icon: 'mdi:printer-3d'
-    cards:
-      - id: c0ca7fa3b80f4bb9ba87d30da62f6a70
-        type: entities
-        title: 3D printer status
-        entities:
-          - switch.3d_printer
-          - binary_sensor.octoprint_printing
-          - binary_sensor.octoprint_printing_error
-          - sensor.octoprint_target_bed_temp
-          - sensor.octoprint_actual_bed_temp
-          - sensor.octoprint_target_tool0_temp
-          - sensor.octoprint_actual_tool0_temp
-      - id: a0cfdefd58204ad8b6f1bb17540bbe25
-        type: picture-entity
-        entity: camera.3d_printer_camera
-      - id: fbb27edbdd1c40d7994f6fe519817dc9
-        type: entities
-        title: 3D printer job
-        entities:
-          - sensor.octoprint_current_state
-          - sensor.octoprint_job_percentage
-          - sensor.octoprint_time_elapsed
-          - sensor.octoprint_time_remaining
+  # - path: 3dprinter
+  #   name: '3D Printer'
+  #   icon: 'mdi:printer-3d'
+  #   cards:
+  #     - id: c0ca7fa3b80f4bb9ba87d30da62f6a70
+  #       type: entities
+  #       title: 3D printer status
+  #       entities:
+  #         - switch.3d_printer
+  #         - binary_sensor.octoprint_printing
+  #         - binary_sensor.octoprint_printing_error
+  #         - sensor.octoprint_target_bed_temp
+  #         - sensor.octoprint_actual_bed_temp
+  #         - sensor.octoprint_target_tool0_temp
+  #         - sensor.octoprint_actual_tool0_temp
+  #     - id: a0cfdefd58204ad8b6f1bb17540bbe25
+  #       type: picture-entity
+  #       entity: camera.3d_printer_camera
+  #     - id: fbb27edbdd1c40d7994f6fe519817dc9
+  #       type: entities
+  #       title: 3D printer job
+  #       entities:
+  #         - sensor.octoprint_current_state
+  #         - sensor.octoprint_job_percentage
+  #         - sensor.octoprint_time_elapsed
+  #         - sensor.octoprint_time_remaining
   - path: net
     name: Network
     icon: 'mdi:server-network'
@@ -508,7 +522,7 @@ views:
         title: null
         trackers:
           - sensor.custom_card_tracker
-          - sensor.custom_component_tracker
+          # - sensor.custom_component_tracker
       - type: 'custom:monster-card'
         card:
           type: entities
@@ -524,22 +538,19 @@ views:
         filter:
           include:
             - domain: script
-      - type: 'custom:monster-card'
-        card:
-          type: entities
-          title: All covers
-          entities:
-            - entity: cover.livingroom_blinds
-            - entity: cover.mqtt_cover
-            - entity: cover.sunshade_left
-            - entity: cover.sunshade_right
-            - entity: input_number.blinds_slider
-        filter:
-          include:
-            - domain: cover
-      - type: entities
-        entities: 
-            - entity: input_select.last_scene
+      # - type: 'custom:monster-card'
+      #   card:
+      #     type: entities
+      #     title: All covers
+      #     entities:
+      #       - entity: cover.livingroom_blinds
+      #       - entity: cover.mqtt_cover
+      #       - entity: cover.sunshade_left
+      #       - entity: cover.sunshade_right
+      #       - entity: input_number.blinds_slider
+      #   filter:
+      #     include:
+      #       - domain: cover
       - type: entities
         title: Zigbee2mqtt
         entities:
@@ -552,3 +563,52 @@ views:
           - automation.disable_zigbee_joining_by_timer
           - input_select.zigbee2mqtt_log_level
           - automation.zigbee2mqtt_log_level
+      - type: custom:mini-graph-card
+        name: Livingroom
+        hours_to_show: 12
+        # points_per_hour: 0.25
+        hour24: true
+        entities:
+        # - sensor.woonkamer_temperature
+        - entity: sensor.thermostat_temperature
+          name: Thermostat temperature
+        - entity: sensor.livingroom_temperature
+          name: Livingroom temperature
+        - entity: sensor.thermostat_temperature_setting
+          name: Thermostat setting
+      - type: custom:mini-graph-card
+        name: First floor temperature
+        hour24: true
+        entities:
+        - entity: sensor.temperature_158d0001a2ad80
+        - entity: sensor.temperature_158d0001a2e9fc
+        - entity: sensor.fennaroom_temperature
+      - type: custom:mini-graph-card
+        name: 'First floor humidity'
+        hour24: true
+        entities:
+          - entity: sensor.humidity_158d0001a2ad80
+          - entity: sensor.humidity_158d0001a2e9fc
+          - entity: sensor.fennaroom_humidity
+      - type: custom:simple-thermostat
+        entity: climate.woonkamer
+        step_size: 1
+        sensors:
+          - sensor.humidity_158d0001a2ad80
+        # sensors:
+        #   - entity: sensor.fibaro_system_fgwpef_wall_plug_gen5_energy
+        #   - entity: sensor.fibaro_system_fgwpef_wall_plug_gen5_power
+        #     name: Energy today
+        #   - attribute: min_temp
+        #     name: Min temp
+        hide:
+          mode: true
+      - type: entities
+        title: Fibaro
+        entities:
+          - light.fibaro_system_fgd212_dimmer_2_level_2
+          - light.fibaro_system_fgd212_dimmer_2_level
+          - sensor.fibaro_system_fgd212_dimmer_2_energy
+          - sensor.fibaro_system_fgd212_dimmer_2_power
+          - sensor.fibaro_system_fgd212_dimmer_2_heat
+

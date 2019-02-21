@@ -13,6 +13,9 @@ homeassistant:
   customize: !include_dir_merge_named customize
   packages: !include_dir_named packages
 
+# Enable system health
+system_health:
+
 # Enables the frontend
 frontend: !include frontend.yaml
 
@@ -75,8 +78,8 @@ influxdb:
   tags_attributes:
     - friendly_name
 
-#zwave:
-#  usb_path: /dev/ttyACM1
+# zwave:
+#  usb_path: /dev/ttyACM2
 
 # RFLink controller
 rflink:

@@ -30,3 +30,4 @@ logs:
   #homeassistant.components.zwave: debug
   #homeassistant.components.openzwave: debug
   #homeassistant.components.updater: debug
+  homeassistant.components.device_tracker.owntracks: debug
