@@ -30,9 +30,3 @@
 
 - platform: cert_expiry
   host: !secret hass_host
-
-- platform: speedtest
-  monitored_conditions:
-    - ping
-    - download
-    - upload  
