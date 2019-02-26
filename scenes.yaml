@@ -1,41 +1,45 @@
 - name: Off
   entities:
     light.livingroom:
-      state: off
+      state: 'off'
     input_select.last_scene:
       option: Off
 
 - name: Relax
   entities:
     light.bank:
-      state: on
+      state: 'on'
       brightness: 130
       color_temp: 384
+      transition: 2
     light.tv:
-      state: on
+      state: 'on'
       brightness: 180
       color_temp: 384
+      transition: 2
     light.kast:
-      state: on
+      state: 'on'
       brightness: 180
       color_temp: 450
+      transition: 2
     light.tv_kast:
-      state: on
+      state: 'on'
       brightness: 180
       color_temp: 450
+      transition: 2
     input_select.last_scene:
       option: Relax
 
 - name: Nightlight
   entities:
     light.bank:
-      state: off
+      state: 'off'
     light.tv:
-      state: off
+      state: 'off'
     light.tv_kast:
-      state: off
+      state: 'off'
     light.kast:
-      state: on
+      state: 'on'
       brightness: 144.0
       color_temp: 450
     input_select.last_scene:
@@ -44,19 +48,19 @@
 - name: Movie
   entities:
     light.bank:
-      state: on
+      state: 'on'
       brightness: 49.0
       color_temp: 435
     light.tv:
-      state: on
+      state: 'on'
       brightness: 23.0
       color_temp: 379
     light.kast:
-      state: on
+      state: 'on'
       brightness: 58.0
       color_temp: 435
     light.tv_kast:
-      state: on
+      state: 'on'
       brightness: 23.0
       color_temp: 435
     input_select.last_scene:
@@ -65,19 +69,19 @@
 - name: Concentrate
   entities:
     light.kast:
-      state: on
+      state: 'on'
       brightness: 254.0
       color_temp: 233
     light.tv_kast:
-      state: on
+      state: 'on'
       brightness: 254.0
       color_temp: 233
     light.tv:
-      state: on
+      state: 'on'
       brightness: 254.0
       color_temp: 233
     light.bank:
-      state: on
+      state: 'on'
       brightness: 254.0
       color_temp: 233
     input_select.last_scene:

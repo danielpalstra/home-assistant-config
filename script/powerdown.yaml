@@ -11,7 +11,7 @@ turn_off_multimedia_devices:
   sequence:
     - service: media_player.volume_set
       entity_id: media_player.sony_audio5882
-      data: 
+      data:
         volume_level: "0.12"
     - service: media_player.turn_off
       entity_id: media_player.sony_audio5882
@@ -22,14 +22,12 @@ turn_off_multimedia_devices:
 turn_off_lights:
   alias: 'Turn off all first floor lights'
   sequence:
-    - service: light.turn_on
+    - service: light.turn_off
       data:
         entity_id: light.kast
-        flash: short
     - service: cover.close_cover
       entity_id: cover.livingroom_blinds
     - service: light.turn_off
       data:
         entity_id: light.livingroom
         transition: 120
-

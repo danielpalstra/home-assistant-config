@@ -2,15 +2,15 @@
 
 away_mode:
   name: Away Mode
-  initial: off
+  initial: 'off'
   icon: mdi:human-greeting
 
 guest_mode:
   name: Guest Mode
-  initial: off
+  initial: 'off'
   icon: mdi:account-check
 
 vacation_mode:
   name: Vacation Mode
-  initial: off
+  initial: 'off'
   icon: mdi:airplane-takeoff

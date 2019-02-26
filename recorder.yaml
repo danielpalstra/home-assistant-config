@@ -15,8 +15,8 @@ exclude:
     - sensor.ram_use
     - sensor.swap_free
     - sensor.swap_use
-#    - binary_sensor.livingroom_motion
-#    - binary_sensor.livingroom_motion
+    #    - binary_sensor.livingroom_motion
+    #    - binary_sensor.livingroom_motion
     - sensor.floorplan_time
     - sensor.floorplan_date
     - sensor.woonkamer_link

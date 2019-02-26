@@ -5,11 +5,11 @@ resources:
     type: module
   - url: /local/custom-lovelace/monster-card/monster-card.js?v=0.2.3
     type: js
-  - url: /local/custom-lovelace/tracker-card/tracker-card.js?v=0.3.0
+  - url: /local/custom-lovelace/tracker-card/tracker-card.js?v=1.2.6
     type: js
-  - url: /local/card-modder.js?v=ab8158
+  - url: /local/card-modder.js?v=f3d96f
     type: js
-  - url: /local/auto-entities.js?v=1d85a8
+  - url: /local/auto-entities.js?v=be1323
     type: js
   - url: /local/mini-graph-card-bundle.js?v=0.2.4
     type: module
@@ -61,7 +61,6 @@ views:
         entities:
           - climate.woonkamer
           - sensor.woonkamer_heating
-          - input_select.fanstate
           - cover.sunshade_left
           - cover.sunshade_right
           - light.livingroom

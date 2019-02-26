@@ -1,6 +1,6 @@
 # Turn on bedtime, turn off livingroom devices and arm the alarm
 - alias: Bed time
-  hide_entity: True
+  hide_entity: true
   trigger:
     - platform: state
       entity_id: input_boolean.bed_time
@@ -11,16 +11,16 @@
       event_data:
         entity_id: binary_sensor.switch_158d00014a11c5
         click_type: long_click_press
-  action: 
+  action:
     - service: script.turn_off_multimedia_devices
     - service: script.turn_off_lights
 
 # Turn off bed time at 6 am
 - alias: Bed time - Turn off
-  hide_entity: True
+  hide_entity: true
   trigger:
     - platform: time
       at: '06:00:00'
-  action: 
+  action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.bed_time
