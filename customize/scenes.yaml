@@ -5,7 +5,7 @@ scene.romantic:
   icon: mdi:heart-outline
 
 scene.nightlight:
-  icon: mdi:weather-night  
+  icon: mdi:weather-night
 
 scene.movie:
   icon: mdi:movie-roll

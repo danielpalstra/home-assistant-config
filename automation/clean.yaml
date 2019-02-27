@@ -13,7 +13,7 @@
       state: 'not_home'
     - condition: state
       entity_id: device_tracker.lauras_iphone
-      state: 'not_home'      
+      state: 'not_home'
   action:
     - service: vacuum.turn_on
       entity_id: vacuum.xiaomi_vacuum_cleaner

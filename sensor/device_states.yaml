@@ -1,17 +1,10 @@
 - platform: template
   sensors:
-      braviatv:
-        friendly_name: 'Sony Bravia TV'
-        value_template: "{{ 'Online' if is_state('device_tracker.braviatv', 'home') else 'Offline' }}"
-        icon_template: 'mdi:television'
-      denonavr:
-        friendly_name: 'Denon Receiver'
-        value_template: "{{ 'Online' if is_state('device_tracker.denonavr', 'home') else 'Offline' }}"
-        icon_template: 'mdi:radio'
-      philipshue:
-        friendly_name: 'Philips Hue Bridge'
-        value_template: "{{ 'Online' if is_state('device_tracker.philipshue', 'home') else 'Offline' }}"
-        icon_template: 'mdi:lightbulb'
-      # tablotv:
-      #   friendly_name: 'Tablo TV'
-      #   value_template: "{{ 'Online' if is_state('device_tracker.tablotv', 'home') else 'Offline' }}"
+    braviatv:
+      friendly_name: 'Sony Bravia TV'
+      value_template: "{{ 'Online' if is_state('device_tracker.braviatv', 'home') else 'Offline' }}"
+      icon_template: 'mdi:television'
+    philipshue:
+      friendly_name: 'Philips Hue Bridge'
+      value_template: "{{ 'Online' if is_state('device_tracker.philipshue', 'home') else 'Offline' }}"
+      icon_template: 'mdi:lightbulb'

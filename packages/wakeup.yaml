@@ -1,14 +1,14 @@
 input_boolean:
   wakeup_time:
     name: Wake up time
-    initial: off
+    initial: 'off'
     icon: mdi:bell-sleep
 
 automation:
   # Open covers when wakeup time is enabled
   - alias: Open covers when wakeup time is enabled
-    initial_state: true
-    hide_entity: false
+    initial_state: 'true'
+    hide_entity: 'false'
     trigger:
       - platform: state
         entity_id: input_boolean.wakeup_time
@@ -35,40 +35,40 @@ automation:
 
   # Trigger wakeup time on movement in the morning
   - alias: Trigger wakeup time on motion in the morning
-    initial_state: True
-    hide_entity: False
+    initial_state: 'true'
+    hide_entity: 'false'
     trigger:
-    - platform: state
-    # Kitchen motion
-      entity_id: binary_sensor.livingroom_motion
-      to: 'on'
+      - platform: state
+      # Kitchen motion
+        entity_id: binary_sensor.livingroom_motion
+        to: 'on'
     condition:
       condition: and
       conditions:
-      - condition: state
-        entity_id: 'input_boolean.wakeup_time'
-        state: 'off'
-      - condition: time
-        after: '06:00:00'
-        before: '10:00:00'
+        - condition: state
+          entity_id: 'input_boolean.wakeup_time'
+          state: 'off'
+        - condition: time
+          after: '06:00:00'
+          before: '10:00:00'
     action:
       - service: input_boolean.turn_on
         entity_id: input_boolean.wakeup_time
 
   # Turn off wakeup time after 10 am
   - alias: Turn off Wakeup time
-    hide_entity: True
+    hide_entity: 'true'
     trigger:
       - platform: time
         at: '10:01:00'
-    action: 
+    action:
       - service: input_boolean.turn_off
         entity_id: input_boolean.wakeup_time
 
   # Turn on the light based on wakeup time trigger low lux and before sunrise.
   - alias: Turn on livingroom lights before sunrise on wakeup time
-    initial_state: True
-    hide_entity: False
+    initial_state: 'true'
+    hide_entity: 'false'
     trigger:
       - platform: state
         entity_id: input_boolean.wakeup_time
@@ -77,31 +77,17 @@ automation:
     condition:
       condition: and
       conditions:
-      - condition: numeric_state
-        entity_id: sensor.livingroom_light
-        below: 80
-      - condition: state
-        entity_id: 'light.woonkamer'
-        state: 'off'
-      - condition: sun
-        before: sunrise
-      - condition: state
-        entity_id: input_boolean.away_mode
-        state: 'off'
-      # - condition: or
-      #   conditions:
-      #     - condition: state
-      #       entity_id: 'device_tracker.daniels_iphone'
-      #       state: 'home'
-      #     - condition: state
-      #       entity_id: 'device_tracker.lauras_iphone'
-      #       state: 'home'        
+        - condition: numeric_state
+          entity_id: sensor.livingroom_light
+          below: 80
+        - condition: state
+          entity_id: 'light.woonkamer'
+          state: 'off'
+        - condition: sun
+          before: sunrise
+        - condition: state
+          entity_id: input_boolean.away_mode
+          state: 'off'
     action:
       - service: scene.turn_on
         entity_id: scene.relax
-
-  # is enabled in the morning
-
-    # - platform: state
-    #   entity_id: binary_sensor.livingroom_motion
-    #   to: 'on'

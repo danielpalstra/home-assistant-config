@@ -1,6 +1,5 @@
-
 - platform: template
-  sensors: 
+  sensors:
     house_key_handover_new:
       friendly_name: 'New house handover'
       value_template: "{{ ((strptime('01032019', '%d%m%Y').timestamp() - as_timestamp(now())) / 86400)|round }}"

@@ -5,7 +5,7 @@ input_number:
     min: 0
     max: 180
     step: 1
-    unit_of_measurement: step  
+    unit_of_measurement: step
     icon: mdi:target
 
 # This automation script runs when a value is received via MQTT on retained topic: setTemperature

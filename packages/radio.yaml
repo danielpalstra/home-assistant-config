@@ -2,14 +2,14 @@ group:
   radio:
     name: Radio
     entities:
-    - input_select.radio_station
-    - input_select.chromecast_radio
-    - script.radio
+      - input_select.radio_station
+      - input_select.chromecast_radio
+      - script.radio
 
 input_boolean:
   turn_off_media:
     name: Turn off all media devices
-    initial: off
+    initial: 'off'
     icon: mdi:radio
 
 input_select:
@@ -38,15 +38,15 @@ input_select:
 
 automation:
   - alias: Listen Radio
-    hide_entity: True
+    hide_entity: 'true'
     trigger:
       - platform: state
         entity_id: input_select.radio_station
-    action: 
+    action:
       - service: script.radio
 
   - alias: Turn off all media devices when everybody leaves
-    hide_entity: True
+    hide_entity: 'true'
     trigger:
       - platform: state
         entity_id: input_boolean.away_mode
@@ -54,7 +54,7 @@ automation:
         to: 'on'
         for:
           minutes: 5
-    action: 
+    action:
       - service: script.turn_off_media
 
 script:
@@ -62,7 +62,7 @@ script:
     alias: Turn off all media devices
     sequence:
       - service: media_player.turn_off
-        entity_id:  media_player.mini
+        entity_id: media_player.mini
       - service: media_player.turn_off
         entity_id: media_player.sony_bravia_tv
       - service: media_player.turn_off

@@ -9,4 +9,3 @@ input_select:
       - Movie
     initial: 'Off'
     icon: mdi:floor-lamp
-

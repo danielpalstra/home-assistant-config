@@ -1,9 +1,9 @@
-- name: Off
+- name: 'Off'
   entities:
     light.livingroom:
       state: 'off'
     input_select.last_scene:
-      option: Off
+      option: 'Off'
 
 - name: Relax
   entities:

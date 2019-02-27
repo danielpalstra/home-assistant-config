@@ -106,7 +106,7 @@ binary_sensor.switch_158d00014a11c5:
 #   friendly_name: "Fenna's Room Humidity"
 
 # sensor.fennaroom_temperature:
-#   friendly_name: "Fenna's Room Temperature"  
+#   friendly_name: "Fenna's Room Temperature"
 
 # sensor.fennaroom_light:
 #   icon: mdi:theme-light-dark
@@ -127,16 +127,9 @@ sensor.ha_installed_version:
 sensor.ha_uptime:
   icon: 'mdi:clock'
 
-# Floorplan
-#binary_sensor.floorplan:
-# custom_ui_state_card: floorplan
-# config: !include /config/floorplan.yaml
-
-# Traveltime
 sensor.work_to_home:
   icon: mdi:car
   friendly_name: Daniel Work to Home
-  
 sensor.home_to_work:
   icon: mdi:car
   friendly_name: Daniel Home to Work

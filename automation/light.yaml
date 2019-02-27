@@ -6,8 +6,8 @@
 
 # Turn on relax scene when ligth < 100 lux and people at home or guest mode is on
 - alias: Turn on livingroom lights when < 100 lux
-  initial_state: True
-  hide_entity: False
+  initial_state: 'true'
+  hide_entity: 'false'
   trigger:
   - platform: numeric_state
     entity_id: sensor.livingroom_light
@@ -15,107 +15,72 @@
   condition:
     condition: and
     conditions:
-    - condition: state
-      entity_id: 'light.livingroom'
-      state: 'off'
-    - condition: time
-      before: '22:30:00'
-      after: '15:30:00'
-    - condition: state
-      entity_id: 'input_boolean.bed_time'
-      state: 'off'
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: 'input_boolean.away_mode'
-          state: 'off'
-        - condition: state
-          entity_id: 'input_boolean.guest_mode'
-          state: 'on'
+      - condition: state
+        entity_id: 'light.livingroom'
+        state: 'off'
+      - condition: time
+        before: '22:30:00'
+        after: '15:30:00'
+      - condition: state
+        entity_id: 'input_boolean.bed_time'
+        state: 'off'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: 'input_boolean.away_mode'
+            state: 'off'
+          - condition: state
+            entity_id: 'input_boolean.guest_mode'
+            state: 'on'
   action:
     - service: scene.turn_on
       entity_id: scene.relax
 
-# # Turn on the light based on low lux and motion is detected between 06:00 and sunrise
-# - alias: Turn on livingroom lights on motion in the morning
-#   initial_state: True
-#   hide_entity: False
-#   trigger:
-#   - platform: state
-#   # Kitchen motion
-#     entity_id: binary_sensor.livingroom_motion
-#     to: 'on'
-#   condition:
-#     condition: and
-#     conditions:
-#     - condition: numeric_state
-#       entity_id: sensor.livingroom_light
-#       below: 80
-#     - condition: state
-#       entity_id: 'light.livingroom'
-#       state: 'off'
-#       # TODO: Aanpassen, zodat alleen voor zonsondergang gebeurd
-#     - condition: time
-#       after: '05:00:00'
-#     - condition: sun
-#       before: sunrise
-#     - condition: or
-#       conditions:
-#         - condition: state
-#           entity_id: 'device_tracker.daniels_iphone'
-#           state: 'home'
-#         - condition: state
-#           entity_id: 'device_tracker.lauras_iphone'
-#           state: 'home'        
-#   action:
-#     - service: scene.turn_on
-#       entity_id: scene.relax
-
 # Switch to relax scene when nightlight is on and movement is detected
 - alias: Turn on livingroom lights on motion in the morning
-  initial_state: true
-  hide_entity: false
+  initial_state: 'true'
+  hide_entity: 'false'
   trigger:
-  - platform: state
-    entity_id: binary_sensor.livingroom_motion, binary_sensor.livingroom_motion
-    to: 'on'
+    - platform: state
+      entity_id: binary_sensor.livingroom_motion, binary_sensor.livingroom_motion
+      to: 'on'
   condition:
     condition: and
     conditions:
-    - condition: numeric_state
-      entity_id: sensor.livingroom_light
-      below: 40
-    - condition: state
-      entity_id: 'light.livingroom'
-      state: 'on'
-    - condition: sun
-      after: sunset
-    - condition: or
-      conditions:
-        - condition: state
-          entity_id: 'device_tracker.daniels_iphone'
-          state: 'home'
-        - condition: state
-          entity_id: 'device_tracker.lauras_iphone'
-          state: 'home'        
+      - condition: numeric_state
+        entity_id: sensor.livingroom_light
+        below: 40
+      - condition: state
+        entity_id: 'light.livingroom'
+        state: 'on'
+      - condition: sun
+        after: sunset
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: 'device_tracker.daniels_iphone'
+            state: 'home'
+          - condition: state
+            entity_id: 'device_tracker.lauras_iphone'
+            state: 'home'
   action:
     - service: scene.turn_on
       entity_id: scene.relax
 
 # Turn off lights at sunrise
 - alias: Turn off livingroom at sunrise
-  initial_state: True
-  hide_entity: False
+  initial_state: 'true'
+  hide_entity: 'false'
   trigger:
-  - platform: sun
-    event: sunrise
-    offset: '+00:00:00'
+    - platform: sun
+      event: sunrise
+      offset: '+00:00:00'
   condition:
     condition: and
     conditions:
-    - condition: state
-      entity_id: 'light.livingroom'
-      state: 'on'
+      - condition: state
+        entity_id: 'light.livingroom'
+        state: 'on'
   action:
     - service: light.turn_off
       entity_id: light.livingroom
@@ -126,14 +91,14 @@
 
 #################################################
 
-# Turn on 
+# Turn on
 - alias: Turn on night-lamp when noone at home at sunset
-  initial_state: True
-  hide_entity: False
+  initial_state: 'true'
+  hide_entity: 'false'
   trigger:
-  - platform: sun
-    event: sunset
-    offset: '-00:15:00'
+    - platform: sun
+      event: sunset
+      offset: '-00:15:00'
   condition:
     condition: and
     conditions:
@@ -168,17 +133,10 @@
       - condition: state
         entity_id: 'input_boolean.away_mode'
         state: 'on'
-      # TODO: nog verwijderen
-      # - condition: state
-      #   entity_id: 'device_tracker.daniels_iphone'
-      #   state: 'not_home'
-      # - condition: state
-      #   entity_id: 'device_tracker.lauras_iphone'
-      #   state: 'not_home'
       - condition: state
         entity_id: 'input_boolean.guest_mode'
         state: 'off'
-  action: 
+  action:
     - service: light.turn_off
       entity_id: light.livingroom
     - service: notify.family

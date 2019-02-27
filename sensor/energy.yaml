@@ -14,7 +14,7 @@
       value_template: "{{ (states('sensor.power_consumption')|float * 0.59331) | round(2) }}"
 
 # Kitchen Fridge power sensors
-- platform: mqtt  
+- platform: mqtt
   state_topic: "tele/sonoffpow1/ENERGY"
   name: "Fridge Power Consumption"
   force_update: true
@@ -22,7 +22,7 @@
   unit_of_measurement: "w"
   value_template: '{{ (value_json.Power|float) | round(2) }}'
 
-- platform: mqtt  
+- platform: mqtt
   state_topic: "tele/sonoffpow1/ENERGY"
   name: "Fridge Power Today"
   force_update: true
