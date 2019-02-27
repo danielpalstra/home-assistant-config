@@ -71,6 +71,14 @@ Next to a bunch of other stuff I run the following components to make my house s
 
 I've been using lovelace from the start and using it ever since. Will share some screenshots in the future. 
 
+## Usefull commands
+
+I ran into the issue where part of my automations where turned off by default. Thank to the [hass-cli](https://github.com/home-assistant/home-assistant-cli) I was able to turn them all back on.
+
+```bash
+for a in $(hass-cli state list|grep automation|grep off| awk '{print $1}'); do hass-cli state turn_on $a; done
+```
+
 ## Useful links
 
 * [HA cheat sheet](/HASS%20Cheatsheet.md) for miscellaneous tips and tricks.
