@@ -97,19 +97,20 @@ views:
         type: entity-filter
         show_header_toggle: false
         entities:
-          - alarm_control_panel.ha_alarm
-          - binary_sensor.ring_front_door_ding
-          - binary_sensor.ring_front_door_motion
+          # - alarm_control_panel.ha_alarm
+          # - binary_sensor.ring_front_door_ding
+          # - binary_sensor.ring_front_door_motion
           - binary_sensor.livingroom_motion
-          - binary_sensor.hall_motion
-          - binary_sensor.door_window_sensor_158d00016363c1
-          - binary_sensor.door_window_sensor_158d0001a044b7
-          - binary_sensor.door_window_sensor_158d00016fde8d
-          - binary_sensor.door_window_sensor_158d00016c8140
+          # - binary_sensor.hall_motion
+          # - binary_sensor.door_window_sensor_158d00016363c1
+          # - binary_sensor.door_window_sensor_158d0001a044b7
+          # - binary_sensor.door_window_sensor_158d00016fde8d
+          # - binary_sensor.door_window_sensor_158d00016c8140
         state_filter:
           - Detected
           - 'on'
         card:
+          show_header_toggle: false
           type: entities
           title: Security
       - id: 6d9d2ab5bedb475bbb4ef03b5c0cefa3
@@ -132,6 +133,7 @@ views:
       - id: afad845f26b44c83b4f91cc85ba004ef
         type: entities
         title: Trash
+        show_header_toggle: false
         entities:
           - entity: sensor.trash_gft
             name: 'Groente, fruit en tuin afval'
@@ -142,8 +144,9 @@ views:
       - id: 32ba7996776b4987a243a21359e3dd14
         type: entities
         title: System
+        show_header_toggle: false
         entities:
-          - updater.updater
+          - sensor.update_available
           - sensor.ha_installed_version
           - sensor.ssl_certificate_expiry
           - sensor.ha_uptime
@@ -233,6 +236,7 @@ views:
         entity: light.livingroom
       - type: entities
         title: Sun
+        show_header_toggle: false
         entities:
           - sun.sun
           - sensor.nextsunrise
@@ -285,6 +289,7 @@ views:
       - id: 3d2256e2cbc1478db8617a03aa620202
         type: entities
         title: Livingroom
+        show_header_toggle: false
         entities:
           - climate.woonkamer
           - sensor.woonkamer_humidity
@@ -295,19 +300,20 @@ views:
       - id: fe03d7b237b84aeeb5fec66b71abe9c9
         type: entities
         title: Bedrooms
+        show_header_toggle: false
         entities:
           - sensor.temperature_158d0001a2ad80
           - sensor.humidity_158d0001a2ad80
-          - sensor.fennaroom_temperature
-          - sensor.fennaroom_humidity
-          - sensor.fennaroom_light
+          # - sensor.fennaroom_temperature
+          # - sensor.fennaroom_humidity
+          # - sensor.fennaroom_light
       - id: a593d0041fd649839b911f7501a79739
         type: history-graph
         entities:
           - climate.woonkamer
           - sensor.livingroom_temperature
           - sensor.temperature_158d0001a2ad80
-          - sensor.fennaroom_temperature
+          # - sensor.fennaroom_temperature
         hours_to_show: 48
         title: Temperatures 48h
       - id: e07e747ec3d54f1d98a451f125eef25a
@@ -329,18 +335,21 @@ views:
       - id: 6a25a94e3e504577a112940d47ae33e9
         type: entities
         title: Bathroom
+        show_header_toggle: false
         entities:
           - sensor.temperature_158d0001a2e9fc
           - sensor.humidity_158d0001a2e9fc
       - id: 3870afb7a2214979bed29123c66289af
         type: entities
         title: Hall Downstairs
+        show_header_toggle: false
         entities:
           - sensor.temperature_158d0001823fa3
           - sensor.humidity_158d0001823fa3
       - id: 72cb3c910508466891c18f90adf14a84
         type: entities
         title: Storage
+        show_header_toggle: false
         entities:
           - sensor.temperature_158d0001b8d776
           - sensor.humidity_158d0001b8d776
@@ -358,6 +367,7 @@ views:
       - id: bcd37a30efe04c2a95126a36081e5241
         type: entities
         title: Radio
+        show_header_toggle: false
         entities:
           - input_select.radio_station
           - input_select.chromecast_radio
@@ -401,6 +411,7 @@ views:
       - id: ba1226d97c9444e6af3faf2de27a3b5c
         type: entities
         title: Doors & Windows
+        show_header_toggle: false
         entities:
           - binary_sensor.door_window_sensor_158d00016363c1
           - binary_sensor.door_window_sensor_158d0001a044b7
@@ -409,6 +420,7 @@ views:
       - id: 64a2cd02b9e140f7a9b1a6eea4c9e807
         type: entities
         title: Motion
+        show_header_toggle: false
         entities:
           - binary_sensor.ring_front_door_ding
           - binary_sensor.ring_front_door_motion
@@ -424,6 +436,7 @@ views:
       - id: 22072acec7af4ea092814a30ad060f75
         type: entities
         title: Energy usage
+        show_header_toggle: false
         entities:
           - sensor.power_consumption
           - sensor.power_costs
@@ -432,6 +445,7 @@ views:
       - id: b53c018d819d43c58fb828dab0f9d84f
         type: entities
         title: Meter readings
+        show_header_toggle: false
         entities:
           - sensor.power_tariff
           - sensor.power_consumption_low
@@ -440,6 +454,7 @@ views:
       - id: c6b8e62de9de43539a2e94223879cccd
         type: entities
         title: Kitchen Fridge
+        show_header_toggle: false
         entities:
           - sensor.temperature_158d0001826df8
           - sensor.humidity_158d0001826df8
@@ -448,6 +463,7 @@ views:
       - id: 182964fec706461a8fd9c9daf5ef5a1c
         type: entities
         title: Storage Fridge
+        show_header_toggle: false
         entities:
           - sensor.temperature_158d00019d3006
           - sensor.humidity_158d00019d3006
@@ -484,6 +500,7 @@ views:
       - id: fdef58175aa84ae5a8b128a89615fb76
         type: entities
         title: System
+        show_header_toggle: false
         entities:
           - updater.updater
           - sensor.ha_installed_version
@@ -499,13 +516,11 @@ views:
       - id: 1e242c7e0d26435e86f8eab722bc43e0
         type: entities
         title: Network
+        show_header_toggle: false
         entities:
-          - weblink.grafana
-          - weblink.router
           - sensor.speedtest_download
           - sensor.speedtest_upload
           - sensor.braviatv
-          - sensor.denonavr
           - sensor.philipshue
   - path: debug
     name: Debug

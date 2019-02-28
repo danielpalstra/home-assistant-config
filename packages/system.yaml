@@ -3,3 +3,63 @@ speedtestdotnet:
 
 # Enable system health
 system_health:
+
+# Home Assistant updates available
+sensor:
+  - platform: template
+    sensors:
+      update_available:
+        icon_template: 'mdi:home-assistant'
+        friendly_name: "HA Version Available"
+        value_template: '{% if is_state("updater.updater", "") %}{{updater.updater}}{% else %}No updates{% endif %}'
+
+  - platform: systemmonitor
+    resources:
+      - type: memory_free
+      - type: memory_use_percent
+      - type: memory_use
+      - type: swap_use_percent
+      - type: swap_use
+      - type: swap_free
+      - type: load_1m
+      - type: load_5m
+      - type: load_15m
+      - type: processor_use
+
+  - platform: command_line
+    name: HA Installed Version
+    command: >-
+        cat /config/.HA_VERSION
+    scan_interval: 86400
+  - platform: command_line
+    name: "HA Uptime"
+    command: echo "$(($(date +%s) - $(date -d "$(head -n1 /config/home-assistant.log | cut -d' ' -f-2)" +%s)))"
+    scan_interval: 720
+    value_template: >-
+      {% set uptime = value | int %}
+      {% set seconds = uptime % 60 %}
+      {% set minutes = ((uptime % 3600) / 60) | int %}
+      {% set hours = ((uptime % 86400) / 3600) | int %}
+      {% set days = (uptime / 86400) | int %}
+      {%- if days > 0 -%}
+        {%- if days == 1 -%}
+          1 day
+        {%- else -%}
+          {{ days }} days
+        {%- endif -%}
+        {{ ', ' }}
+      {%- endif -%}
+      {{ '%02d' % hours }}:{{ '%02d' % minutes }}
+
+  - platform: cert_expiry
+    host: !secret hass_host
+
+automation:
+- alias: 'Update Available Notifications'
+  trigger:
+    platform: state
+    entity_id: updater.updater
+  action:
+    service: notify.notify
+    data:
+      message: 'Update for Home Assistant is available.'
