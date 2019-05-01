@@ -2,6 +2,9 @@
   entities:
     light.livingroom:
       state: 'off'
+    light.kitchen:
+      state: 'off'
+    light.dining: 'off'
     input_select.last_scene:
       option: 'Off'
 
@@ -9,24 +12,17 @@
   entities:
     light.bank:
       state: 'on'
-      brightness: 130
+      brightness: 60
       color_temp: 384
-      transition: 2
-    light.tv:
-      state: 'on'
-      brightness: 180
-      color_temp: 384
-      transition: 2
-    light.kast:
-      state: 'on'
-      brightness: 180
-      color_temp: 450
       transition: 2
     light.tv_kast:
       state: 'on'
-      brightness: 180
+      brightness: 100
       color_temp: 450
       transition: 2
+    light.livingroom_downlights:
+      state: on
+      brightness: 3
     input_select.last_scene:
       option: Relax
 
@@ -37,11 +33,11 @@
     light.tv:
       state: 'off'
     light.tv_kast:
-      state: 'off'
-    light.kast:
       state: 'on'
       brightness: 144.0
       color_temp: 450
+    light.kast:
+      state: 'off'
     input_select.last_scene:
       option: Nightlight
 
@@ -51,32 +47,18 @@
       state: 'on'
       brightness: 49.0
       color_temp: 435
-    light.tv:
-      state: 'on'
-      brightness: 23.0
-      color_temp: 379
-    light.kast:
-      state: 'on'
-      brightness: 58.0
-      color_temp: 435
     light.tv_kast:
       state: 'on'
       brightness: 23.0
       color_temp: 435
+    light.livingroom_downlights:
+      state: 'off'
     input_select.last_scene:
       option: Movie
 
 - name: Concentrate
   entities:
-    light.kast:
-      state: 'on'
-      brightness: 254.0
-      color_temp: 233
     light.tv_kast:
-      state: 'on'
-      brightness: 254.0
-      color_temp: 233
-    light.tv:
       state: 'on'
       brightness: 254.0
       color_temp: 233
@@ -84,5 +66,30 @@
       state: 'on'
       brightness: 254.0
       color_temp: 233
+    light.livingroom_downlights:
+      state: on
+      brightness: 255
     input_select.last_scene:
       option: Concentrate
+
+- name: All on
+  entities:
+    light.livingroom:
+      state: 'on'
+    light.kitchen:
+      state: 'on'
+    light.dining: 
+      state: 'on'
+    input_select.last_scene:
+      option: All on
+
+- name: Dinner Time
+  entities:
+    light.livingroom:
+      state: 'on'
+    light.kitchen:
+      state: 'on'
+    light.dining: 
+      state: 'on'
+    input_select.last_scene:
+      option: Dinner Time

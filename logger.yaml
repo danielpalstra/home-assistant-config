@@ -17,7 +17,7 @@ logs:
   homeassistant.components.tado: warn
   # homeassistant.components.discovery: warn
   # homeassistant.components.http: error
-  homeassistant.components.http: info
+  #homeassistant.components.http: info
   homeassistant.components.media_player: warn
   homeassistant.components.recorder: warn
   homeassistant.loader: error
@@ -26,9 +26,10 @@ logs:
   # miio.device: debug
   # homeassistant.components.vacuum.xiaomi_miio: debug
   root: warn
-  # rflink: debug
-  # homeassistant.components.rflink: debug
+  rflink: debug
+  homeassistant.components.rflink: debug
   #homeassistant.components.zwave: debug
   #homeassistant.components.openzwave: debug
   #homeassistant.components.updater: debug
-  homeassistant.components.device_tracker.owntracks: debug
+  #homeassistant.components.device_tracker.owntracks: debug
+  homeassistant.components.uvc: debug

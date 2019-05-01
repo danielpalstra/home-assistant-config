@@ -8,7 +8,7 @@ resources:
   - url: /local/custom-lovelace/tracker-card/tracker-card.js?v=1.2.6
     type: js
   - url: /local/card-modder.js?v=f3d96f
-    type: js
+    type: js  
   - url: /local/auto-entities.js?v=be1323
     type: js
   - url: /local/mini-graph-card-bundle.js?v=0.2.4
@@ -44,6 +44,8 @@ views:
           - scene.nightlight
           - scene.movie
           - scene.concentrate
+          - scene.all_on
+          - scene.dinner_time
           - input_select.last_scene
       - id: 89768d6afbe04faa985d556c922298f6
         type: entities
@@ -59,11 +61,10 @@ views:
         title: Livingroom
         show_header_toggle: false
         entities:
-          - climate.woonkamer
+          - climate.heating
           - sensor.woonkamer_heating
-          - cover.sunshade_left
-          - cover.sunshade_right
           - light.livingroom
+          - light.livingroom_downlights
           - sensor.livingroom_light
           - sensor.livingroom_temperature
           - sensor.livingroom_humidity
@@ -82,17 +83,9 @@ views:
           - entity: input_boolean.vacation_mode
             tap_action:
               action: toggle
-      - id: 5311e8c9e1864e29a834e074571c5200
-        type: glance
-        title: Days before moving
-        show_header_toggle: false
-        entities:
-          - sensor.house_key_handover_new
-          - sensor.house_moving_day
-          - sensor.house_key_handover_old
       - id: 593660e3ece14563908d8e299ff54dd6
         type: thermostat
-        entity: climate.woonkamer
+        entity: climate.heating
       - id: 576a2901f0c242f59b4d06aece2b4d97
         type: entity-filter
         show_header_toggle: false
@@ -101,7 +94,8 @@ views:
           # - binary_sensor.ring_front_door_ding
           # - binary_sensor.ring_front_door_motion
           - binary_sensor.livingroom_motion
-          # - binary_sensor.hall_motion
+          - binary_sensor.hall_motion
+          - binary_sensor.0x00158d0001231fdd_occupancy
           # - binary_sensor.door_window_sensor_158d00016363c1
           # - binary_sensor.door_window_sensor_158d0001a044b7
           # - binary_sensor.door_window_sensor_158d00016fde8d
@@ -117,6 +111,8 @@ views:
         type: entity-filter
         entities:
           - light.livingroom
+          - light.kitchen
+          - light.dining
         state_filter:
           - 'on'
         card:
@@ -130,6 +126,12 @@ views:
           - device_tracker.daniels_iphone
           - device_tracker.lauras_iphone
         show_empty: false
+      - type: entities
+        show_header_toggle: false
+        title: Commuting
+        entities:
+          - sensor.home_to_work
+          - sensor.work_to_home
       - id: afad845f26b44c83b4f91cc85ba004ef
         type: entities
         title: Trash
@@ -234,6 +236,12 @@ views:
     cards:
       - type: light
         entity: light.livingroom
+      - type: light
+        entity: light.dining
+      - type: light
+        entity: light.kitchen
+      - type: light
+        entity: light.outside
       - type: entities
         title: Sun
         show_header_toggle: false
@@ -242,20 +250,25 @@ views:
           - sensor.nextsunrise
           - sensor.nextsunset
       - type: entities
-        title: Livingroom lights
+        title: Downstairs
         show_header_toggle: false
         entities:
-          - light.gateway_light_34ce008129f0
-          - light.kast
           - light.bank
-          - light.tv
           - light.tv_kast
-          - light.livingroom
-      - type: entities
-        title: Other
-        show_header_toggle: false
-        entities:
-          - light.gateway_light_34ce008129f0
+          - light.livingroom_downlights
+          - light.dinner_table_level
+          - light.kitchen_island
+          - light.kitchen_cabinets
+          - light.outside
+      - type: 'custom:monster-card'
+        card:
+          type: entities
+          title: All Scenes
+          show_header_toggle: false
+        filter:
+          include:
+            - domain: scene
+              # state: 'on'
       - type: entities
         title: Scenes
         show_header_toggle: false
@@ -264,6 +277,7 @@ views:
           - scene.nightlight
           - scene.movie
           - scene.concentrate
+          - scene.off
   - path: climate
     name: Climate
     icon: 'mdi:weather-partlycloudy'
@@ -291,7 +305,7 @@ views:
         title: Livingroom
         show_header_toggle: false
         entities:
-          - climate.woonkamer
+          - climate.heating
           - sensor.woonkamer_humidity
           - sensor.woonkamer_heating
           - sensor.livingroom_temperature
@@ -302,15 +316,17 @@ views:
         title: Bedrooms
         show_header_toggle: false
         entities:
-          - sensor.temperature_158d0001a2ad80
-          - sensor.humidity_158d0001a2ad80
+          - sensor.0x00158d0001a2ad80_temperature
+          - sensor.0x00158d0001a2ad80_humidity
+          # - sensor.temperature_158d0001a2ad80
+          # - sensor.humidity_158d0001a2ad80
           # - sensor.fennaroom_temperature
           # - sensor.fennaroom_humidity
           # - sensor.fennaroom_light
       - id: a593d0041fd649839b911f7501a79739
         type: history-graph
         entities:
-          - climate.woonkamer
+          - climate.heating
           - sensor.livingroom_temperature
           - sensor.temperature_158d0001a2ad80
           # - sensor.fennaroom_temperature
@@ -319,7 +335,7 @@ views:
       - id: e07e747ec3d54f1d98a451f125eef25a
         type: history-graph
         entities:
-          - climate.woonkamer
+          - climate.heating
           - sensor.livingroom_temperature
           - sensor.temperature_158d0001a2ad80
           - sensor.fennaroom_temperature
@@ -339,6 +355,12 @@ views:
         entities:
           - sensor.temperature_158d0001a2e9fc
           - sensor.humidity_158d0001a2e9fc
+      - type: entities
+        title: Kitchen
+        show_header_toggle: false
+        entities:
+          - sensor.0x00158d0001b8ccdc_temperature
+          - sensor.0x00158d0001b8ccdc_humidity
       - id: 3870afb7a2214979bed29123c66289af
         type: entities
         title: Hall Downstairs
@@ -351,8 +373,8 @@ views:
         title: Storage
         show_header_toggle: false
         entities:
-          - sensor.temperature_158d0001b8d776
-          - sensor.humidity_158d0001b8d776
+          - sensor.0x00158d0001b8d776_temperature
+          - sensor.0x00158d0001b8d776_humidity
   - path: media
     icon: 'mdi:television-classic'
     cards:
@@ -413,11 +435,11 @@ views:
         title: Doors & Windows
         show_header_toggle: false
         entities:
-          - binary_sensor.door_window_sensor_158d00016363c1
-          - binary_sensor.door_window_sensor_158d0001a044b7
-          - binary_sensor.door_window_sensor_158d00016fde8d
-          - binary_sensor.door_window_sensor_158d00016c8140
-      - id: 64a2cd02b9e140f7a9b1a6eea4c9e807
+          - binary_sensor.0x00158d00016363c1_contact
+          - binary_sensor.0x00158d0001a044b7_contact
+          - binary_sensor.0x00158d00016fde8d_contact
+          - binary_sensor.0x00158d00016c8140_contact
+      - id: 64a2cd02b9e140f7a9b1a6eea4c9e807_contact
         type: entities
         title: Motion
         show_header_toggle: false
@@ -426,6 +448,7 @@ views:
           - binary_sensor.ring_front_door_motion
           - binary_sensor.livingroom_motion
           - binary_sensor.hall_motion
+          - binary_sensor.kitchen_motion_sensor_occupancy
       - id: b2abd8f9563644e385da2697ae8626d3
         type: picture-entity
         entity: camera.front_door
@@ -439,9 +462,18 @@ views:
         show_header_toggle: false
         entities:
           - sensor.power_consumption
-          - sensor.power_costs
           - sensor.hourly_gas_consumption
-          - sensor.gas_costs
+      - id: 22072acec7af4ea092814a30ad060f75
+        type: entities
+        title: Energy costs
+        show_header_toggle: false
+        entities:
+          - sensor.power_peak_costs_daily
+          - sensor.power_offpeak_costs_daily
+          - sensor.gas_costs_daily
+          - sensor.power_peak_costs_monthly
+          - sensor.power_offpeak_costs_monthly
+          - sensor.gas_costs_monthly
       - id: b53c018d819d43c58fb828dab0f9d84f
         type: entities
         title: Meter readings
@@ -451,22 +483,38 @@ views:
           - sensor.power_consumption_low
           - sensor.power_consumption_normal
           - sensor.gas_consumption
-      - id: c6b8e62de9de43539a2e94223879cccd
-        type: entities
-        title: Kitchen Fridge
+      - type: entities
+        title: Utility Meter
         show_header_toggle: false
         entities:
-          - sensor.temperature_158d0001826df8
-          - sensor.humidity_158d0001826df8
-          - sensor.fridge_power_consumption
-          - sensor.fridge_power_today
-      - id: 182964fec706461a8fd9c9daf5ef5a1c
-        type: entities
-        title: Storage Fridge
+          - sensor.daily_power_offpeak
+          - sensor.daily_power_peak
+          - sensor.monthly_power_offpeak
+          - sensor.monthly_power_peak
+          - sensor.daily_gas
+          - sensor.monthly_gas
+      # - id: c6b8e62de9de43539a2e94223879cccd
+      #   type: entities
+      #   title: Kitchen Fridge
+      #   show_header_toggle: false
+      #   entities:
+      #     - sensor.temperature_158d0001826df8
+      #     - sensor.humidity_158d0001826df8
+      #     - sensor.fridge_power_consumption
+      #     - sensor.fridge_power_today
+      # - id: 182964fec706461a8fd9c9daf5ef5a1c
+      #   type: entities
+      #   title: Storage Fridge
+      #   show_header_toggle: false
+      #   entities:
+      #     - sensor.temperature_158d00019d3006
+      #     - sensor.humidity_158d00019d3006
+      - type: entities
+        title: Batteries
         show_header_toggle: false
         entities:
-          - sensor.temperature_158d00019d3006
-          - sensor.humidity_158d00019d3006
+          - sensor.ipad_van_daniel_en_laura_battery_state
+          - sensor.ipad_van_daniel_en_laura_battery_level
   # - path: 3dprinter
   #   name: '3D Printer'
   #   icon: 'mdi:printer-3d'
@@ -529,6 +577,8 @@ views:
       - type: entities
         title: Test
         entities:
+          - cover.screens
+          - camera.drive
           - input_number.blinds_slider
       - type: 'custom:tracker-card'
         title: null
@@ -601,7 +651,7 @@ views:
           - entity: sensor.humidity_158d0001a2e9fc
           - entity: sensor.fennaroom_humidity
       - type: custom:simple-thermostat
-        entity: climate.woonkamer
+        entity: climate.heating
         step_size: 1
         sensors:
           - sensor.humidity_158d0001a2ad80
@@ -616,8 +666,16 @@ views:
       - type: entities
         title: Fibaro
         entities:
-          - light.fibaro_system_fgd212_dimmer_2_level_2
           - light.fibaro_system_fgd212_dimmer_2_level
-          - sensor.fibaro_system_fgd212_dimmer_2_energy
-          - sensor.fibaro_system_fgd212_dimmer_2_power
-          - sensor.fibaro_system_fgd212_dimmer_2_heat
+          - light.fibaro_system_fgd212_dimmer_2_level_2
+          - light.fibaro_system_fgd212_dimmer_2_level_3
+          - light.fibaro_system_fgd212_dimmer_2_level_4
+          - light.kitchen_island
+      - type: picture-entity
+        entity: camera.camera_drive
+        show_name: false
+        show_state: false
+      - type: picture-entity
+        entity: camera.fennacam
+        show_name: false
+        show_state: false

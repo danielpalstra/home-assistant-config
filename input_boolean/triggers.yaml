@@ -1,13 +1,4 @@
 # Booleans that trigger actions
-tv_time:
-  name: Watch TV
-  initial: 'off'
-  icon: mdi:television
-
-game_time:
-  name: Play a game
-  initial: 'off'
-  icon: mdi:xbox
 
 auto_covers:
   name: Cover Automations

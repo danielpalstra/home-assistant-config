@@ -16,8 +16,14 @@ homeassistant:
 # Enables the frontend
 frontend: !include frontend.yaml
 
+# Enable default config
+default_config: 
+
 # Enable IOS devices
 ios: !include ios.yaml
+
+# Enable utility meter
+utility_meter: !include utility_meter.yaml
 
 # Enable Alexa
 alexa:
@@ -32,16 +38,8 @@ alexa:
 #       type: plain
 #       text: OK
 
-tts:
-  - platform: google
-
-# Enable Ring doorbell
-ring:
-  username: !secret ring_username
-  password: !secret ring_password
-
 camera:
-  - platform: ring
+  # - platform: ring
   - platform: mjpeg
     name: 3D Printer Camera
     mjpeg_url: http://octopi/webcam/?action=stream
@@ -74,10 +72,6 @@ influxdb:
       - automation
   tags_attributes:
     - friendly_name
-
-# RFLink controller
-rflink:
-  port: /dev/rflink
 
 weather:
   - platform: buienradar
@@ -115,7 +109,7 @@ updater:
 config:
 
 # Discover some devices automatically
-# discovery:
+discovery:
 
 # Enables support for tracking state changes over time.
 history: !include history.yaml
@@ -134,11 +128,11 @@ alarm_control_panel:
 
 # Mediaplayers
 media_player:
-  - platform: braviatv
-    host: 192.168.1.21
-  - platform: songpal
-    name: livingroom-soundbar
-    endpoint: http://192.168.1.211:10000/sony
+ - platform: braviatv
+   host: 192.168.1.21
+ - platform: songpal
+   name: livingroom-soundbar
+   endpoint: http://192.168.1.211:10000/sony
 
 # ChromeCasts
 cast:
@@ -147,34 +141,15 @@ cast:
 cover: !include_dir_merge_list cover
 
 # Lights
-hue:
-  bridges:
-    - host: 192.168.1.32
-      allow_unreachable: true
+#hue:
+#  bridges:
+#    - host: 192.168.1.32
+#      allow_unreachable: true
 
-light:
-  - platform: yeelight
-    devices:
-      192.168.1.227:
-        name: TV
-        transition: 1000
-  - platform: rflink
-  - platform: group
-    name: Livingroom
-    entities:
-      - light.bank
-      - light.tv
-      - light.kast
-      - light.tv_kast
-
-tado:
-  username: !secret tado_username
-  password: !secret tado_password
-
-xiaomi_aqara:
-  gateways:
-    - mac:
-      key: !secret xiaomi_key
+# xiaomi_aqara:
+#   gateways:
+#     - mac:
+#       key: !secret xiaomi_key
 
 custom_updater:
   track:
@@ -186,10 +161,10 @@ custom_updater:
 automation: !include_dir_merge_list automation
 device_tracker: !include_dir_merge_list device_tracker
 sensor: !include_dir_merge_list sensor
-binary_sensor: !include_dir_merge_list binary_sensor
+# binary_sensor: !include_dir_merge_list binary_sensor
 script: !include_dir_merge_named script
-switch: !include_dir_merge_list switch
-scene: !include ./scenes.yaml
+# switch: !include_dir_merge_list switch
+# scene: !include ./scenes.yaml
 notify: !include ./notify.yaml
 input_boolean: !include_dir_merge_named input_boolean
 input_select: !include_dir_merge_named input_select

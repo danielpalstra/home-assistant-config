@@ -1,7 +1,7 @@
 vacuum:
-  - platform: xiaomi_miio
-    host: 192.168.1.29
-    token: !secret xiaomi_vacuum_token
+ - platform: xiaomi_miio
+   host: 192.168.1.29
+   token: !secret xiaomi_vacuum_token
 
 #sensor:
 #  - platform: template

@@ -10,15 +10,16 @@ from datetime import timedelta
 
 import voluptuous as vol
 from aiohttp import web
+from homeassistant.const import EVENT_HOMEASSISTANT_START
 import homeassistant.helpers.config_validation as cv
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.helpers.event import async_track_time_interval
 
-VERSION = '4.2.13'
+VERSION = '4.2.19'
 
 _LOGGER = logging.getLogger(__name__)
 
-REQUIREMENTS = ['pyupdate==1.3.3']
+REQUIREMENTS = ['pyupdate==1.3.6']
 
 CONF_TRACK = 'track'
 CONF_HIDE_SENSOR = 'hide_sensor'
@@ -67,7 +68,7 @@ async def async_setup(hass, config):
 
     _LOGGER.debug('Version %s', VERSION)
     _LOGGER.debug('Mode %s', conf_mode)
-    
+
     if conf_mode == 'yaml':
         if not os.path.exists("{}/ui-lovelace.yaml".format(str(hass.config.path()))):
             _LOGGER.warning(
@@ -78,7 +79,7 @@ async def async_setup(hass, config):
         card_controller = CustomCards(
             hass, conf_hide_sensor, conf_card_urls, conf_mode)
 
-        await card_controller.extra_init()
+        hass.bus.async_listen_once(EVENT_HOMEASSISTANT_START, card_controller.extra_init())
 
         async_track_time_interval(
             hass, card_controller.force_reload, INTERVAL)
@@ -87,7 +88,7 @@ async def async_setup(hass, config):
         components_controller = CustomComponents(
             hass, conf_hide_sensor, conf_component_urls)
 
-        await components_controller.extra_init()
+        hass.bus.async_listen_once(EVENT_HOMEASSISTANT_START, components_controller.extra_init())
 
         async_track_time_interval(
             hass, components_controller.cache_versions, INTERVAL)
@@ -96,7 +97,7 @@ async def async_setup(hass, config):
         python_scripts_controller = CustomPythonScripts(
             hass, conf_hide_sensor, conf_py_script_urls)
 
-        await python_scripts_controller.extra_init()
+        hass.bus.async_listen_once(EVENT_HOMEASSISTANT_START, python_scripts_controller.extra_init())
 
         async_track_time_interval(
             hass, python_scripts_controller.cache_versions, INTERVAL)
@@ -117,7 +118,7 @@ async def async_setup(hass, config):
         if 'components' in conf_track:
             await components_controller.update_all()
         if 'python_scripts' in conf_track:
-            python_scripts_controller.update_all()
+            await python_scripts_controller.update_all()
 
     async def install_service(call):
         """Install single component/card."""
@@ -158,7 +159,7 @@ class CustomCards():
         await self.cache_versions()
         await self.serve_dynamic_files()
 
-    async def force_reload(self):
+    async def force_reload(self, now=None):
         """Force data refresh"""
         _LOGGER.debug('CustomCards - force_reload')
         await self.pyupdate.force_reload()
@@ -311,9 +312,7 @@ class CustomCardsView(HomeAssistantView):
                 path=path)
             _LOGGER.debug(msg)
             resp = web.FileResponse(file)
-            resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
-            resp.headers["Pragma"] = "no-cache"
-            resp.headers["Expires"] = "0"
+            resp.headers["Cache-Control"] = "max-age=0, must-revalidate"
             return resp
         else:
             _LOGGER.error("Tried to serve up '%s' but it does not exist", file)

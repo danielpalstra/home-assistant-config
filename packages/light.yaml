@@ -1,3 +1,25 @@
+light:
+  - platform: group
+    name: Livingroom
+    entities:
+      - light.bank
+      - light.kast
+      - light.tv_kast
+      - light.livingroom_downlights
+  - platform: group
+    name: Kitchen
+    entities:
+      - light.kitchen_cabinets
+      - light.kitchen_island
+  - platform: group
+    name: Dining
+    entities:
+      - light.dinner_table
+  # - platform: group
+  #   name: Outside
+  #   entities:
+  #     - light.dinner_table
+  
 input_select:
   last_scene:
     name: Last scene
@@ -7,5 +29,120 @@ input_select:
       - Relax
       - Concentrate
       - Movie
+      - 'All on'
+      - 'Dinner Time'
     initial: 'Off'
     icon: mdi:floor-lamp
+
+# Sun sensors
+sensor:
+  - platform: template
+    sensors:
+      nextsunrise:
+        friendly_name: 'Next Sun Rise'
+        value_template: "{{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom('%-H:%M') }}"
+        icon_template: mdi:weather-sunset-up
+
+  - platform: template
+    sensors:
+      nextsunset:
+        friendly_name: 'Next Sun Set'
+        value_template: "{{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom('%-H:%M') }}"
+        icon_template: mdi:weather-sunset-down
+
+scene:
+  - name: 'Off'
+    entities:
+      light.livingroom:
+        state: 'off'
+      light.kitchen:
+        state: 'off'
+      light.dining: 'off'
+      input_select.last_scene:
+        option: 'Off'
+
+  - name: Relax
+    entities:
+      light.bank:
+        state: 'on'
+        brightness: 60
+        color_temp: 384
+        transition: 2
+      light.tv_kast:
+        state: 'on'
+        brightness: 100
+        color_temp: 450
+        transition: 2
+      light.livingroom_downlights:
+        state: on
+        brightness: 3
+      input_select.last_scene:
+        option: Relax
+
+  - name: Nightlight
+    entities:
+      light.bank:
+        state: 'off'
+      light.tv:
+        state: 'off'
+      light.tv_kast:
+        state: 'on'
+        brightness: 144.0
+        color_temp: 450
+      light.kast:
+        state: 'off'
+      input_select.last_scene:
+        option: Nightlight
+
+  - name: Movie
+    entities:
+      light.bank:
+        state: 'on'
+        brightness: 49.0
+        color_temp: 435
+      light.tv_kast:
+        state: 'on'
+        brightness: 23.0
+        color_temp: 435
+      light.livingroom_downlights:
+        state: 'off'
+      input_select.last_scene:
+        option: Movie
+
+  - name: Concentrate
+    entities:
+      light.tv_kast:
+        state: 'on'
+        brightness: 254.0
+        color_temp: 233
+      light.bank:
+        state: 'on'
+        brightness: 254.0
+        color_temp: 233
+      light.livingroom_downlights:
+        state: on
+        brightness: 255
+      input_select.last_scene:
+        option: Concentrate
+
+  - name: All on
+    entities:
+      light.livingroom:
+        state: 'on'
+      light.kitchen:
+        state: 'on'
+      light.dining: 
+        state: 'on'
+      input_select.last_scene:
+        option: All on
+
+  - name: Dinner Time
+    entities:
+      light.livingroom:
+        state: 'off'
+      light.kitchen:
+        state: 'on'
+      light.dining: 
+        state: 'on'
+      input_select.last_scene:
+        option: Dinner Time

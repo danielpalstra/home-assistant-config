@@ -4,14 +4,30 @@
 
 - platform: template
   sensors:
-    power_costs:
-      friendly_name: "Power Costs"
+    power_peak_costs_daily:
+      friendly_name: "Power Costs Peak Daily"
       unit_of_measurement: '€'
-      value_template: "{{ (states('sensor.power_consumption')|float * 0.19082) | round(2) }}"
-    gas_costs:
-      friendly_name: "Gas Costs"
+      value_template: "{{ (states('sensor.daily_power_peak')|float * 0.23296) | round(2) }}"
+    power_offpeak_costs_daily:
+      friendly_name: "Power Costs Offpeak Daily"
       unit_of_measurement: '€'
-      value_template: "{{ (states('sensor.power_consumption')|float * 0.59331) | round(2) }}"
+      value_template: "{{ (states('sensor.daily_power_offpeak')|float * 0.23296) | round(2) }}"
+    gas_costs_daily:
+      friendly_name: "Gas Costs Daily"
+      unit_of_measurement: '€'
+      value_template: "{{ (states('sensor.daily_gas')|float * 0.73944) | round(2) }}"
+    power_peak_costs_monthly:
+      friendly_name: "Power Costs Peak Monthly"
+      unit_of_measurement: '€'
+      value_template: "{{ (states('sensor.monthly_power_peak')|float * 0.23296) | round(2) }}"
+    power_offpeak_costs_monthly:
+      friendly_name: "Power Costs Offpeak Monthly"
+      unit_of_measurement: '€'
+      value_template: "{{ (states('sensor.monthly_power_offpeak')|float * 0.23296) | round(2) }}"
+    gas_costs_monthly:
+      friendly_name: "Gas Costs Monthly"
+      unit_of_measurement: '€'
+      value_template: "{{ (states('sensor.monthly_gas')|float * 0.73944) | round(2) }}"
 
 # Kitchen Fridge power sensors
 - platform: mqtt
@@ -29,30 +45,3 @@
   icon: mdi:power-plug
   unit_of_measurement: "w"
   value_template: '{{ (value_json.Today | float) | round(2) }}'
-
-- platform: template
-  sensors:
-    thermostat_temperature_setting:
-      friendly_name: "Thermostat temperature setting"
-      unit_of_measurement: 'degrees'
-      value_template: "{{ states.climate.woonkamer.attributes.temperature }}"
-    thermostat_temperature:
-      friendly_name: "Thermostat temperature"
-      unit_of_measurement: 'degrees'
-      value_template: "{{ states.climate.woonkamer.attributes.current_temperature }}"
-    thermostat_away_mode:
-      friendly_name: "Thermostat away mode"
-      unit_of_measurement: 'degrees'
-      value_template: "{{ states.climate.woonkamer.attributes.away_mode }}"
-
-#   {
-#   "Time": "2017-11-01T18:45:08",
-#   "Total": 40.329,
-#   "Yesterday": 0.333,
-#   "Today": 0.258,
-#   "Period": 0,
-#   "Power": 0,
-#   "Factor": 0,
-#   "Voltage": 226,
-#   "Current": 0
-# }

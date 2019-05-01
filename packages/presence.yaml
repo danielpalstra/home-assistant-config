@@ -1,3 +1,5 @@
+person:
+
 input_boolean:
   presence_livingroom:
     name: Presence livingroom
