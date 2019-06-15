@@ -68,6 +68,21 @@ views:
           - sensor.livingroom_light
           - sensor.livingroom_temperature
           - sensor.livingroom_humidity
+      - type: entities
+        title: Kitchen
+        show_header_toggle: false
+        entities:
+          - light.kitchen
+          - light.kitchen_cabinets
+          - light.kitchen_island
+          - sensor.0x00158d0001b8ccdc_temperature
+          - sensor.0x00158d0001b8ccdc_humidity
+          - binary_sensor.0x00158d00016fde44_contact
+      - type: entities
+        title: Fennaroom
+        show_header_toggle: false
+        entities:
+          - cover.fennaroom_rollershutter
       - id: 5311e8c9e1864e29a834e074571c5201
         # type: entities
         type: glance
@@ -160,6 +175,11 @@ views:
         cards:
           - type: entity-button
             entity: light.livingroom
+            icon: mdi:lightbulb-outline
+            tap_action:
+              action: toggle
+          - type: entity-button
+            entity: light.kitchen
             icon: mdi:lightbulb-outline
             tap_action:
               action: toggle

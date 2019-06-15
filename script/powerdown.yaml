@@ -18,19 +18,3 @@ turn_off_multimedia_devices:
     - delay: '00:00:02'
     - service: media_player.turn_off
       entity_id: media_player.sony_bravia_tv
-
-turn_off_lights:
-  alias: 'Turn off all first floor lights'
-  sequence:
-    - service: light.turn_off
-      data:
-        entity_id: light.tv_kast
-        flash: short
-    - service: light.turn_off
-      data:
-        entity_id: light.livingroom
-        transition: 120
-    - service: light.turn_off
-      data:
-        entity_id: light.fibaro_system_fgd212_dimmer_2_level_2
-        transition: 20

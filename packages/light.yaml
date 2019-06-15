@@ -24,14 +24,14 @@ input_select:
   last_scene:
     name: Last scene
     options:
-      - 'Off'
+      - 'All Off'
+      - 'All On'
       - Nightlight
       - Relax
       - Concentrate
       - Movie
-      - 'All on'
       - 'Dinner Time'
-    initial: 'Off'
+    initial: 'All Off'
     icon: mdi:floor-lamp
 
 # Sun sensors
@@ -51,7 +51,7 @@ sensor:
         icon_template: mdi:weather-sunset-down
 
 scene:
-  - name: 'Off'
+  - name: 'All Off'
     entities:
       light.livingroom:
         state: 'off'
@@ -59,7 +59,7 @@ scene:
         state: 'off'
       light.dining: 'off'
       input_select.last_scene:
-        option: 'Off'
+        option: 'All Off'
 
   - name: Relax
     entities:
@@ -125,16 +125,16 @@ scene:
       input_select.last_scene:
         option: Concentrate
 
-  - name: All on
+  - name: All On
     entities:
       light.livingroom:
         state: 'on'
       light.kitchen:
         state: 'on'
-      light.dining: 
+      light.dining:
         state: 'on'
       input_select.last_scene:
-        option: All on
+        option: 'All On'
 
   - name: Dinner Time
     entities:
@@ -146,3 +146,40 @@ scene:
         state: 'on'
       input_select.last_scene:
         option: Dinner Time
+
+  - name: Kitchen Bright
+    entities:
+      light.kitchen:
+        state: on
+        brightness: 255
+
+  - name: Kitchen Dimmed
+    entities:
+      light.kitchen:
+        state: on
+        brightness: 3
+
+script:
+  turn_off_lights:
+    alias: 'Turn off all first floor lights with delay'
+    sequence:
+      - service: light.turn_off
+        data:
+          entity_id: light.tv_kast
+          flash: short
+      - service: light.turn_off
+        data:
+          entity_id: light.bank
+          flash: short
+      - service: light.turn_off
+        data:
+          entity_id: light.livingroom
+          transition: 120
+      - service: light.turn_off
+        data:
+          entity_id: light.kitchen
+          transition: 30
+      - service: light.turn_off
+        data:
+          entity_id: light.dining
+          transition: 30
