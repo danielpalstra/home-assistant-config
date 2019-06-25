@@ -79,6 +79,14 @@ views:
           - sensor.0x00158d0001b8ccdc_humidity
           - binary_sensor.0x00158d00016fde44_contact
       - type: entities
+        title: Garden
+        show_header_toggle: false
+        entities:
+          - switch.garden_spots
+          - sensor.hlw8012_current
+          - sensor.hlw8012_power
+          - sensor.hlw8012_voltage
+      - type: entities
         title: Fennaroom
         show_header_toggle: false
         entities:
