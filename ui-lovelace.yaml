@@ -55,7 +55,7 @@ views:
           - input_boolean.bed_time
           - input_boolean.wakeup_time
           - input_boolean.vacuum_on_leave
-          - vacuum.xiaomi_vacuum_cleaner
+          # - vacuum.xiaomi_vacuum_cleaner
       - id: bd3ce1939f364da6a1a57a8b94e836e4
         type: entities
         title: Livingroom
@@ -65,6 +65,7 @@ views:
           - sensor.woonkamer_heating
           - light.livingroom
           - light.livingroom_downlights
+          - cover.livingroom_screens
           - sensor.livingroom_light
           - sensor.livingroom_temperature
           - sensor.livingroom_humidity
@@ -91,6 +92,7 @@ views:
         show_header_toggle: false
         entities:
           - cover.fennaroom_rollershutter
+          - camera.fennacam
       - id: 5311e8c9e1864e29a834e074571c5201
         # type: entities
         type: glance
@@ -155,17 +157,26 @@ views:
         entities:
           - sensor.home_to_work
           - sensor.work_to_home
-      - id: afad845f26b44c83b4f91cc85ba004ef
-        type: entities
-        title: Trash
-        show_header_toggle: false
-        entities:
-          - entity: sensor.trash_gft
-            name: 'Groente, fruit en tuin afval'
-          - entity: sensor.trash_papier
-            name: Papier
-          - entity: sensor.trash_rest
-            name: Restafval
+      - type: picture-entity
+        entity: camera.drive
+        show_name: false
+        show_state: false
+      - type: picture-entity
+        entity: camera.fennacam
+        show_name: false
+        show_state: false
+        # camera_view: live
+      # - id: afad845f26b44c83b4f91cc85ba004ef
+      #   type: entities
+      #   title: Trash
+      #   show_header_toggle: false
+      #   entities:
+      #     - entity: sensor.trash_gft
+      #       name: 'Groente, fruit en tuin afval'
+      #     - entity: sensor.trash_papier
+      #       name: Papier
+      #     - entity: sensor.trash_rest
+      #       name: Restafval
       - id: 32ba7996776b4987a243a21359e3dd14
         type: entities
         title: System
@@ -192,7 +203,8 @@ views:
             tap_action:
               action: toggle
           - type: entity-button
-            entity: input_boolean.bed_time
+            entity: switch.garden_spots
+            icon: mdi:lightbulb-outline
             tap_action:
               action: toggle
       - type: horizontal-stack
@@ -230,22 +242,26 @@ views:
             max_volume: 40
       - type: horizontal-stack
         cards:
-          - type: entity-button
-            entity: scene.relax
-            tap_action:
-              action: call-service
-              service: scene.turn_on
-              service_data:
-                entity_id: scene.relax
-      - type: entity-button
-        entity: scene.concentrate
-        tap_action:
-          action: call-service
-          service: scene.turn_on
-          service_data:
-            entity_id: scene.concentrate
+        - type: entity-button
+          entity: scene.concentrate
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: scene.concentrate
+        - type: entity-button
+          entity: scene.relax
+          tap_action:
+            action: call-service
+            service: scene.turn_on
+            service_data:
+              entity_id: scene.relax
       - type: horizontal-stack
         cards:
+          - type: entity-button
+            entity: input_boolean.bed_time
+            tap_action:
+              action: toggle
           - type: entity-button
             entity: input_boolean.guest_mode
             tap_action:

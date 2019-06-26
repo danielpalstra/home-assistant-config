@@ -2,11 +2,8 @@
 rflink:
   port: /dev/rflink
 
-# switch:
-#   - platform: rflink
-
 cover:
   - platform: rflink
     devices:
-      rts_2b4734_01:
-        name: screens
+      rts_02FFFF_01:
+        name: Livingroom Screens

@@ -1,11 +1,14 @@
 # Ring doorbell
-binary_sensor:
-  - platform: ring
+# binary_sensor:
+#   - platform: ring
+# ring:
+#   username: !secret ring_username
+#   password: !secret ring_password
 
 stream:
 
 camera:
-  - platform: ring
+  # - platform: ring
   - platform: uvc
     nvr: !secret unifi_nvr_ip
     key: !secret unifi_nvr_key
@@ -15,6 +18,4 @@ camera:
     name: !secret wyzecam_name_1
     input: !secret wyzecam_url_1
 
-ring:
-  username: !secret ring_username
-  password: !secret ring_password
+
