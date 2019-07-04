@@ -1,0 +1,101 @@
+# input_select met modes
+# off, sleep: red, play: orange, wakeup mom and dad: green
+input_select:
+  sleep_trainer_mode:
+    name: 'Sleeptrainer mode'
+    options:
+      - Sleep
+      - Wakeup
+      - Play
+
+input_boolean:
+  sleep_trainer_enabled:
+    name: 'Sleeptrainer enabled'
+
+automation:
+  - alias: Toggle sleeptimer mode
+    hide_entity: 'true'
+    trigger:
+      - platform: state
+        entity_id: input_select.sleep_trainer_mode
+    action:
+      - service: script.sleeptrainer_light
+  - alias: Sleeptrainer sleep mode
+    trigger:
+      - platform: time
+        at: '19:30'
+    action:
+      - service: input_select.select_option
+        entity_id: input_select.sleep_trainer_mode
+        data:
+          option: Sleep
+  - alias: Sleeptrainer play mode
+    trigger:
+      - platform: time
+        at: '06:30'
+    action:
+      - service: input_select.select_option
+        entity_id: input_select.sleep_trainer_mode
+        data:
+          option: Play
+  - alias: Sleeptrainer wakeup mode
+    trigger:
+      - platform: time
+        at: '07:00'
+    action:
+      - service: input_select.select_option
+        entity_id: input_select.sleep_trainer_mode
+        data:
+          option: Wakeup
+
+scene:
+  - name: sleeptrainer_sleep
+    entities:
+      light.fennaroom_sleep_light:
+        state: on
+        rgb_color: [255,0,126]
+  - name: sleeptrainer_play
+    entities:
+      light.fennaroom_sleep_light:
+        state: on
+        rgb_color: [255,126,0]
+  - name: sleeptrainer_wakeup
+    entities:
+      light.fennaroom_sleep_light:
+        state: on
+        rgb_color: [0,255,63]
+
+# input_toggle; enable sleeptimer
+# input_toggle; turn on/ turn off
+
+# automations
+# when people at home or guest mode on; >
+## when 19:15; turn on sleep time
+## when 6:30; turn on play time
+## when 07:00; turn on wakeup mom and dad
+## when 08:00; turn off
+
+# when everybody leaves
+## turn off
+script:
+  sleeptrainer_light:
+    alias: Change sleeptrainer light mode
+    sequence:
+      - condition: state
+        entity_id: 'input_boolean.sleep_trainer_enabled'
+        state: 'on'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: 'input_boolean.away_mode'
+            state: 'off'
+          - condition: state
+            entity_id: 'input_boolean.guest_mode'
+            state: 'on'
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+           {% if is_state("input_select.sleep_trainer_mode", "Sleep") %} scene.sleeptrainer_sleep
+           {% elif is_state("input_select.sleep_trainer_mode", "Wakeup") %} scene.sleeptrainer_wakeup
+           {% elif is_state("input_select.sleep_trainer_mode", "Play") %} scene.sleeptrainer_play
+           {% endif %}

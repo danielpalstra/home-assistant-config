@@ -93,6 +93,11 @@ views:
         entities:
           - cover.fennaroom_rollershutter
           - camera.fennacam
+          - light.fennaroom_sleep_light
+          - input_boolean.sleep_trainer_enabled
+          - input_select.sleep_trainer_mode
+          - sensor.fennaroom_temperature
+          - sensor.fennaroom_humidity
       - id: 5311e8c9e1864e29a834e074571c5201
         # type: entities
         type: glance
@@ -621,6 +626,7 @@ views:
       - type: entities
         title: Test
         entities:
+          - input_select.sleep_trainer_mode
           - cover.screens
           - camera.drive
           - input_number.blinds_slider
