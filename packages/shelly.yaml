@@ -1,0 +1,51 @@
+# Shelly switches and power indicators
+# Devices:
+# shellyplug-s-040E40 - switch behind couch
+
+switch:
+  - platform: mqtt
+    name: "Couch Switch"
+    state_topic: "shellies/shellyplug-s-040E40/relay/0"
+    command_topic: "shellies/shellyplug-s-040E40/relay/0/command"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+  - platform: mqtt
+    name: "General Switch"
+    state_topic: "shellies/shellyplug-s-040DD8/relay/0"
+    command_topic: "shellies/shellyplug-s-040DD8/relay/0/command"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
+
+sensor:
+  # Couch switch
+  - platform: mqtt
+    name: "Couch Power"
+    state_topic: "shellies/shellyplug-s-040E40/relay/0/power"
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Couch Energy"
+    state_topic: "shellies/shellyplug-s-040E40/relay/0/energy"
+  - platform: mqtt
+    name: "Couch Plug Temperature"
+    state_topic: "shellies/shellyplug-s-040E40/temperature"
+    unit_of_measurement: '°C'
+  - platform: mqtt
+    name: "Couch Plug Overheated"
+    state_topic: "shellies/shellyplug-s-040E40/overtemperature"
+    # General switch
+  - platform: mqtt
+    name: "General Power"
+    state_topic: "shellies/shellyplug-s-040DD8/relay/0/power"
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "General Energy"
+    state_topic: "shellies/shellyplug-s-040DD8/relay/0/energy"
+  - platform: mqtt
+    name: "General Plug Temperature"
+    state_topic: "shellies/shellyplug-s-040DD8/temperature"
+    unit_of_measurement: '°C'
+  - platform: mqtt
+    name: "General Plug Overheated"
+    state_topic: "shellies/shellyplug-s-040DD8/overtemperature"

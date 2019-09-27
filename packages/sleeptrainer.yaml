@@ -13,6 +13,16 @@ input_boolean:
     name: 'Sleeptrainer enabled'
 
 automation:
+  - alias: Turn off sleeptrainer
+    trigger:
+      - platform: state
+        entity_id: 'input_boolean.away_mode'
+        to: 'on'
+      - platform: time
+        at: '08:00'
+    action:
+      - service: light.turn_off
+        entity_id: light.light.fennaroom_sleep_light
   - alias: Toggle sleeptimer mode
     hide_entity: 'true'
     trigger:
@@ -23,25 +33,25 @@ automation:
   - alias: Sleeptrainer sleep mode
     trigger:
       - platform: time
-        at: '19:30'
+        at: '19:15'
     action:
       - service: input_select.select_option
         entity_id: input_select.sleep_trainer_mode
         data:
           option: Sleep
-  - alias: Sleeptrainer play mode
-    trigger:
-      - platform: time
-        at: '06:30'
-    action:
-      - service: input_select.select_option
-        entity_id: input_select.sleep_trainer_mode
-        data:
-          option: Play
+  # - alias: Sleeptrainer play mode
+  #   trigger:
+  #     - platform: time
+  #       at: '06:30'
+  #   action:
+  #     - service: input_select.select_option
+  #       entity_id: input_select.sleep_trainer_mode
+  #       data:
+  #         option: Play
   - alias: Sleeptrainer wakeup mode
     trigger:
       - platform: time
-        at: '07:00'
+        at: '06:40'
     action:
       - service: input_select.select_option
         entity_id: input_select.sleep_trainer_mode

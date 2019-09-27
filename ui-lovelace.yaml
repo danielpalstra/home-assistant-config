@@ -11,7 +11,7 @@ resources:
     type: js  
   - url: /local/auto-entities.js?v=be1323
     type: js
-  - url: /local/mini-graph-card-bundle.js?v=0.2.4
+  - url: /local/mini-graph-card-bundle.js?v=0.5.0
     type: module
   - url: /local/simple-thermostat.js?v=1
     type: module
@@ -331,24 +331,36 @@ views:
     name: Climate
     icon: 'mdi:weather-partlycloudy'
     cards:
-      - type: sensor
-        entity: sensor.livingroom_light
-        name: Living light
-        height: 50
-        line_color: '#3498db'
-      - type: sensor
-        entity: sensor.livingroom_temperature
-        name: Living temperature
-        height: 50
-        line_color: '#3498db'
-      - type: sensor
-        entity: sensor.livingroom_humidity
-        name: Living humidity
-        height: 50
-        line_color: '#3498db'
+      - type: vertical-stack
+        cards: 
+        - type: horizontal-stack
+          cards:
+          - type: custom:mini-graph-card
+            entities:
+            - sensor.livingroom_light
+            # align_icon: left
+            name: LIVING ROOM
+            align_state: center
+            show:
+              fill: false
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.livingroom_temperature
+            name: LIVING ROOM
+            hours_to_show: 48
+            points_per_hour: 0.25
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.livingroom_humidity
+          line_color: '#3498db'
+          name: LIVING ROOM
+          hours_to_show: 48
+          points_per_hour: 0.25
+
       - id: 62b67ee1ad3c4abc97f54de56314a9fb
         type: weather-forecast
         entity: weather.br_unknown_station
+
       - id: 3d2256e2cbc1478db8617a03aa620202
         type: entities
         title: Livingroom
@@ -360,6 +372,7 @@ views:
           - sensor.livingroom_temperature
           - sensor.livingroom_humidity
           - sensor.livingroom_light
+
       - id: fe03d7b237b84aeeb5fec66b71abe9c9
         type: entities
         title: Bedrooms
@@ -367,29 +380,9 @@ views:
         entities:
           - sensor.0x00158d0001a2ad80_temperature
           - sensor.0x00158d0001a2ad80_humidity
-          # - sensor.temperature_158d0001a2ad80
-          # - sensor.humidity_158d0001a2ad80
-          # - sensor.fennaroom_temperature
-          # - sensor.fennaroom_humidity
-          # - sensor.fennaroom_light
-      - id: a593d0041fd649839b911f7501a79739
-        type: history-graph
-        entities:
-          - climate.heating
-          - sensor.livingroom_temperature
-          - sensor.temperature_158d0001a2ad80
-          # - sensor.fennaroom_temperature
-        hours_to_show: 48
-        title: Temperatures 48h
-      - id: e07e747ec3d54f1d98a451f125eef25a
-        type: history-graph
-        entities:
-          - climate.heating
-          - sensor.livingroom_temperature
-          - sensor.temperature_158d0001a2ad80
           - sensor.fennaroom_temperature
-        hours_to_show: 168
-        title: Temperatures 7 days
+          - sensor.fennaroom_humidity
+          - sensor.fennaroom_light
       - id: 4a4e5d9f6b7741649f3d9e90a19e7f14
         type: history-graph
         entities:
@@ -559,11 +552,37 @@ views:
       #     - sensor.temperature_158d00019d3006
       #     - sensor.humidity_158d00019d3006
       - type: entities
+        title: Garden
+        show_header_toggle: false
+        entities:
+          - switch.garden_spots
+          - sensor.hlw8012_current
+          - sensor.hlw8012_power
+          - sensor.hlw8012_voltage
+      - type: entities
         title: Batteries
         show_header_toggle: false
         entities:
           - sensor.ipad_van_daniel_en_laura_battery_state
           - sensor.ipad_van_daniel_en_laura_battery_level
+      - type: entities
+        title: Couch plug
+        show_header_toggle: false
+        entities:
+          - switch.couch_switch
+          - sensor.couch_power
+          - sensor.couch_energy
+          - sensor.couch_plug_temperature
+          - sensor.couch_plug_overheated
+      - type: entities
+        title: General plug
+        show_header_toggle: false
+        entities:
+          - switch.general_switch
+          - sensor.general_power
+          - sensor.general_energy
+          - sensor.general_plug_temperature
+          - sensor.general_plug_overheated
   # - path: 3dprinter
   #   name: '3D Printer'
   #   icon: 'mdi:printer-3d'
