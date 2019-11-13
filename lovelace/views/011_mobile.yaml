@@ -1,0 +1,100 @@
+- path: mobile
+  name: Mobile
+  icon: mdi:cellphone-iphone
+  cards:
+    - type: horizontal-stack
+      cards:
+        - type: entity-button
+          entity: light.livingroom
+          icon: mdi:lightbulb-outline
+          tap_action:
+            action: toggle
+        - type: entity-button
+          entity: light.kitchen
+          icon: mdi:lightbulb-outline
+          tap_action:
+            action: toggle
+        - type: entity-button
+          entity: light.dining
+          icon: mdi:lightbulb-outline
+          tap_action:
+            action: toggle
+        - type: entity-button
+          entity: switch.garden_spots
+          name: Garden
+          icon: mdi:lightbulb-outline
+          tap_action:
+            action: toggle
+    - type: horizontal-stack
+      cards:
+        - type: entity-button
+          name: Radio
+          icon: mdi:radio
+          entity: script.radio
+          tap_action:
+            action: call-service
+            service: script.turn_on
+            service_data:
+              entity_id: script.radio
+        - type: entity-button
+          entity: input_boolean.tv_time
+          name: TV
+          tap_action:
+            action: toggle
+        - type: entity-button
+          name: Media
+          icon: mdi:power-standby
+          entity: script.turn_off_media
+          tap_action:
+            action: call-service
+            service: script.turn_on
+            service_data:
+              entity_id: script.turn_off_media
+    - type: horizontal-stack
+      cards:
+        - type: 'custom:mini-media-player'
+          entity: media_player.htzf9
+          hide_controls: true
+          # hide_power: true
+          hide_info: true
+          max_volume: 40
+    - type: horizontal-stack
+      cards:
+      - type: entity-button
+        name: Roller Shutter Fenna
+        entity: cover.fennaroom_rollershutter
+        tap_action:
+          action: toggle
+      - type: entity-button
+        entity: scene.concentrate
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.concentrate
+      - type: entity-button
+        entity: scene.relax
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            entity_id: scene.relax
+    - type: horizontal-stack
+      cards:
+        - type: entity-button
+          entity: input_boolean.bed_time
+          tap_action:
+            action: toggle
+        - type: entity-button
+          entity: input_boolean.guest_mode
+          tap_action:
+            action: toggle
+        - type: entity-button
+          name: Turn off house
+          icon: mdi:home-outline
+          tap_action:
+            action: call-service
+            service: script.turn_on
+            service_data:
+              entity_id: script.powerdown_all
+          entity: script.powerdown_all

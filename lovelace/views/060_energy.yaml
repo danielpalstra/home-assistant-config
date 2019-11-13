@@ -1,0 +1,89 @@
+  - path: energy
+    name: Energy
+    icon: 'mdi:power-plug'
+    cards:
+      - id: 22072acec7af4ea092814a30ad060f75
+        type: entities
+        title: Energy usage
+        show_header_toggle: false
+        entities:
+          - sensor.power_consumption
+          - sensor.hourly_gas_consumption
+      - id: 22072acec7af4ea092814a30ad060f75
+        type: entities
+        title: Energy costs
+        show_header_toggle: false
+        entities:
+          - sensor.power_peak_costs_daily
+          - sensor.power_offpeak_costs_daily
+          - sensor.gas_costs_daily
+          - sensor.power_peak_costs_monthly
+          - sensor.power_offpeak_costs_monthly
+          - sensor.gas_costs_monthly
+      - id: b53c018d819d43c58fb828dab0f9d84f
+        type: entities
+        title: Meter readings
+        show_header_toggle: false
+        entities:
+          - sensor.power_tariff
+          - sensor.power_consumption_low
+          - sensor.power_consumption_normal
+          - sensor.gas_consumption
+      - type: entities
+        title: Utility Meter
+        show_header_toggle: false
+        entities:
+          - sensor.daily_power_offpeak
+          - sensor.daily_power_peak
+          - sensor.monthly_power_offpeak
+          - sensor.monthly_power_peak
+          - sensor.daily_gas
+          - sensor.monthly_gas
+      # - id: c6b8e62de9de43539a2e94223879cccd
+      #   type: entities
+      #   title: Kitchen Fridge
+      #   show_header_toggle: false
+      #   entities:
+      #     - sensor.temperature_158d0001826df8
+      #     - sensor.humidity_158d0001826df8
+      #     - sensor.fridge_power_consumption
+      #     - sensor.fridge_power_today
+      # - id: 182964fec706461a8fd9c9daf5ef5a1c
+      #   type: entities
+      #   title: Storage Fridge
+      #   show_header_toggle: false
+      #   entities:
+      #     - sensor.temperature_158d00019d3006
+      #     - sensor.humidity_158d00019d3006
+      - type: entities
+        title: Garden
+        show_header_toggle: false
+        entities:
+          - switch.garden_spots
+          - sensor.hlw8012_current
+          - sensor.hlw8012_power
+          - sensor.hlw8012_voltage
+      - type: entities
+        title: Batteries
+        show_header_toggle: false
+        entities:
+          - sensor.ipad_van_daniel_en_laura_battery_state
+          - sensor.ipad_van_daniel_en_laura_battery_level
+      - type: entities
+        title: Couch plug
+        show_header_toggle: false
+        entities:
+          - switch.couch_switch
+          - sensor.couch_power
+          - sensor.couch_energy
+          - sensor.couch_plug_temperature
+          - sensor.couch_plug_overheated
+      - type: entities
+        title: General plug
+        show_header_toggle: false
+        entities:
+          - switch.general_switch
+          - sensor.general_power
+          - sensor.general_energy
+          - sensor.general_plug_temperature
+          - sensor.general_plug_overheated

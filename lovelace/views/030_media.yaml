@@ -1,0 +1,51 @@
+  - path: media
+    icon: 'mdi:television-classic'
+    cards:
+      - id: 1224d6b8ea4d493aa24d013296c2d7f9
+        type: entities
+        title: Entertainment
+        show_header_toggle: false
+        entities:
+          - input_boolean.tv_time
+          - input_boolean.game_time
+          - script.turn_off_media
+      - id: bcd37a30efe04c2a95126a36081e5241
+        type: entities
+        title: Radio
+        show_header_toggle: false
+        entities:
+          - input_select.radio_station
+          - input_select.chromecast_radio
+          - script.radio
+      - type: 'custom:mini-media-player'
+        entity: media_player.sony_audio5882
+        name: Livingroom Soundbar Cast
+        icon: 'mdi:radio'
+        artwork: cover
+        artwork_border: false
+        show_source: true
+        max_volume: 40
+      - type: 'custom:mini-media-player'
+        entity: media_player.htzf9
+        name: Livingroom Soundbar
+        icon: 'mdi:radio'
+        show_source: true
+        max_volume: 40
+      - type: 'custom:mini-media-player'
+        entity: media_player.sony_bravia_tv
+        name: Livingroom TV
+        icon: 'mdi:television'
+        show_source: true
+        volume_stateless: true
+        max_volume: 40
+      - type: 'custom:mini-media-player'
+        entity: media_player.woonkamertv
+        name: Livingroom TV Cast
+        show_source: true
+        volume_stateless: true
+        max_volume: 40
+      - type: 'custom:mini-media-player'
+        entity: media_player.mini
+        show_source: true
+        volume_stateless: true
+        max_volume: 40

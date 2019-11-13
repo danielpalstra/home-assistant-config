@@ -1,2 +1,0 @@
-- platform: gpd
-  url: !secret gpd_url

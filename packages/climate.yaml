@@ -1,3 +1,10 @@
-tado:
-  username: !secret tado_username
-  password: !secret tado_password
+# tado:
+#   username: !secret tado_username
+#   password: !secret tado_password
+
+# climate:
+#   - platform: atagone
+#     name: Atag One Thermostat
+#     host: !secret atag_ip
+#     port: 10000
+#     scan_interval: 10

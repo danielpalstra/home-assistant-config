@@ -1,0 +1,49 @@
+- path: lights
+  icon: 'mdi:lightbulb-outline'
+  cards:
+  - type: light
+    entity: light.livingroom
+    icon: mdi:lightbulb-outline
+  - type: light
+    entity: light.dining
+    icon: mdi:lightbulb-outline
+  - type: light
+    entity: light.kitchen
+    icon: mdi:lightbulb-outline
+  - type: entity-button
+    entity: switch.garden_spots
+    icon: mdi:lightbulb-outline
+    tap_action:
+      action: toggle
+  - type: entities
+    title: Sun
+    show_header_toggle: false
+    entities:
+      - sun.sun
+      - sensor.nextsunrise
+      - sensor.nextsunset
+  - type: entities
+    title: Garden
+    show_header_toggle: false
+    entities:
+      - switch.garden_spots
+      - sensor.hlw8012_current
+      - sensor.hlw8012_power
+      - sensor.hlw8012_voltage
+  - type: 'custom:monster-card'
+    card:
+      type: entities
+      title: All Scenes
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: scene
+  - type: 'custom:monster-card'
+    card:
+      type: entities
+      title: All Lights
+      show_header_toggle: false
+    filter:
+      include:
+        - domain: light
+          # state: 'on'

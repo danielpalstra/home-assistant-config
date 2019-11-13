@@ -1,0 +1,190 @@
+  - path: dashboard2
+    icon: 'mdi:home-assistant'
+    cards:
+      - type: entities
+        title: Garbage
+        show_header_toggle: false
+        entities:
+          - sensor.rmn_restafval
+          - sensor.rmn_gft
+          - sensor.rmn_papier
+          - sensor.rmn_pmd
+      - type: entities
+        title: Scenes
+        show_header_toggle: false
+        entities:
+          - scene.relax
+          - scene.nightlight
+          - scene.movie
+          - scene.concentrate
+          - scene.all_on
+          - scene.dinner_time
+          - input_select.last_scene
+      - type: entities
+        title: Triggers
+        show_header_toggle: false
+        entities:
+          - input_boolean.bed_time
+          - input_boolean.wakeup_time
+          - input_boolean.vacuum_on_leave
+          # - vacuum.xiaomi_vacuum_cleaner
+        # type: entities
+      - type: glance
+        title: Vacuum zones
+        show_header_toggle: false
+        entities:
+          - entity: script.vacuum_kitchen
+            name: Kitchen
+            icon: mdi:fridge-outline
+            show_state: false
+            tap_action:
+              action: call-service
+              service: script.vacuum_kitchen
+          - entity: script.vacuum_kitchen
+            name: Dining
+            icon: mdi:table-chair
+            show_state: false
+            tap_action:
+              action: call-service
+              service: script.vacuum_dining
+          - entity: script.vacuum_kitchen
+            name: Living
+            icon: mdi:sofa
+            show_state: false
+            tap_action:
+              action: call-service
+              service: script.vacuum_living
+          - entity: script.vacuum_kitchen
+            name: First floor
+            icon: mdi:floor-plan
+            show_state: false
+            tap_action:
+              action: call-service
+              service: script.vacuum_first_floor
+      - id: bd3ce1939f364da6a1a57a8b94e836e4
+        type: entities
+        title: Livingroom
+        show_header_toggle: false
+        entities:
+          - climate.heating
+          - sensor.woonkamer_heating
+          - light.livingroom
+          - light.livingroom_downlights
+          - cover.livingroom_screens
+          - sensor.livingroom_light
+          - sensor.livingroom_temperature
+          - sensor.livingroom_humidity
+      - type: entities
+        title: Kitchen
+        show_header_toggle: false
+        entities:
+          - light.kitchen
+          - light.kitchen_cabinets
+          - light.kitchen_island
+          - sensor.0x00158d0001b8ccdc_temperature
+          - sensor.0x00158d0001b8ccdc_humidity
+          - binary_sensor.0x00158d00016fde44_contact
+      - type: entities
+        title: Fennaroom
+        show_header_toggle: false
+        entities:
+          - cover.fennaroom_rollershutter
+          - camera.fennacam
+          - light.fennaroom_sleep_light
+          - input_boolean.sleep_trainer_enabled
+          - input_select.sleep_trainer_mode
+          - sensor.fennaroom_temperature
+          - sensor.fennaroom_humidity
+      - id: 5311e8c9e1864e29a834e074571c5201
+        # type: entities
+        type: glance
+        title: House Modes
+        show_header_toggle: false
+        entities:
+          - entity: input_boolean.away_mode
+            tap_action:
+              action: toggle
+          - entity: input_boolean.guest_mode
+            tap_action:
+              action: toggle
+          - entity: input_boolean.vacation_mode
+            tap_action:
+              action: toggle
+      - id: 593660e3ece14563908d8e299ff54dd6
+        type: thermostat
+        entity: climate.heating
+      - id: 576a2901f0c242f59b4d06aece2b4d97
+        type: entity-filter
+        show_header_toggle: false
+        entities:
+          # - alarm_control_panel.ha_alarm
+          # - binary_sensor.ring_front_door_ding
+          # - binary_sensor.ring_front_door_motion
+          - binary_sensor.livingroom_motion
+          - binary_sensor.hall_motion
+          - binary_sensor.0x00158d0001231fdd_occupancy
+          # - binary_sensor.door_window_sensor_158d00016363c1
+          # - binary_sensor.door_window_sensor_158d0001a044b7
+          # - binary_sensor.door_window_sensor_158d00016fde8d
+          # - binary_sensor.door_window_sensor_158d00016c8140
+        state_filter:
+          - Detected
+          - 'on'
+        card:
+          show_header_toggle: false
+          type: entities
+          title: Security
+      - id: 6d9d2ab5bedb475bbb4ef03b5c0cefa3
+        type: entity-filter
+        entities:
+          - light.livingroom
+          - light.kitchen
+          - light.dining
+        state_filter:
+          - 'on'
+        card:
+          type: glance
+          title: Lights turned on
+        show_empty: false
+      - id: 16f1aeb6bdf84bc4ba89d4a33a332772
+        type: glance
+        title: People
+        entities:
+          - device_tracker.iphone_van_daniel
+          - device_tracker.lauras_iphone
+        show_empty: false
+      - type: entities
+        show_header_toggle: false
+        title: Commuting
+        entities:
+          - sensor.home_to_work
+          - sensor.work_to_home
+      - type: picture-entity
+        entity: camera.drive
+        show_name: false
+        show_state: false
+      - type: picture-entity
+        entity: camera.fennacam
+        show_name: false
+        show_state: false
+        # camera_view: live
+      # - id: afad845f26b44c83b4f91cc85ba004ef
+      #   type: entities
+      #   title: Trash
+      #   show_header_toggle: false
+      #   entities:
+      #     - entity: sensor.trash_gft
+      #       name: 'Groente, fruit en tuin afval'
+      #     - entity: sensor.trash_papier
+      #       name: Papier
+      #     - entity: sensor.trash_rest
+      #       name: Restafval
+      - id: 32ba7996776b4987a243a21359e3dd14
+        type: entities
+        title: System
+        show_header_toggle: false
+        entities:
+          - sensor.update_available
+          - sensor.ha_installed_version
+          - sensor.ssl_certificate_expiry
+          - sensor.ha_uptime

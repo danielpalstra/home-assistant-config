@@ -40,7 +40,7 @@ automation:
     trigger:
       - platform: state
       # Kitchen motion
-        entity_id: binary_sensor.livingroom_motion
+        entity_id: binary_sensor.livingroom_motion,binary_sensor.hall_motion,binary_sensor.kitchen_motion_sensor_occupancy
         to: 'on'
     condition:
       condition: and
@@ -90,4 +90,4 @@ automation:
           state: 'off'
     action:
       - service: scene.turn_on
-        entity_id: scene.relax
+        entity_id: scene.breakfast_time

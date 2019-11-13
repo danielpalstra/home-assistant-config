@@ -58,7 +58,7 @@
 #       - condition: or
 #         conditions:
 #           - condition: state
-#             entity_id: 'device_tracker.daniels_iphone'
+#             entity_id: 'device_tracker.iphone_van_daniel'
 #             state: 'home'
 #           - condition: state
 #             entity_id: 'device_tracker.lauras_iphone'
@@ -103,7 +103,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: 'device_tracker.daniels_iphone'
+        entity_id: 'device_tracker.iphone_van_daniel'
         state: 'not_home'
       - condition: state
         entity_id: 'device_tracker.lauras_iphone'
@@ -151,7 +151,7 @@
       entity_id: 'input_boolean.away_mode'
       to: 'on'
     # - platform: state
-    #   entity_id: device_tracker.daniels_iphone, device_tracker.lauras_iphone
+    #   entity_id: device_tracker.iphone_van_daniel, device_tracker.lauras_iphone
     #   to: 'not_home'
   condition:
     - condition: state

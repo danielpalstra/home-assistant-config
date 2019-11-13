@@ -22,7 +22,7 @@ automation:
         at: '08:00'
     action:
       - service: light.turn_off
-        entity_id: light.light.fennaroom_sleep_light
+        entity_id: light.fennaroom_sleep_light
   - alias: Toggle sleeptimer mode
     hide_entity: 'true'
     trigger:

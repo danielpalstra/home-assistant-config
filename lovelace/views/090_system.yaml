@@ -1,0 +1,37 @@
+- path: system
+  name: System
+  icon: 'mdi:server-network'
+  cards:
+    - type: entities
+      title: System
+      show_header_toggle: false
+      entities:
+        - updater.updater
+        - sensor.ha_installed_version
+        - sensor.ssl_certificate_expiry
+        - sensor.ha_uptime
+        - sensor.load_1m
+        - sensor.load_5m
+        - sensor.load_15m
+        - sensor.memory_free
+        - sensor.memory_use
+        - sensor.swap_free
+        - sensor.swap_use
+    - type: entities
+      title: Network
+      show_header_toggle: false
+      entities:
+        - sensor.speedtest_download
+        - sensor.speedtest_upload
+        - sensor.braviatv
+        - sensor.philipshue
+    - type: custom:monster-card
+      card:
+        type: entities
+        title: Things that are broken
+        show_header_toggle: false
+      filter:
+        include:
+          - state: "unknown"
+        exclude:
+          - entity_id: group.*

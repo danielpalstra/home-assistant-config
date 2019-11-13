@@ -1,0 +1,192 @@
+- path: climate
+  name: Climate
+  icon: 'mdi:home-thermometer-outline'
+  cards:
+    # Weather forecast
+    - type: weather-forecast
+      entity: weather.br_unknown_station
+
+    # Livingroom
+    - type: vertical-stack
+      cards: 
+      - type: horizontal-stack
+        cards:
+        - type: custom:mini-graph-card
+          entities:
+          - sensor.livingroom_light
+          # align_icon: left
+          name: LIVING ROOM
+          align_state: center
+          show:
+            fill: false
+          hours_to_show: 48
+          points_per_hour: 0.25
+          line_color: '#f5d442'
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.livingroom_humidity
+          line_color: '#3498db'
+          name: LIVING ROOM
+          hours_to_show: 48
+          points_per_hour: 0.25
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.livingroom_temperature
+        name: LIVING ROOM
+        hours_to_show: 48
+        points_per_hour: 0.25
+
+    # Kitchen
+    - type: vertical-stack
+      cards: 
+      - type: horizontal-stack
+        cards:
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.0x00158d0001b8ccdc_temperature
+          name: KITCHEN
+          hours_to_show: 48
+          points_per_hour: 0.25
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.0x00158d0001b8ccdc_humidity
+          line_color: '#3498db'
+          name: KITCHEN
+          hours_to_show: 48
+          points_per_hour: 0.25
+
+    # Dining Area
+    - type: vertical-stack
+      cards: 
+      - type: horizontal-stack
+        cards:
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.woonkamer_temperature
+          name: DINING
+          hours_to_show: 48
+          points_per_hour: 0.25
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.woonkamer_humidity
+          line_color: '#3498db'
+          name: DINING
+          hours_to_show: 48
+          points_per_hour: 0.25
+    # Bedroom
+    - type: vertical-stack
+      cards: 
+      - type: horizontal-stack
+        cards:
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.0x00158d0001a2ad80_temperature
+          name: BEDROOM
+          hours_to_show: 48
+          points_per_hour: 0.25
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.0x00158d0001a2ad80_humidity
+          line_color: '#3498db'
+          name: BEDROOM
+          hours_to_show: 48
+          points_per_hour: 0.25
+
+    # # Fennas room (disabled)
+    # - type: vertical-stack
+    #   cards: 
+    #   - type: horizontal-stack
+    #     cards:
+    #     - type: custom:mini-graph-card
+    #       entities:
+    #       - sensor.fennaroom_light
+    #       # align_icon: left
+    #       name: FENNA ROOM
+    #       align_state: center
+    #       show:
+    #         fill: false
+    #       hours_to_show: 48
+    #       points_per_hour: 0.25
+    #       line_color: '#f5d442'
+    #     - type: custom:mini-graph-card
+    #       entities:
+    #         - sensor.fennaroom_humidity
+    #       line_color: '#3498db'
+    #       name: FENNA ROOM
+    #       hours_to_show: 48
+    #       points_per_hour: 0.25
+    #   - type: custom:mini-graph-card
+    #     entities:
+    #       - sensor.fennaroom_temperature
+    #     name: FENNA ROOM
+    #     hours_to_show: 48
+    #     points_per_hour: 0.25
+
+    # Bathroom (disabled)
+    # - type: vertical-stack
+    #   cards: 
+    #   - type: horizontal-stack
+    #     cards:
+    #     - type: custom:mini-graph-card
+    #       entities:
+    #         - sensor.0x00158d0001a2ad80_temperature
+    #       name: BATHROOM
+    #       hours_to_show: 48
+    #       points_per_hour: 0.25
+    #     - type: custom:mini-graph-card
+    #       entities:
+    #         - sensor.0x00158d0001a2ad80_humidity
+    #       line_color: '#3498db'
+    #       name: BATHROOM
+    #       hours_to_show: 48
+    #       points_per_hour: 0.25
+
+    # Entrance hall (disabled)
+    # - type: vertical-stack
+    #   cards: 
+    #   - type: horizontal-stack
+    #     cards:
+    #     - type: custom:mini-graph-card
+    #       entities:
+    #         - 
+    #       name: ENTRANCE
+    #       hours_to_show: 48
+    #       points_per_hour: 0.25
+    #     - type: custom:mini-graph-card
+    #       entities:
+    #         - 
+    #       line_color: '#3498db'
+    #       name: ENTRANCE
+    #       hours_to_show: 48
+    #       points_per_hour: 0.25
+
+    # Garage
+    - type: vertical-stack
+      cards: 
+      - type: horizontal-stack
+        cards:
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.0x00158d0001b8d776_temperature
+          name: GARAGE
+          hours_to_show: 48
+          points_per_hour: 0.25
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.0x00158d0001b8d776_humidity
+          line_color: '#3498db'
+          name: GARAGE
+          hours_to_show: 48
+          points_per_hour: 0.25
+
+    # - id: 3d2256e2cbc1478db8617a03aa620202
+    #   type: entities
+    #   title: Livingroom
+    #   show_header_toggle: false
+    #   entities:
+    #     - climate.heating
+    #     - sensor.woonkamer_humidity
+    #     - sensor.woonkamer_heating
+    #     - sensor.livingroom_temperature
+    #     - sensor.livingroom_humidity
+    #     - sensor.livingroom_light

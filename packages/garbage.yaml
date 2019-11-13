@@ -1,0 +1,10 @@
+sensor:
+    - platform: afvalbeheer
+      wastecollector: RMN
+      resources:
+        - restafval
+        - gft
+        - papier
+        - pmd
+      postcode: !secret afvalbeheer_postalcode
+      streetnumber: !secret afvalbeheer_housenumber

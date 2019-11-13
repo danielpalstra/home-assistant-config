@@ -1,0 +1,16 @@
+- url: /local/mini-media-player-bundle.js?v=0.9.8
+  type: module
+- url: /local/custom-lovelace/monster-card/monster-card.js?v=0.2.3
+  type: js
+- url: /local/custom-lovelace/tracker-card/tracker-card.js?v=1.2.6
+  type: js
+- url: /local/card-modder.js?v=f3d96f
+  type: js  
+- url: /local/auto-entities.js?v=be1323
+  type: js
+- url: /local/mini-graph-card-bundle.js?v=0.5.0
+  type: module
+- url: /local/simple-thermostat.js?v=1
+  type: module
+- url: /local/lovelace-home-feed-card.js?track=true
+  type: js

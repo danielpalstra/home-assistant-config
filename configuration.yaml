@@ -105,11 +105,13 @@ lovelace:
 # Checks for available updates
 updater:
 
+mobile_app:
+
 # Enable config
 config:
 
 # Discover some devices automatically
-discovery:
+# discovery:
 
 # Enables support for tracking state changes over time.
 history: !include history.yaml
