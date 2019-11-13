@@ -66,8 +66,8 @@
         title: Livingroom
         show_header_toggle: false
         entities:
-          - climate.heating
-          - sensor.woonkamer_heating
+          # - climate.heating
+          # - sensor.woonkamer_heating
           - light.livingroom
           - light.livingroom_downlights
           - cover.livingroom_screens
@@ -90,11 +90,7 @@
         entities:
           - cover.fennaroom_rollershutter
           - camera.fennacam
-          - light.fennaroom_sleep_light
           - input_boolean.sleep_trainer_enabled
-          - input_select.sleep_trainer_mode
-          - sensor.fennaroom_temperature
-          - sensor.fennaroom_humidity
       - id: 5311e8c9e1864e29a834e074571c5201
         # type: entities
         type: glance
@@ -110,9 +106,9 @@
           - entity: input_boolean.vacation_mode
             tap_action:
               action: toggle
-      - id: 593660e3ece14563908d8e299ff54dd6
-        type: thermostat
-        entity: climate.heating
+      # - id: 593660e3ece14563908d8e299ff54dd6
+      #   type: thermostat
+      #   entity: climate.heating
       - id: 576a2901f0c242f59b4d06aece2b4d97
         type: entity-filter
         show_header_toggle: false

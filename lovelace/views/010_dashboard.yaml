@@ -105,12 +105,11 @@
           type: glance
           title: Lights turned on
         show_empty: false
-      - id: 16f1aeb6bdf84bc4ba89d4a33a332772
-        type: glance
+      - type: glance
         title: People
         entities:
-          - device_tracker.iphone_van_daniel
-          - device_tracker.iphone_van_laura
+          - person.daniel
+          - person.laura
         show_empty: false
       - type: entities
         show_header_toggle: false
