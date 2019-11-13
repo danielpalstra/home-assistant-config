@@ -2,17 +2,17 @@
 - alias: 'Arm alarm when everybody leaves'
   trigger:
     - platform: state
-      entity_id: device_tracker.iphone_van_daniel, device_tracker.lauras_iphone
+      entity_id: person.daniel, person.laura
       to: 'not_home'
   condition:
     - condition: state
       entity_id: input_boolean.guest_mode
       state: 'off'
     - condition: state
-      entity_id: device_tracker.iphone_van_daniel
+      entity_id: person.daniel
       state: 'not_home'
     - condition: state
-      entity_id: device_tracker.lauras_iphone
+      entity_id: person.laura
       state: 'not_home'
   action:
     service: alarm_control_panel.alarm_arm_away
@@ -22,7 +22,7 @@
 - alias: 'Disarm alarm when returned home'
   trigger:
     - platform: state
-      entity_id: device_tracker.iphone_van_daniel, device_tracker.lauras_iphone
+      entity_id: person.daniel, person.laura
       to: 'home'
   condition:
     - condition: state

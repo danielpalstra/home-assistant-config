@@ -2,17 +2,17 @@
 - alias: 'Vacuum when everbody leaves'
   trigger:
     - platform: state
-      entity_id: device_tracker.iphone_van_daniel, device_tracker.lauras_iphone
+      entity_id: person.daniel, person.laura
       to: 'not_home'
   condition:
     - condition: state
       entity_id: input_boolean.vacuum_on_leave
       state: 'on'
     - condition: state
-      entity_id: device_tracker.iphone_van_daniel
+      entity_id: person.daniel
       state: 'not_home'
     - condition: state
-      entity_id: device_tracker.lauras_iphone
+      entity_id: person.laura
       state: 'not_home'
   action:
     - service: vacuum.turn_on

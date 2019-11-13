@@ -146,8 +146,8 @@
         type: glance
         title: People
         entities:
-          - device_tracker.iphone_van_daniel
-          - device_tracker.lauras_iphone
+          - person.daniel
+          - person.laura
         show_empty: false
       - type: entities
         show_header_toggle: false

@@ -58,10 +58,10 @@
 #       - condition: or
 #         conditions:
 #           - condition: state
-#             entity_id: 'device_tracker.iphone_van_daniel'
+#             entity_id: 'person.daniel'
 #             state: 'home'
 #           - condition: state
-#             entity_id: 'device_tracker.lauras_iphone'
+#             entity_id: 'person.laura'
 #             state: 'home'
 #   action:
 #     - service: scene.turn_on
@@ -103,10 +103,10 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: 'device_tracker.iphone_van_daniel'
+        entity_id: 'person.daniel'
         state: 'not_home'
       - condition: state
-        entity_id: 'device_tracker.lauras_iphone'
+        entity_id: 'person.laura'
         state: 'not_home'
       - condition: state
         entity_id: 'light.livingroom'
@@ -151,7 +151,7 @@
       entity_id: 'input_boolean.away_mode'
       to: 'on'
     # - platform: state
-    #   entity_id: device_tracker.iphone_van_daniel, device_tracker.lauras_iphone
+    #   entity_id: person.daniel, person.laura
     #   to: 'not_home'
   condition:
     - condition: state
