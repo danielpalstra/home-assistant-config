@@ -35,3 +35,10 @@
           - state: "unknown"
         exclude:
           - entity_id: group.*
+    - type: 'custom:monster-card'
+      card:
+        type: entities
+        title: All Automations
+      filter:
+        include:
+          - domain: automation

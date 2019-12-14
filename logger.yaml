@@ -27,7 +27,7 @@ logs:
   # homeassistant.components.vacuum.xiaomi_miio: debug
   root: warn
   # rflink: debug
-  homeassistant.components.rflink: debug
+  # homeassistant.components.rflink: debug
   #homeassistant.components.zwave: debug
   #homeassistant.components.openzwave: debug
   #homeassistant.components.updater: debug

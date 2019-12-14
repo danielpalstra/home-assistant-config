@@ -1,7 +1,17 @@
 include:
+  entities:
+    - binary_sensor.kitchen_motion_sensor_occupancy
+    - binary_sensor.hall_motion
+    - input_boolean.away_mode
+    - input_boolean.wakeup_time
+    - input_boolean.bed_time
+    - input_boolean.livingroom_presence
+    - input_boolean.kitchen_presence
+    - light.livingroom
+    - light.kitchen
   domains:
     - device_tracker
     - cover
-    - light
     - switch
     - media_player
+    - sun

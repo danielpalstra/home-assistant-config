@@ -122,24 +122,43 @@
     #     hours_to_show: 48
     #     points_per_hour: 0.25
 
-    # Bathroom (disabled)
-    # - type: vertical-stack
-    #   cards: 
-    #   - type: horizontal-stack
-    #     cards:
-    #     - type: custom:mini-graph-card
-    #       entities:
-    #         - sensor.0x00158d0001a2ad80_temperature
-    #       name: BATHROOM
-    #       hours_to_show: 48
-    #       points_per_hour: 0.25
-    #     - type: custom:mini-graph-card
-    #       entities:
-    #         - sensor.0x00158d0001a2ad80_humidity
-    #       line_color: '#3498db'
-    #       name: BATHROOM
-    #       hours_to_show: 48
-    #       points_per_hour: 0.25
+    # Bathroom
+    - type: vertical-stack
+      cards: 
+      - type: horizontal-stack
+        cards:
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.0x00158d0001a2e9fc_temperature
+          name: BATHROOM
+          hours_to_show: 48
+          points_per_hour: 0.25
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.0x00158d0001a2e9fc_humidity
+          line_color: '#3498db'
+          name: BATHROOM
+          hours_to_show: 48
+          points_per_hour: 0.25
+
+    # Babyroom
+    - type: vertical-stack
+      cards: 
+      - type: horizontal-stack
+        cards:
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.0x00158d0001823fa3_temperature
+          name: BABYROOM
+          hours_to_show: 48
+          points_per_hour: 0.25
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.0x00158d0001823fa3_humidity
+          line_color: '#3498db'
+          name: BABYROOM
+          hours_to_show: 48
+          points_per_hour: 0.25
 
     # Entrance hall (disabled)
     # - type: vertical-stack

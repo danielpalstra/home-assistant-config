@@ -22,6 +22,9 @@ default_config:
 # Enable IOS devices
 ios: !include ios.yaml
 
+# Enable homekit
+homekit: !include homekit.yaml
+
 # Enable utility meter
 utility_meter: !include utility_meter.yaml
 
@@ -81,8 +84,6 @@ http:
   use_x_forwarded_for: true
   trusted_proxies:
     - 172.22.0.0/24
-    - 127.0.0.1
-    - ::1
 
 # Connect to mqtt broker
 mqtt:
@@ -167,6 +168,6 @@ sensor: !include_dir_merge_list sensor
 script: !include_dir_merge_named script
 # switch: !include_dir_merge_list switch
 # scene: !include ./scenes.yaml
-notify: !include ./notify.yaml
+# notify: !include ./notify.yaml
 input_boolean: !include_dir_merge_named input_boolean
 input_select: !include_dir_merge_named input_select

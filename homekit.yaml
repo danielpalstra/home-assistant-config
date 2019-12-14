@@ -1,0 +1,8 @@
+# ip_address: 
+filter:
+  include_domains:
+    - cover
+    - light
+    - climate
+  # include_entities:
+  #   - binary_sensor.living_room_motion

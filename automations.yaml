@@ -1,0 +1,25 @@
+- id: '1576090990267'
+  alias: Turn on kitchen light on kitchen presence
+  description: ''
+  trigger:
+  - entity_id: input_boolean.kitchen_presence
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: light.livingroom
+    state: 'on'
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: input_boolean.away_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+  action:
+  - alias: ''
+    data:
+      entity_id: light.kitchen
+    service: light.turn_on

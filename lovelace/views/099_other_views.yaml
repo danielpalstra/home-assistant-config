@@ -28,17 +28,17 @@
     name: Debug
     icon: 'mdi:bug'
     cards:
-      - type: entities
-        title: Test
-        entities:
-          - input_select.sleep_trainer_mode
-          - cover.screens
-          - camera.drive
-          - input_number.blinds_slider
-      - type: 'custom:tracker-card'
-        title: null
-        trackers:
-          - sensor.custom_card_tracker
+      # - type: entities
+      #   title: Test
+      #   entities:
+      #     - input_select.sleep_trainer_mode
+      #     - cover.screens
+      #     - camera.drive
+      #     - input_number.blinds_slider
+      # - type: 'custom:tracker-card'
+      #   title: null
+      #   trackers:
+      #     - sensor.custom_card_tracker
       - type: 'custom:monster-card'
         card:
           type: entities
@@ -46,7 +46,7 @@
         filter:
           include:
             - domain: automation
-              state: 'on'
+              # state: 'on'
       - type: 'custom:monster-card'
         card:
           type: entities

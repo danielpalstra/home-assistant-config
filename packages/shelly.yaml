@@ -17,6 +17,14 @@ switch:
     payload_on: "on"
     payload_off: "off"
     retain: true
+    
+  - platform: mqtt
+    name: "Bedside Daniel"
+    state_topic: "shellies/shellyswitch25-B93EE5/relay/0"
+    command_topic: "shellies/shellyswitch25-B93EE5/relay/0/command"
+    payload_on: "on"
+    payload_off: "off"
+    retain: true
 
 sensor:
   # Couch switch
@@ -49,3 +57,18 @@ sensor:
   - platform: mqtt
     name: "General Plug Overheated"
     state_topic: "shellies/shellyplug-s-040DD8/overtemperature"
+
+  - platform: mqtt
+    name: "Bedside Daniel"
+    state_topic: "shellies/shellyswitch25-B93EE5/relay/0/power"
+    unit_of_measurement: "W"
+  - platform: mqtt
+    name: "Bedside Daniel"
+    state_topic: "shellies/shellyswitch25-B93EE5/relay/0/energy"
+  - platform: mqtt
+    name: "Bedside Daniel Temperature"
+    state_topic: "shellies/shellyswitch25-B93EE5/temperature"
+    unit_of_measurement: '°C'
+  - platform: mqtt
+    name: "Bedside Daniel Overheated"
+    state_topic: "shellies/shellyswitch25-B93EE5/overtemperature"

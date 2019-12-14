@@ -1,0 +1,66 @@
+automation:
+  - id: turn_off_couch_side_table
+    alias: Turn off couch side table on leave or bedtime
+    trigger:
+      - platform: state
+        entity_id: input_boolean.away_mode, input_boolean.bed_time
+        from: "off"
+        to: "on"
+        # for:
+        #   minutes: 5
+    condition:
+      - condition: state
+        entity_id: "input_boolean.guest_mode"
+        state: "off"
+    action:
+      - delay: "01:00"
+      - service: switch.turn_off
+        entity_id: switch.couch_switch
+
+  - id: turn_on_couch_side_table
+    alias: Turn on couch side table when arriving home
+    trigger:
+      - platform: state
+        entity_id: input_boolean.away_mode
+        from: "on"
+        to: "off"
+    action:
+      - service: switch.turn_on
+        entity_id: switch.couch_switch
+
+  - id: turn_on_couch_side_table_morning
+    alias: Turn on couch side table in the morning
+    trigger:
+      - platform: state
+        entity_id: input_boolean.wakeup_time
+        from: "off"
+        to: "on"
+    action:
+      - service: switch.turn_on
+        entity_id: switch.couch_switch
+
+sensor:
+  - platform: filter
+    name: "power consumption throttled"
+    entity_id: sensor.power_consumption
+    filters:
+      - filter: throttle
+        window_size: 10
+  - platform: filter
+    name: "power consumption normal throttled"
+    entity_id: sensor.power_consumption_normal
+    filters:
+      - filter: throttle
+        window_size: 10
+  - platform: filter
+    name: "power consumption low throttled"
+    entity_id: sensor.power_consumption_low
+    filters:
+      - filter: throttle
+        window_size: 10
+  - platform: filter
+    name: "couch power throttled"
+    entity_id: sensor.couch_power
+    filters:
+      - filter: throttle
+        window_size: 10

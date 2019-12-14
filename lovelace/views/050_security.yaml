@@ -18,9 +18,13 @@
         entities:
           # - binary_sensor.ring_front_door_ding
           # - binary_sensor.ring_front_door_motion
+          - binary_sensor.motion_kitchen_front
+          - binary_sensor.motion_kitchen_back
           - binary_sensor.livingroom_motion
           - binary_sensor.hall_motion
           - binary_sensor.kitchen_motion_sensor_occupancy
+          - input_boolean.livingroom_presence
+          - input_boolean.kitchen_presence
       # - type: picture-entity
       #   entity: camera.front_door
       - type: picture-entity
@@ -31,3 +35,4 @@
         entity: camera.fennacam
         show_name: false
         show_state: false
+      

@@ -178,3 +178,61 @@
   action:
     service: scene.turn_on
     entity_id: scene.nightlight
+
+# Kitchen lights automations
+
+- alias: Turn on kitchen lights on presence and livingroom already on
+  initial_state: 'true'
+  hide_entity: 'false'
+  trigger:
+  - platform: state
+    entity_id: 'input_boolean.kitchen_presence'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: 'light.livingroom'
+        state: 'on'
+      - condition: state
+        entity_id: 'input_boolean.bed_time'
+        state: 'off'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: 'input_boolean.away_mode'
+            state: 'off'
+          - condition: state
+            entity_id: 'input_boolean.guest_mode'
+            state: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.kitchen
+
+- alias: Turn off kitchen after 5 minutes of no presence
+  initial_state: 'true'
+  hide_entity: 'false'
+  trigger:
+  - platform: state
+    entity_id: 'input_boolean.kitchen_presence'
+    to: 'off'
+  # condition:
+  #   condition: and
+  #   conditions:
+  #     - condition: state
+  #       entity_id: 'light.livingroom'
+  #       state: 'on'
+  #     - condition: state
+  #       entity_id: 'input_boolean.bed_time'
+  #       state: 'off'
+  #     - condition: or
+  #       conditions:
+  #         - condition: state
+  #           entity_id: 'input_boolean.away_mode'
+  #           state: 'off'
+  #         - condition: state
+  #           entity_id: 'input_boolean.guest_mode'
+  #           state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: light.kitchen
