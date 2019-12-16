@@ -42,21 +42,29 @@ automation:
     hide_entity: 'false'
     trigger:
       - platform: state
-        entity_id: binary_sensor.motion_kitchen_front, binary_sensor.motion_kitchen_back
+        entity_id: binary_sensor.kitchen_back_motion_zone, binary_sensor.kitchen_front_motion_zone
         to: 'on'
     action:
       - service: input_boolean.turn_on
         entity_id: input_boolean.kitchen_presence
+      - service: timer.start
+        data:
+          entity_id: timer.kitchen_presence
 
-  - alias: Set kitchen presence off
+  - alias: Turn off kitchen presence after 5 min
     initial_state: 'true'
     hide_entity: 'false'
     trigger:
-      - platform: state
-        entity_id: binary_sensor.motion_kitchen_front, binary_sensor.motion_kitchen_back
-        to: 'off'
-        for:
-          minutes: 5
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.kitchen_presence
     action:
       - service: input_boolean.turn_off
         entity_id: input_boolean.kitchen_presence
+
+timer:
+  kitchen_presence:
+    duration: '00:05:00'
+  livingroom_presence:
+    duration: '00:20:00'

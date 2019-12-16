@@ -7,3 +7,21 @@ cover:
     devices:
       rts_02FFFF_01:
         name: Livingroom Screens
+
+automation:
+  - alias: Toggle roller shutters bedroom Fenna
+    initial_state: 'true'
+    hide_entity: 'false'
+    trigger:
+    - platform: event
+      event_type: zha_event
+      # optional
+      event_data:
+        click_type: single
+        device_ieee: 00:15:8d:00:01:4a:11:c5
+        args:
+            click_type: single
+    action:
+      - service: cover.toggle
+        entity_id: cover.fennaroom_rollershutter
+

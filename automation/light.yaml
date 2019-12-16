@@ -91,23 +91,19 @@
 
 #################################################
 
-# Turn on
+# Turn on night lamp when noone at home
 - alias: Turn on night-lamp when noone at home at sunset
   initial_state: 'true'
   hide_entity: 'false'
   trigger:
     - platform: sun
       event: sunset
-      offset: '-00:15:00'
   condition:
     condition: and
     conditions:
       - condition: state
-        entity_id: 'person.daniel'
-        state: 'not_home'
-      - condition: state
-        entity_id: 'person.laura'
-        state: 'not_home'
+        entity_id: 'input_boolean.away_mode'
+        state: 'on'
       - condition: state
         entity_id: 'light.livingroom'
         state: 'off'
@@ -117,7 +113,11 @@
   action:
     - service: scene.turn_on
       entity_id: scene.nightlight
-    - service: notify.family
+    - service: notify.mobile_app_iphone_van_laura
+      data:
+        title: "Turned on night-lamp at home"
+        message: "Turned on night-lamp at home because the sun set and noone was at home"
+    - service: notify.mobile_app_iphone_van_daniel
       data:
         title: "Turned on night-lamp at home"
         message: "Turned on night-lamp at home because the sun set and noone was at home"

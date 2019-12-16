@@ -19,11 +19,14 @@
     entity_id: input_boolean.away_mode
 
 # Turn off away mode when anybode arrives at home
+# also turn off guest mode when arriving home
 - alias: 'Turn off away mode when somebody arrives at home'
   trigger:
     - platform: state
       entity_id: person.daniel, person.laura
       to: 'home'
   action:
-    service: input_boolean.turn_off
-    entity_id: input_boolean.away_mode
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.away_mode
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.guest_mode

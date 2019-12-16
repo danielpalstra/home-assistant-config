@@ -28,6 +28,7 @@
           - climate.remote_gw_thermo_089a1e
           - light.livingroom
           - light.livingroom_downlights
+          - switch.christmas_tree
           - cover.livingroom_screens
           - sensor.livingroom_light
           - sensor.livingroom_temperature

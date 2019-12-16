@@ -1,0 +1,38 @@
+automation:
+  # Turn off christmas tree at bedtime
+  - alias: 'Turn off christmas tree at bedtime'
+    trigger:
+      - platform: state
+        entity_id: 'input_boolean.bed_time'
+        to: 'on'
+    action:
+      service: switch.turn_off
+      entity_id: switch.christmas_tree
+
+  # Turn off christmas tree when everybody leaves
+  - alias: 'Turn off christmas tree when everybody leaves'
+    trigger:
+      - platform: state
+        entity_id: 'input_boolean.away_mode'
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+    action:
+      service: switch.turn_off
+      entity_id: switch.christmas_tree
+
+  # Turn on christmas tree
+  - alias: 'Turn on christmas tree when arriving home'
+    trigger:
+      - platform: state
+        entity_id: 'input_boolean.away_mode'
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+    action:
+      service: switch.turn_on
+      entity_id: switch.christmas_tree

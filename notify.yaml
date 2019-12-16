@@ -1,7 +1,7 @@
 - name: family
   platform: group
   services:
-    - service: ios_iphone_van_daniel
-    - service: ios_iphone_van_laura
+    - service: mobile_app_iphone_van_laura
+    - service: mobile_app_iphone_van_daniel
 - name: iOSApp
   platform: ios

@@ -23,13 +23,16 @@ logs:
   homeassistant.loader: error
   songpal.containers: error
   # homeassistant.helpers.script: info
+  root: warn
+  homeassistant.components.zha: info
+  homeassistant.components.zha.core.device: debug
+  # old debug stuff
   # miio.device: debug
   # homeassistant.components.vacuum.xiaomi_miio: debug
-  root: warn
   # rflink: debug
   # homeassistant.components.rflink: debug
   #homeassistant.components.zwave: debug
   #homeassistant.components.openzwave: debug
   #homeassistant.components.updater: debug
   #homeassistant.components.device_tracker.owntracks: debug
-  homeassistant.components.uvc: debug
+  # homeassistant.components.uvc: debug
