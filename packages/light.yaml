@@ -3,7 +3,7 @@ light:
     name: Livingroom
     entities:
       - light.bank
-      - light.kast
+      # - light.kast
       - light.tv_kast
       - light.livingroom_downlights
   - platform: group
@@ -15,6 +15,19 @@ light:
     name: Dining
     entities:
       - light.dinner_table
+  - platform: group
+    name: Hall
+    entities:
+      - light.front_door
+  # Group by floors
+  - platform: group
+    name: Downstairs
+    entities:
+      - light.kitchen
+      - light.livingroom
+      - light.dining
+      - light.hall
+
   # - platform: group
   #   name: Outside
   #   entities:
@@ -35,6 +48,17 @@ input_select:
     initial: 'All Off'
     icon: mdi:floor-lamp
 
+  livingroom_scenes:
+    name: Livingroom scenes
+    options:
+      - relax
+      - concentrate
+      - movie
+      - nightlight
+    # initial: 'All Off'
+    icon: mdi:floor-lamp
+
+
 # Sun sensors
 sensor:
   - platform: template
@@ -51,130 +75,6 @@ sensor:
         value_template: "{{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom('%-H:%M') }}"
         icon_template: mdi:weather-sunset-down
 
-scene:
-  - name: 'All Off'
-    entities:
-      group.all_lights:
-        state: 'off'
-      input_select.last_scene:
-        option: 'All Off'
-        state: on
-
-  - name: Relax
-    entities:
-      light.bank:
-        state: 'on'
-        brightness: 60
-        color_temp: 384
-        transition: 2
-      light.tv_kast:
-        state: 'on'
-        brightness: 100
-        color_temp: 450
-        transition: 2
-      light.livingroom_downlights:
-        state: on
-        brightness: 3
-      input_select.last_scene:
-        option: Relax
-        state: on
-
-  - name: Nightlight
-    entities:
-      light.bank:
-        state: 'off'
-      light.tv:
-        state: 'off'
-      light.tv_kast:
-        state: 'on'
-        brightness: 144.0
-        color_temp: 450
-      light.kast:
-        state: 'off'
-      input_select.last_scene:
-        option: Nightlight
-        state: on
-
-  - name: Movie
-    entities:
-      light.bank:
-        state: 'on'
-        brightness: 49.0
-        color_temp: 435
-      light.tv_kast:
-        state: 'on'
-        brightness: 23.0
-        color_temp: 435
-      light.livingroom_downlights:
-        state: 'off'
-      input_select.last_scene:
-        option: Movie
-        state: on 
-
-  - name: Concentrate
-    entities:
-      light.tv_kast:
-        state: 'on'
-        brightness: 254.0
-        color_temp: 233
-      light.bank:
-        state: 'on'
-        brightness: 254.0
-        color_temp: 233
-      light.livingroom_downlights:
-        state: on
-        brightness: 255
-      input_select.last_scene:
-        option: Concentrate
-        state: on 
-
-  - name: All On
-    entities:
-      light.livingroom:
-        state: 'on'
-      light.kitchen:
-        state: 'on'
-      light.dining:
-        state: 'on'
-      input_select.last_scene:
-        option: 'All On'
-        state: on 
-
-  - name: Dinner Time
-    entities:
-      light.livingroom:
-        state: 'off'
-      light.kitchen:
-        state: 'on'
-      light.dining: 
-        state: 'on'
-      input_select.last_scene:
-        option: Dinner Time
-        state: on 
-
-  - name: Breakfast Time
-    entities:
-      light.dining: 
-        state: 'on'
-      light.livingroom_downlights:
-        state: 'on'
-        brightness: 5
-      input_select.last_scene:
-        option: "Breakfast Time"
-        state: on
-
-  - name: Kitchen Bright
-    entities:
-      light.kitchen:
-        state: on
-        brightness: 255
-
-  - name: Kitchen Dimmed
-    entities:
-      light.kitchen:
-        state: on
-        brightness: 3
-
 script:
   turn_off_lights:
     alias: 'Turn off all first floor lights with delay'
@@ -190,7 +90,7 @@ script:
       - service: light.turn_off
         data:
           entity_id: light.livingroom
-          transition: 120
+          transition: 30
       - service: light.turn_off
         data:
           entity_id: light.kitchen
@@ -199,3 +99,29 @@ script:
         data:
           entity_id: light.dining
           transition: 30
+
+automation:
+  - alias: Scroll livingroom scenes on switch press
+    initial_state: 'true'
+    hide_entity: false
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          scene_id: 26
+    action:
+      - service: input_select.select_next
+        data:
+          entity_id: input_select.livingroom_scenes
+
+  - alias: Set selected livingroom scene
+    initial_state: 'true'
+    hide_entity: false
+    trigger:
+      - platform: state
+        entity_id: input_select.livingroom_scenes
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            scene.{{ states("input_select.livingroom_scenes") }}

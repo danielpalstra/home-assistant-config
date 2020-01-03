@@ -22,8 +22,8 @@ automation:
     trigger:
       - platform: state
         entity_id: input_boolean.away_mode
-        from: "on"
-        to: "off"
+        from: "off"
+        to: "on"
     action:
       - service: switch.turn_on
         entity_id: switch.couch_switch

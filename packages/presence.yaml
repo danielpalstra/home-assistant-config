@@ -13,7 +13,8 @@ input_boolean:
     icon: mdi:walk
 
 automation:
-  - alias: Trigger livingroom presence on
+    # Livingroom presence
+  - alias: Trigger livingroom presence on motion
     initial_state: 'true'
     hide_entity: false
     trigger:
@@ -23,7 +24,6 @@ automation:
     action:
       - service: input_boolean.turn_on
         entity_id: input_boolean.livingroom_presence
-
   - alias: Set livingroom presence off
     initial_state: 'true'
     hide_entity: 'false'
@@ -37,7 +37,8 @@ automation:
       - service: input_boolean.turn_off
         entity_id: input_boolean.livingroom_presence
 
-  - alias: Set kitchen presence on
+    # Kitchen presence
+  - alias: Turn on kitchen presence on motion
     initial_state: 'true'
     hide_entity: 'false'
     trigger:
@@ -47,11 +48,34 @@ automation:
     action:
       - service: input_boolean.turn_on
         entity_id: input_boolean.kitchen_presence
+      - service: timer.cancel
+        entity_id: timer.kitchen_presence
+      # - service: timer.start
+      #   data:
+      #     entity_id: timer.kitchen_presence
+
+  - alias: Start timer to turn off kitchen presence
+    initial_state: 'true'
+    hide_entity: 'false'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.kitchen_back_motion_zone, binary_sensor.kitchen_front_motion_zone
+        to: 'off'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: 'binary_sensor.kitchen_back_motion_zone'
+          state: 'off'
+        - condition: state
+          entity_id: 'binary_sensor.kitchen_front_motion_zone'
+          state: 'off'
+    action:
       - service: timer.start
         data:
           entity_id: timer.kitchen_presence
 
-  - alias: Turn off kitchen presence after 5 min
+  - alias: Turn off kitchen presence when timer is finished
     initial_state: 'true'
     hide_entity: 'false'
     trigger:

@@ -9,8 +9,6 @@
           - scene.nightlight
           - scene.movie
           - scene.concentrate
-          - scene.all_on
-          - scene.dinner_time
           - input_select.last_scene
       - type: entities
         title: Triggers
@@ -20,6 +18,14 @@
           - input_boolean.wakeup_time
           - input_boolean.vacuum_on_leave
           # - vacuum.xiaomi_vacuum_cleaner
+      - type: entities
+        title: Garbage
+        show_header_toggle: false
+        entities:
+          - sensor.rmn_restafval
+          - sensor.rmn_gft
+          - sensor.rmn_papier
+          - sensor.rmn_pmd
       - id: bd3ce1939f364da6a1a57a8b94e836e4
         type: entities
         title: Livingroom

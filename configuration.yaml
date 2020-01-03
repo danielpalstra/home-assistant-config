@@ -4,6 +4,7 @@ homeassistant:
   # Location required to calculate the time the sun rises and sets
   latitude: !secret latitude
   longitude: !secret longitude
+  # radius: 1000
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 0
   # metric for Metric, imperial for Imperial
@@ -12,6 +13,13 @@ homeassistant:
   time_zone: Europe/Amsterdam
   customize: !include_dir_merge_named customize
   packages: !include_dir_named packages
+
+zone:
+  - name: Home
+    latitude: !secret latitude
+    longitude: !secret longitude
+    elevation: 0
+    radius: 500
 
 # Enables the frontend
 frontend: !include frontend.yaml
@@ -164,12 +172,12 @@ custom_updater:
 
 # Includes
 automation: !include_dir_merge_list automation
-device_tracker: !include_dir_merge_list device_tracker
 sensor: !include_dir_merge_list sensor
 # binary_sensor: !include_dir_merge_list binary_sensor
 script: !include_dir_merge_named script
 # switch: !include_dir_merge_list switch
-# scene: !include ./scenes.yaml
+# Use scene editor
+scene: !include ./scenes.yaml
 # notify: !include ./notify.yaml
 input_boolean: !include_dir_merge_named input_boolean
 input_select: !include_dir_merge_named input_select

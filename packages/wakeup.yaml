@@ -39,8 +39,11 @@ automation:
     hide_entity: 'false'
     trigger:
       - platform: state
-      # Kitchen motion
-        entity_id: binary_sensor.livingroom_motion,binary_sensor.hall_motion,binary_sensor.kitchen_motion_sensor_occupancy
+        # TODO: add motion in the kitchen as well
+        entity_id: 
+          - binary_sensor.livingroom_motion_zone
+          - binary_sensor.kitchen_back_motion_zone
+          - binary_sensor.kitchen_front_motion_zone
         to: 'on'
     condition:
       condition: and

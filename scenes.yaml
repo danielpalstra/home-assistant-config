@@ -1,0 +1,179 @@
+- id: all_off
+  name: All Off
+  entities:
+    group.all_lights:
+      state: 'off'
+    input_select.last_scene:
+      option: All Off
+      state: true
+- id: relax
+  name: Relax
+  entities:
+    input_select.last_scene:
+      friendly_name: Last scene
+      icon: mdi:floor-lamp
+      options:
+      - All Off
+      - All On
+      - Nightlight
+      - Relax
+      - Concentrate
+      - Movie
+      - Dinner Time
+      - Breakfast Time
+      state: All Off
+    light.bank:
+      brightness: 60
+      color_temp: 384
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: Bank
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 63
+    light.livingroom_downlights:
+      brightness: 57
+      friendly_name: Livingroom Downlights
+      node_id: 3
+      power_consumption: 2.7
+      state: 'on'
+      supported_features: 33
+      value_id: '72057594093076481'
+      value_index: 0
+      value_instance: 1
+    light.tv_kast:
+      brightness: 100
+      color_temp: 450
+      effect: none
+      effect_list:
+      - colorloop
+      - random
+      friendly_name: TV Kast
+      max_mireds: 500
+      min_mireds: 153
+      state: 'on'
+      supported_features: 63
+- id: nightlight
+  name: Nightlight
+  entities:
+    light.bank:
+      state: 'off'
+    light.tv:
+      state: 'off'
+    light.tv_kast:
+      state: 'on'
+      brightness: 144.0
+      color_temp: 450
+    light.kast:
+      state: 'off'
+    input_select.last_scene:
+      option: Nightlight
+      state: true
+- id: movie
+  name: Movie
+  entities:
+    light.bank:
+      state: 'on'
+      brightness: 49.0
+      color_temp: 435
+    light.tv_kast:
+      state: 'on'
+      brightness: 23.0
+      color_temp: 435
+    light.livingroom_downlights:
+      state: 'off'
+    input_select.last_scene:
+      option: Movie
+      state: true
+- id: concentrate
+  name: Concentrate
+  entities:
+    light.tv_kast:
+      state: 'on'
+      brightness: 254.0
+      color_temp: 233
+    light.bank:
+      state: 'on'
+      brightness: 254.0
+      color_temp: 233
+    light.livingroom_downlights:
+      state: true
+      brightness: 255
+    input_select.last_scene:
+      option: Concentrate
+      state: true
+- id: all_on
+  name: All On
+  entities:
+    light.livingroom:
+      state: 'on'
+    light.kitchen:
+      state: 'on'
+    light.dining:
+      state: 'on'
+    input_select.last_scene:
+      option: All On
+      state: true
+- id: dinner_time
+  name: Dinner Time
+  entities:
+    light.livingroom:
+      state: 'off'
+    light.kitchen:
+      state: 'on'
+    light.dining:
+      state: 'on'
+    input_select.last_scene:
+      option: Dinner Time
+      state: true
+- id: breakfast_time
+  name: Breakfast Time
+  entities:
+    input_select.last_scene:
+      friendly_name: Last scene
+      icon: mdi:floor-lamp
+      options:
+      - All Off
+      - All On
+      - Nightlight
+      - Relax
+      - Concentrate
+      - Movie
+      - Dinner Time
+      - Breakfast Time
+      state: Breakfast Time
+    light.dining:
+      brightness: 18
+      friendly_name: Dining
+      state: 'on'
+      supported_features: 33
+    light.kitchen:
+      brightness: 75
+      friendly_name: Kitchen
+      state: 'on'
+      supported_features: 33
+    light.livingroom_downlights:
+      brightness: 3
+      friendly_name: Livingroom Downlights
+      node_id: 3
+      power_consumption: 1.9
+      state: 'on'
+      supported_features: 33
+      value_id: '72057594093076481'
+      value_index: 0
+      value_instance: 1
+- id: kitchen_bright
+  name: Kitchen Bright
+  entities:
+    light.kitchen:
+      state: true
+      brightness: 255
+- id: kitchen_dimmed
+  name: Kitchen Dimmed
+  entities:
+    light.kitchen:
+      state: true
+      brightness: 3

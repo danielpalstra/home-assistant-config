@@ -7,11 +7,11 @@
 # Turn on relax scene when ligth < 100 lux and people at home or guest mode is on
 - alias: Turn on livingroom lights when < 100 lux
   initial_state: 'true'
-  hide_entity: 'false'
+  hide_entity: false
   trigger:
   - platform: numeric_state
     entity_id: sensor.livingroom_light
-    below: 100
+    below: 20
   condition:
     condition: and
     conditions:

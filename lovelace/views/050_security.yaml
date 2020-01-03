@@ -2,6 +2,12 @@
     name: Security
     icon: 'mdi:security'
     cards:
+      - id: timers
+        type: entities
+        title: Timers
+        entities:
+          - timer.kitchen_presence
+          - timer.livingroom_presence
       - id: ba1226d97c9444e6af3faf2de27a3b5c
         type: entities
         title: Doors & Windows
@@ -18,9 +24,10 @@
         entities:
           # - binary_sensor.ring_front_door_ding
           # - binary_sensor.ring_front_door_motion
-          - binary_sensor.motion_kitchen_front
-          - binary_sensor.motion_kitchen_back
-          - binary_sensor.livingroom_motion
+          - binary_sensor.kitchen_front_motion_zone
+          - binary_sensor.kitchen_front_motion_occupancy
+          - binary_sensor.kitchen_back_motion_zone
+          - binary_sensor.kitchen_back_motion_occupancy
           - binary_sensor.hall_motion
           - binary_sensor.kitchen_motion_sensor_occupancy
           - input_boolean.livingroom_presence

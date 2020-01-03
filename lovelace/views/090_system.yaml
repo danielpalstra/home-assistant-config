@@ -25,6 +25,7 @@
         - sensor.speedtest_upload
         - sensor.braviatv
         - sensor.philipshue
+        - input_select.livingroom_scenes
     - type: custom:monster-card
       card:
         type: entities

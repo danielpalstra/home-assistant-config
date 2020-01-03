@@ -18,4 +18,7 @@ camera:
     name: !secret wyzecam_name_1
     input: !secret wyzecam_url_1
 
-
+binary_sensor:
+  - platform: ffmpeg_motion
+    name: !secret wyzecam_name_1
+    input: !secret wyzecam_url_1

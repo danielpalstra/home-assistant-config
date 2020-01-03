@@ -4,10 +4,13 @@ include:
     - input_boolean.wakeup_time
     - input_boolean.bed_time
     - input_boolean.guest_mode
+    - sensor.livingroom_light
+    - climate.remote_gw_thermo_089a1e
   domains:
     - device_tracker
     - input_boolean
     - binary_sensor
+    - light
 
 # exclude:
 #   domains:
