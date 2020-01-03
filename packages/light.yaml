@@ -45,6 +45,7 @@ input_select:
       - Movie
       - 'Dinner Time'
       - 'Breakfast Time'
+      - 'Livingroom Off'
     initial: 'All Off'
     icon: mdi:floor-lamp
 
@@ -55,9 +56,19 @@ input_select:
       - concentrate
       - movie
       - nightlight
+      - livingroom_off
     # initial: 'All Off'
     icon: mdi:floor-lamp
 
+  kitchen_scenes:
+    name: Kitchen scenes
+    options:
+      - kitchen_bright
+      - kitchen_dimmed
+      - kitchen_normal
+      - kitchen_off
+    # initial: 'All Off'
+    icon: mdi:floor-lamp
 
 # Sun sensors
 sensor:

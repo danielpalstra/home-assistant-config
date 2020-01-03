@@ -6,17 +6,14 @@
       title: System
       show_header_toggle: false
       entities:
-        - updater.updater
+        - binary_sensor.updater
         - sensor.ha_installed_version
         - sensor.ssl_certificate_expiry
         - sensor.ha_uptime
-        - sensor.load_1m
-        - sensor.load_5m
-        - sensor.load_15m
         - sensor.memory_free
         - sensor.memory_use
-        - sensor.swap_free
-        - sensor.swap_use
+        - sensor.memory_use_percent
+        - sensor.disk_use_percent_config
     - type: entities
       title: Network
       show_header_toggle: false

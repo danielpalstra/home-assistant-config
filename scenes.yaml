@@ -1,3 +1,11 @@
+- id: livingroom_off
+  name: Livingroom Off
+  entities:
+    light.livingroom:
+      state: 'off'
+    input_select.last_scene:
+      option: Livingroom Off
+      state: true
 - id: all_off
   name: All Off
   entities:
@@ -175,5 +183,16 @@
   name: Kitchen Dimmed
   entities:
     light.kitchen:
-      state: true
+      state: 'on'
       brightness: 3
+- id: kitchen_normal
+  name: Kitchen Normal
+  entities:
+    light.kitchen:
+      state: 'on'
+      brightness: 127
+- id: kitchen_off
+  name: Kitchen Off
+  entities:
+    light.kitchen:
+      state: off

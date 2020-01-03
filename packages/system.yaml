@@ -18,13 +18,9 @@ sensor:
       - type: memory_free
       - type: memory_use_percent
       - type: memory_use
-      - type: swap_use_percent
-      - type: swap_use
-      - type: swap_free
-      - type: load_1m
-      - type: load_5m
-      - type: load_15m
       - type: processor_use
+      - type: disk_use_percent
+        arg: /config
 
   - platform: command_line
     name: HA Installed Version
@@ -57,9 +53,16 @@ sensor:
 automation:
 - alias: 'Update Available Notifications'
   trigger:
-    platform: state
-    entity_id: updater.updater
+    - platform: state
+      entity_id: binary_sensor.updater
+      from: 'off'
+      to: 'on'
   action:
-    service: notify.notify
+    service: notify.mobile_app_iphone_van_daniel
+    # Template samples https://www.home-assistant.io/docs/configuration/templating/
     data:
-      message: 'Update for Home Assistant is available.'
+      title: >
+        Home assistant {{ state_attr("binary_sensor.updater", "newest_version") }} available!
+      message: >
+        Update for Home Assistant is available. Current {{ states("sensor.ha_installed_version") }}
+        Latest: {{ state_attr("binary_sensor.updater", "newest_version") }}

@@ -16,6 +16,13 @@
     tap_action:
       action: toggle
   - type: entities
+    title: Scene scroller
+    show_header_toggle: false
+    entities:
+      - input_select.last_scene
+      - input_select.livingroom_scenes
+      - input_select.kitchen_scenes
+  - type: entities
     title: Sun
     show_header_toggle: false
     entities:
