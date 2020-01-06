@@ -38,9 +38,9 @@
           - light.kitchen
           - light.kitchen_cabinets
           - light.kitchen_island
-          - sensor.0x00158d0001b8ccdc_temperature
-          - sensor.0x00158d0001b8ccdc_humidity
-          - binary_sensor.0x00158d00016fde44_contact
+          - sensor.kitchen_temperature
+          - sensor.kitchen_temperature_humidity
+          - binary_sensor.kitchen_door_magnet_on_off
       - type: entities
         title: Kidsrooms
         show_header_toggle: false

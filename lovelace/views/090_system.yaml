@@ -32,3 +32,13 @@
           - state: "unknown"
         exclude:
           - entity_id: group.*
+    - type: custom:monster-card
+      card:
+        type: entities
+        title: Batteries
+        show_header_toggle: false
+      filter:
+        include:
+          - entity_id: "*_power"
+        exclude:
+          - entity_id: group.*

@@ -19,7 +19,7 @@
           align_state: center
           show:
             fill: false
-          hours_to_show: 48
+          hours_to_show: 96
           points_per_hour: 0.25
           line_color: '#f5d442'
         - type: custom:mini-graph-card
@@ -27,13 +27,13 @@
             - sensor.livingroom_humidity
           line_color: '#3498db'
           name: LIVING ROOM
-          hours_to_show: 48
+          hours_to_show: 96
           points_per_hour: 0.25
       - type: custom:mini-graph-card
         entities:
           - sensor.livingroom_temperature
         name: LIVING ROOM
-        hours_to_show: 48
+        hours_to_show: 96
         points_per_hour: 0.25
 
     # Kitchen
@@ -45,14 +45,14 @@
           entities:
             - sensor.kitchen_temperature
           name: KITCHEN
-          hours_to_show: 48
+          hours_to_show: 96
           points_per_hour: 0.25
         - type: custom:mini-graph-card
           entities:
             - sensor.kitchen_temperature_humidity
           line_color: '#3498db'
           name: KITCHEN
-          hours_to_show: 48
+          hours_to_show: 96
           points_per_hour: 0.25
 
     # Dining Area
@@ -64,14 +64,14 @@
           entities:
             - sensor.woonkamer_temperature
           name: DINING
-          hours_to_show: 48
+          hours_to_show: 96
           points_per_hour: 0.25
         - type: custom:mini-graph-card
           entities:
             - sensor.woonkamer_humidity
           line_color: '#3498db'
           name: DINING
-          hours_to_show: 48
+          hours_to_show: 96
           points_per_hour: 0.25
     # Bedroom
     - type: vertical-stack
@@ -82,14 +82,14 @@
           entities:
             - sensor.bedroom_temperature
           name: BEDROOM
-          hours_to_show: 48
+          hours_to_show: 96
           points_per_hour: 0.25
         - type: custom:mini-graph-card
           entities:
             - sensor.bedroom_temperature_humidity
           line_color: '#3498db'
           name: BEDROOM
-          hours_to_show: 48
+          hours_to_show: 96
           points_per_hour: 0.25
 
     # # Fennas room (disabled)
@@ -105,7 +105,7 @@
     #       align_state: center
     #       show:
     #         fill: false
-    #       hours_to_show: 48
+    #       hours_to_show: 96
     #       points_per_hour: 0.25
     #       line_color: '#f5d442'
     #     - type: custom:mini-graph-card
@@ -113,13 +113,13 @@
     #         - sensor.fennaroom_humidity
     #       line_color: '#3498db'
     #       name: FENNA ROOM
-    #       hours_to_show: 48
+    #       hours_to_show: 96
     #       points_per_hour: 0.25
     #   - type: custom:mini-graph-card
     #     entities:
     #       - sensor.fennaroom_temperature
     #     name: FENNA ROOM
-    #     hours_to_show: 48
+    #     hours_to_show: 96
     #     points_per_hour: 0.25
 
     # Bathroom
@@ -131,14 +131,14 @@
           entities:
             - sensor.0x00158d0001a2e9fc_temperature
           name: BATHROOM
-          hours_to_show: 48
+          hours_to_show: 96
           points_per_hour: 0.25
         - type: custom:mini-graph-card
           entities:
             - sensor.0x00158d0001a2e9fc_humidity
           line_color: '#3498db'
           name: BATHROOM
-          hours_to_show: 48
+          hours_to_show: 96
           points_per_hour: 0.25
 
     # Babyroom
@@ -150,14 +150,14 @@
           entities:
             - sensor.babyroom_temperature
           name: BABYROOM
-          hours_to_show: 48
+          hours_to_show: 96
           points_per_hour: 0.25
         - type: custom:mini-graph-card
           entities:
             - sensor.babyroom_temperature_humidity
           line_color: '#3498db'
           name: BABYROOM
-          hours_to_show: 48
+          hours_to_show: 96
           points_per_hour: 0.25
 
     # Entrance hall (disabled)
@@ -169,14 +169,14 @@
     #       entities:
     #         - 
     #       name: ENTRANCE
-    #       hours_to_show: 48
+    #       hours_to_show: 96
     #       points_per_hour: 0.25
     #     - type: custom:mini-graph-card
     #       entities:
     #         - 
     #       line_color: '#3498db'
     #       name: ENTRANCE
-    #       hours_to_show: 48
+    #       hours_to_show: 96
     #       points_per_hour: 0.25
 
     # Garage
@@ -188,14 +188,14 @@
           entities:
             - sensor.garage_temperature
           name: GARAGE
-          hours_to_show: 48
+          hours_to_show: 96
           points_per_hour: 0.25
         - type: custom:mini-graph-card
           entities:
             - sensor.garage_temperature_humidity
           line_color: '#3498db'
           name: GARAGE
-          hours_to_show: 48
+          hours_to_show: 96
           points_per_hour: 0.25
 
     # - id: 3d2256e2cbc1478db8617a03aa620202
