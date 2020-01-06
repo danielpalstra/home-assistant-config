@@ -1,0 +1,57 @@
+  - path: info
+    icon: 'mdi:clipboard-text'
+    cards:
+      - type: entities
+        title: Garbage
+        show_header_toggle: false
+        entities:
+          - sensor.rmn_restafval
+          - sensor.rmn_gft
+          - sensor.rmn_papier
+          - sensor.rmn_pmd
+      - type: glance
+        title: Vacuum zones
+        show_header_toggle: false
+        entities:
+          - entity: script.vacuum_kitchen
+            name: Kitchen
+            icon: mdi:fridge-outline
+            show_state: false
+            tap_action:
+              action: call-service
+              service: script.vacuum_kitchen
+          - entity: script.vacuum_kitchen
+            name: Dining
+            icon: mdi:table-chair
+            show_state: false
+            tap_action:
+              action: call-service
+              service: script.vacuum_dining
+          - entity: script.vacuum_kitchen
+            name: Living
+            icon: mdi:sofa
+            show_state: false
+            tap_action:
+              action: call-service
+              service: script.vacuum_living
+          - entity: script.vacuum_kitchen
+            name: First floor
+            icon: mdi:floor-plan
+            show_state: false
+            tap_action:
+              action: call-service
+              service: script.vacuum_first_floor
+      - type: entities
+        show_header_toggle: false
+        title: Commuting
+        entities:
+          - sensor.home_to_work
+          - sensor.work_to_home
+      - type: picture-entity
+        entity: camera.drive
+        show_name: false
+        show_state: false
+      - type: picture-entity
+        entity: camera.fennacam
+        show_name: false
+        show_state: false

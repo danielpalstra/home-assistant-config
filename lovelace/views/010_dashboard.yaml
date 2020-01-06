@@ -18,14 +18,6 @@
           - input_boolean.wakeup_time
           - input_boolean.vacuum_on_leave
           # - vacuum.xiaomi_vacuum_cleaner
-      - type: entities
-        title: Garbage
-        show_header_toggle: false
-        entities:
-          - sensor.rmn_restafval
-          - sensor.rmn_gft
-          - sensor.rmn_papier
-          - sensor.rmn_pmd
       - id: bd3ce1939f364da6a1a57a8b94e836e4
         type: entities
         title: Livingroom
@@ -50,7 +42,7 @@
           - sensor.0x00158d0001b8ccdc_humidity
           - binary_sensor.0x00158d00016fde44_contact
       - type: entities
-        title: Fennaroom
+        title: Kidsrooms
         show_header_toggle: false
         entities:
           - cover.fennaroom_rollershutter

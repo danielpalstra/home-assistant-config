@@ -22,7 +22,6 @@
         - sensor.speedtest_upload
         - sensor.braviatv
         - sensor.philipshue
-        - input_select.livingroom_scenes
     - type: custom:monster-card
       card:
         type: entities
@@ -33,10 +32,3 @@
           - state: "unknown"
         exclude:
           - entity_id: group.*
-    - type: 'custom:monster-card'
-      card:
-        type: entities
-        title: All Automations
-      filter:
-        include:
-          - domain: automation

@@ -10,29 +10,22 @@ default: warn
 logs:
   homeassistant.bootstrap: info
   homeassistant.core: warn
-  #homeassistant.components.automation: debug
-  #homeassistant.components.input_boolean: debug
-  # homeassistant.components.device_tracker: error
   homeassistant.components.device_tracker: warn
-  homeassistant.components.tado: warn
-  # homeassistant.components.discovery: warn
-  # homeassistant.components.http: error
-  #homeassistant.components.http: info
   homeassistant.components.media_player: warn
   homeassistant.components.recorder: warn
   homeassistant.loader: error
   songpal.containers: error
   # homeassistant.helpers.script: info
   root: warn
-  homeassistant.components.zha: info
-  homeassistant.components.zha.core.device: debug
-  # old debug stuff
+  #homeassistant.components.automation: debug
+  #homeassistant.components.input_boolean: debug
   # miio.device: debug
   # homeassistant.components.vacuum.xiaomi_miio: debug
   # rflink: debug
   # homeassistant.components.rflink: debug
+  # ZWAVE
   #homeassistant.components.zwave: debug
   #homeassistant.components.openzwave: debug
-  #homeassistant.components.updater: debug
-  #homeassistant.components.device_tracker.owntracks: debug
-  # homeassistant.components.uvc: debug
+  # ZHA
+  # homeassistant.components.zha: info
+  # homeassistant.components.zha.core.device: debug

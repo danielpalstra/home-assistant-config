@@ -5,34 +5,6 @@ input_boolean:
     icon: mdi:bell-sleep
 
 automation:
-  # Open covers when wakeup time is enabled
-  # - alias: Open covers when wakeup time is enabled
-  #   initial_state: 'true'
-  #   hide_entity: 'false'
-  #   trigger:
-  #     - platform: state
-  #       entity_id: input_boolean.wakeup_time
-  #       from: 'off'
-  #       to: 'on'
-  #   condition:
-  #     - condition: state
-  #       entity_id: input_boolean.away_mode
-  #       state: 'off'
-  #     # - condition: or
-  #     #   conditions:
-  #     #     - condition: state
-  #     #       entity_id: 'device_tracker.daniels_iphone'
-  #     #       state: 'home'
-  #     #     - condition: state
-  #     #       entity_id: 'person.laura'
-  #     #       state: 'home'
-  #   action:
-  #     - service: cover.open_cover
-  #       entity_id: cover.sunshade_left
-  #     - service: cover.open_cover
-  #       entity_id: cover.sunshade_right
-  #     # - service: script.radio
-
   # Trigger wakeup time on movement in the morning
   - alias: Trigger wakeup time on motion in the morning
     initial_state: 'true'

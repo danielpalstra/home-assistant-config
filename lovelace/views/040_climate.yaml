@@ -43,13 +43,13 @@
         cards:
         - type: custom:mini-graph-card
           entities:
-            - sensor.0x00158d0001b8ccdc_temperature
+            - sensor.kitchen_temperature
           name: KITCHEN
           hours_to_show: 48
           points_per_hour: 0.25
         - type: custom:mini-graph-card
           entities:
-            - sensor.0x00158d0001b8ccdc_humidity
+            - sensor.kitchen_temperature_humidity
           line_color: '#3498db'
           name: KITCHEN
           hours_to_show: 48
@@ -80,13 +80,13 @@
         cards:
         - type: custom:mini-graph-card
           entities:
-            - sensor.0x00158d0001a2ad80_temperature
+            - sensor.bedroom_temperature
           name: BEDROOM
           hours_to_show: 48
           points_per_hour: 0.25
         - type: custom:mini-graph-card
           entities:
-            - sensor.0x00158d0001a2ad80_humidity
+            - sensor.bedroom_temperature_humidity
           line_color: '#3498db'
           name: BEDROOM
           hours_to_show: 48
@@ -148,13 +148,13 @@
         cards:
         - type: custom:mini-graph-card
           entities:
-            - sensor.0x00158d0001823fa3_temperature
+            - sensor.babyroom_temperature
           name: BABYROOM
           hours_to_show: 48
           points_per_hour: 0.25
         - type: custom:mini-graph-card
           entities:
-            - sensor.0x00158d0001823fa3_humidity
+            - sensor.babyroom_temperature_humidity
           line_color: '#3498db'
           name: BABYROOM
           hours_to_show: 48
@@ -186,13 +186,13 @@
         cards:
         - type: custom:mini-graph-card
           entities:
-            - sensor.0x00158d0001b8d776_temperature
+            - sensor.garage_temperature
           name: GARAGE
           hours_to_show: 48
           points_per_hour: 0.25
         - type: custom:mini-graph-card
           entities:
-            - sensor.0x00158d0001b8d776_humidity
+            - sensor.garage_temperature_humidity
           line_color: '#3498db'
           name: GARAGE
           hours_to_show: 48

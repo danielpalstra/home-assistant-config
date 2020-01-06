@@ -19,7 +19,7 @@ light:
     name: Hall
     entities:
       - light.front_door
-  # Group by floors
+  # Groups by floors
   - platform: group
     name: Downstairs
     entities:
@@ -119,6 +119,7 @@ automation:
       - platform: event
         event_type: zwave.scene_activated
         event_data:
+          entity_id: zwave.livingroom_downlights
           scene_id: 26
     action:
       - service: input_select.select_next

@@ -3,7 +3,9 @@ automation:
     alias: Turn off couch side table on leave or bedtime
     trigger:
       - platform: state
-        entity_id: input_boolean.away_mode, input_boolean.bed_time
+        entity_id: 
+        - input_boolean.away_mode
+        - input_boolean.bed_time
         from: "off"
         to: "on"
         # for:
@@ -22,8 +24,8 @@ automation:
     trigger:
       - platform: state
         entity_id: input_boolean.away_mode
-        from: "off"
-        to: "on"
+        from: "on"
+        to: "off"
     action:
       - service: switch.turn_on
         entity_id: switch.couch_switch

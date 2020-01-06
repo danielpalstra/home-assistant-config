@@ -1,0 +1,26 @@
+  - path: 3dprinter
+    name: '3D Printer'
+    icon: 'mdi:printer-3d'
+    cards:
+      - id: c0ca7fa3b80f4bb9ba87d30da62f6a70
+        type: entities
+        title: 3D printer status
+        entities:
+          - switch.3d_printer
+          - binary_sensor.octoprint_printing
+          - binary_sensor.octoprint_printing_error
+          - sensor.octoprint_target_bed_temp
+          - sensor.octoprint_actual_bed_temp
+          - sensor.octoprint_target_tool0_temp
+          - sensor.octoprint_actual_tool0_temp
+      - id: a0cfdefd58204ad8b6f1bb17540bbe25
+        type: picture-entity
+        entity: camera.3d_printer_camera
+      - id: fbb27edbdd1c40d7994f6fe519817dc9
+        type: entities
+        title: 3D printer job
+        entities:
+          - sensor.octoprint_current_state
+          - sensor.octoprint_job_percentage
+          - sensor.octoprint_time_elapsed
+          - sensor.octoprint_time_remaining

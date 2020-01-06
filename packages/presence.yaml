@@ -11,6 +11,7 @@ input_boolean:
     name: Kitchen presence 
     initial: false
     icon: mdi:walk
+  # Modes that make home assistant behave differently
 
 automation:
     # Livingroom presence

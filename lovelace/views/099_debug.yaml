@@ -1,0 +1,34 @@
+  - path: debug
+    name: Debug
+    icon: 'mdi:bug'
+    cards:
+      - type: 'custom:monster-card'
+        card:
+          type: entities
+          title: Disabled Automations
+        filter:
+          include:
+            - domain: automation
+              state: 'off'
+      - type: 'custom:monster-card'
+        card:
+          type: entities
+          title: All Automations
+        filter:
+          include:
+            - domain: automation
+              # state: 'on'
+      - type: 'custom:monster-card'
+        card:
+          type: entities
+          title: All Scripts
+        filter:
+          include:
+            - domain: script
+      - type: 'custom:monster-card'
+        card:
+          type: entities
+          title: All Covers
+        filter:
+          include:
+            - domain: cover
