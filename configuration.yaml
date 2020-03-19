@@ -110,6 +110,7 @@ mqtt:
 
 lovelace:
   mode: yaml
+  resources: !include lovelace/resources.yaml
 
 # Checks for available updates
 updater:

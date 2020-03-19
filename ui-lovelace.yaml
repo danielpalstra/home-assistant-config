@@ -1,4 +1,3 @@
-resources: !include lovelace/resources.yaml
 custom_updater: !include lovelace/custom_updater.yaml
 # views: !include_dir_merge_list lovelace/099_other_views.yaml
 views: !include_dir_merge_list lovelace/views
