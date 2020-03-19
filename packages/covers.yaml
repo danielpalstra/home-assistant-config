@@ -11,7 +11,6 @@ cover:
 automation:
   - alias: Toggle roller shutters bedroom Fenna
     initial_state: 'true'
-    hide_entity: 'false'
     trigger:
     - platform: event
       event_type: zha_event

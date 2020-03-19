@@ -12,7 +12,6 @@ automation:
   # Turn on TV and adjust receiver to match volume
   - alias: TV Time
     initial_state: 'on'
-    hide_entity: 'true'
     trigger:
       - platform: state
         entity_id: input_boolean.tv_time
@@ -39,7 +38,6 @@ automation:
 
   # Turn on TV and switch to correct HDMI input
   - alias: Game Time
-    hide_entity: 'true'
     trigger:
       - platform: state
         entity_id: input_boolean.game_time

@@ -115,7 +115,6 @@ script:
 automation:
   - alias: Scroll livingroom scenes on switch press
     initial_state: 'true'
-    hide_entity: false
     trigger:
       - platform: event
         event_type: zwave.scene_activated
@@ -129,7 +128,6 @@ automation:
 
   - alias: Set selected livingroom scene
     initial_state: 'true'
-    hide_entity: false
     trigger:
       - platform: state
         entity_id: input_select.livingroom_scenes
@@ -148,7 +146,6 @@ automation:
   # Turn on relax scene when ligth < 100 lux and people at home or guest mode is on
   - alias: Turn on livingroom lights when < 100 lux
     initial_state: 'true'
-    hide_entity: false
     trigger:
     - platform: numeric_state
       entity_id: sensor.livingroom_light
@@ -180,7 +177,6 @@ automation:
   # Turn off lights at sunrise
   - alias: Turn off livingroom at sunrise
     initial_state: 'true'
-    hide_entity: 'false'
     trigger:
       - platform: sun
         event: sunrise
@@ -204,7 +200,6 @@ automation:
   # Turn on night lamp when noone at home
   - alias: Turn on night-lamp when noone at home at sunset
     initial_state: 'true'
-    hide_entity: 'false'
     trigger:
       - platform: sun
         event: sunset
@@ -290,7 +285,6 @@ automation:
 
   - alias: Turn on kitchen lights on presence and livingroom already on
     initial_state: 'true'
-    hide_entity: 'false'
     trigger:
     - platform: state
       entity_id: 'input_boolean.kitchen_presence'
@@ -318,7 +312,6 @@ automation:
 
   - alias: Turn off kitchen after 5 minutes of no presence
     initial_state: 'true'
-    hide_entity: 'false'
     trigger:
     - platform: state
       entity_id: 'input_boolean.kitchen_presence'

@@ -25,7 +25,6 @@ automation:
   # Turn off bed time at 6 am
   - alias: Bed time - Turn off
     initial_state: 'true'
-    hide_entity: true
     trigger:
       - platform: time
         at: '06:00:00'

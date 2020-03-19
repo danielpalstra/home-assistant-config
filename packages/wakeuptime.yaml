@@ -8,7 +8,6 @@ automation:
   # Trigger wakeup time on movement in the morning
   - alias: Trigger wakeup time on motion in the morning
     initial_state: 'true'
-    hide_entity: 'false'
     trigger:
       - platform: state
         # TODO: add motion in the kitchen as well
@@ -32,7 +31,6 @@ automation:
 
   # Turn off wakeup time after 10 am
   - alias: Turn off Wakeup time
-    hide_entity: 'true'
     trigger:
       - platform: time
         at: '10:01:00'
@@ -43,7 +41,6 @@ automation:
   # Turn on the light based on wakeup time trigger low lux and before sunrise.
   - alias: Turn on livingroom lights before sunrise on wakeup time
     initial_state: 'true'
-    hide_entity: 'false'
     trigger:
       - platform: state
         entity_id: input_boolean.wakeup_time

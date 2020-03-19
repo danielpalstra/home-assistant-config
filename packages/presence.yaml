@@ -17,7 +17,6 @@ automation:
     # Livingroom presence
   - alias: Trigger livingroom presence on motion
     initial_state: 'true'
-    hide_entity: false
     trigger:
       - platform: state
         entity_id: binary_sensor.livingroom_motion
@@ -27,7 +26,6 @@ automation:
         entity_id: input_boolean.livingroom_presence
   - alias: Set livingroom presence off
     initial_state: 'true'
-    hide_entity: 'false'
     trigger:
       - platform: state
         entity_id: binary_sensor.livingroom_motion
@@ -41,7 +39,6 @@ automation:
     # Kitchen presence
   - alias: Turn on kitchen presence on motion
     initial_state: 'true'
-    hide_entity: 'false'
     trigger:
       - platform: state
         entity_id: binary_sensor.kitchen_back_motion_zone, binary_sensor.kitchen_front_motion_zone
@@ -57,7 +54,6 @@ automation:
 
   - alias: Start timer to turn off kitchen presence
     initial_state: 'true'
-    hide_entity: 'false'
     trigger:
       - platform: state
         entity_id: binary_sensor.kitchen_back_motion_zone, binary_sensor.kitchen_front_motion_zone
@@ -78,7 +74,6 @@ automation:
 
   - alias: Turn off kitchen presence when timer is finished
     initial_state: 'true'
-    hide_entity: 'false'
     trigger:
     - platform: event
       event_type: timer.finished

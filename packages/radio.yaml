@@ -38,7 +38,6 @@ input_select:
 
 automation:
   - alias: Listen Radio
-    hide_entity: 'true'
     trigger:
       - platform: state
         entity_id: input_select.radio_station
@@ -46,7 +45,6 @@ automation:
       - service: script.radio
 
   - alias: Turn off all media devices when everybody leaves
-    hide_entity: 'true'
     trigger:
       - platform: state
         entity_id: input_boolean.away_mode
