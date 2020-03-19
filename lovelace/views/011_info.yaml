@@ -47,11 +47,3 @@
         entities:
           - sensor.home_to_work
           - sensor.work_to_home
-      - type: picture-entity
-        entity: camera.drive
-        show_name: false
-        show_state: false
-      - type: picture-entity
-        entity: camera.fennacam
-        show_name: false
-        show_state: false

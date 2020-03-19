@@ -26,7 +26,7 @@
           - climate.remote_gw_thermo_089a1e
           - light.livingroom
           - light.livingroom_downlights
-          - switch.christmas_tree
+          # - switch.christmas_tree
           - cover.livingroom_screens
           - sensor.livingroom_light
           - sensor.livingroom_temperature
@@ -109,12 +109,6 @@
           - person.daniel
           - person.laura
         show_empty: false
-      - type: entities
-        show_header_toggle: false
-        title: Commuting
-        entities:
-          - sensor.home_to_work
-          - sensor.work_to_home
       - type: picture-entity
         entity: camera.drive
         show_name: false

@@ -9,6 +9,33 @@
         entities:
           - sensor.power_consumption
           - sensor.hourly_gas_consumption
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.power_consumption_throttled
+        name: POWER CONSUMPTION
+        show:
+          graph: bar
+        hours_to_show: 96
+        points_per_hour: 0.25
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.hourly_gas_consumption
+            color: #fcdf03
+        name: GAS CONSUMPTION
+        show:
+          graph: bar
+        color: "#fcdf03"
+        hours_to_show: 96
+        points_per_hour: 0.25
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.daily_power_peak
+        name: Energy consumption
+        hours_to_show: 48
+        aggregate_func: max
+        group_by: date
+        show:
+          graph: bar
       - id: 22072acec7af4ea092814a30ad060f75
         type: entities
         title: Energy costs

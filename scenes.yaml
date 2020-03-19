@@ -1,3 +1,19 @@
+- id: all_mediaplayers_off
+  name: All Mediaplayers off
+  entities:
+    media_player.sony_bravia_tv:
+      state: 'off'
+    media_player.htzf9:
+      state: 'off'
+
+- id: downstairs_off
+  name: Downstairs Off
+  entities:
+    light.downstairs:
+      state: 'off'
+    input_select.last_scene:
+      option: Downstairs Off
+      state: true
 - id: livingroom_off
   name: Livingroom Off
   entities:

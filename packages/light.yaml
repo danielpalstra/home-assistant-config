@@ -46,6 +46,7 @@ input_select:
       - 'Dinner Time'
       - 'Breakfast Time'
       - 'Livingroom Off'
+      - 'Downstairs Off'
     initial: 'All Off'
     icon: mdi:floor-lamp
 

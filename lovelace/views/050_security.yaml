@@ -8,32 +8,33 @@
         entities:
           - timer.kitchen_presence
           - timer.livingroom_presence
-      - id: ba1226d97c9444e6af3faf2de27a3b5c
-        type: entities
-        title: Doors & Windows
-        show_header_toggle: false
-        entities:
-          - binary_sensor.0x00158d00016363c1_contact
-          - binary_sensor.0x00158d0001a044b7_contact
-          - binary_sensor.0x00158d00016fde8d_contact
-          - binary_sensor.0x00158d00016c8140_contact
-      - id: 64a2cd02b9e140f7a9b1a6eea4c9e807_contact
-        type: entities
-        title: Motion
-        show_header_toggle: false
-        entities:
-          # - binary_sensor.ring_front_door_ding
-          # - binary_sensor.ring_front_door_motion
-          - binary_sensor.kitchen_front_motion_zone
-          - binary_sensor.kitchen_front_motion_occupancy
-          - binary_sensor.kitchen_back_motion_zone
-          - binary_sensor.kitchen_back_motion_occupancy
-          - binary_sensor.hall_motion
-          - binary_sensor.kitchen_motion_sensor_occupancy
-          - input_boolean.livingroom_presence
-          - input_boolean.kitchen_presence
-      # - type: picture-entity
-      #   entity: camera.front_door
+      - type: 'custom:monster-card'
+        card:
+          type: entities
+          title: Motion zone
+          show_header_toggle: false
+        filter:
+          include:
+            - domain: binary_sensor
+              name: "*zone*"
+      - type: 'custom:monster-card'
+        card:
+          type: entities
+          title: Motion occupancy
+          show_header_toggle: false
+        filter:
+          include:
+            - domain: binary_sensor
+              name: "*occupancy*"
+      - type: 'custom:monster-card'
+        card:
+          type: entities
+          title: Doors & Windows
+          show_header_toggle: false
+        filter:
+          include:
+            - domain: binary_sensor
+              name: "*on_off*"
       - type: picture-entity
         entity: camera.drive
         show_name: false

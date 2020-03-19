@@ -8,7 +8,7 @@
   type: js  
 - url: /local/auto-entities.js?v=be1323
   type: js
-- url: /local/mini-graph-card-bundle.js?v=0.5.0
+- url: /local/mini-graph-card-bundle.js?v=0.8.2
   type: module
 - url: /local/simple-thermostat.js?v=1
   type: module
