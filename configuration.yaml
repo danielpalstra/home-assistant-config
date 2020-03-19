@@ -6,7 +6,6 @@ homeassistant:
   longitude: !secret longitude
   # radius: 1000
   # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 0
   # metric for Metric, imperial for Imperial
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -18,7 +17,6 @@ zone:
   - name: Home
     latitude: !secret latitude
     longitude: !secret longitude
-    elevation: 0
     radius: 500
 
 # Enables the frontend
