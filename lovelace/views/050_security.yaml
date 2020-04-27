@@ -8,7 +8,7 @@
         entities:
           - timer.kitchen_presence
           - timer.livingroom_presence
-      - type: 'custom:monster-card'
+      - type: 'custom:auto-entities'
         card:
           type: entities
           title: Motion zone
@@ -17,7 +17,7 @@
           include:
             - domain: binary_sensor
               name: "*zone*"
-      - type: 'custom:monster-card'
+      - type: 'custom:auto-entities'
         card:
           type: entities
           title: Motion occupancy
@@ -26,7 +26,7 @@
           include:
             - domain: binary_sensor
               name: "*occupancy*"
-      - type: 'custom:monster-card'
+      - type: 'custom:auto-entities'
         card:
           type: entities
           title: Doors & Windows

@@ -22,7 +22,7 @@
         - sensor.speedtest_upload
         - sensor.braviatv
         - sensor.philipshue
-    - type: custom:monster-card
+    - type: custom:auto-entities
       card:
         type: entities
         title: Things that are broken
@@ -32,7 +32,7 @@
           - state: "unknown"
         exclude:
           - entity_id: group.*
-    - type: custom:monster-card
+    - type: custom:auto-entities
       card:
         type: entities
         title: Batteries

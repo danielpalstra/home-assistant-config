@@ -51,7 +51,7 @@
         - sensor.hlw8012_current
         - sensor.hlw8012_power
         - sensor.hlw8012_voltage
-    - type: 'custom:monster-card'
+    - type: 'custom:auto-entities'
       card:
         type: entities
         title: All Scenes
@@ -59,7 +59,7 @@
       filter:
         include:
           - domain: scene
-    - type: 'custom:monster-card'
+    - type: 'custom:auto-entities'
       card:
         type: entities
         title: All Lights
