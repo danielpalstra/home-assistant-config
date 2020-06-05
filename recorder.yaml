@@ -1,5 +1,5 @@
 # Use MariaDB for recorded events
-purge_interval: 1
+commit_interval: 30
 purge_keep_days: 5
 db_url: mysql://hass:hass@homeserver.local/hass?charset=utf8
 exclude:
