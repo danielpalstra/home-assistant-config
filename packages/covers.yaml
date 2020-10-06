@@ -7,6 +7,11 @@ cover:
     devices:
       rts_02FFFF_01:
         name: Livingroom Screens
+  - platform: group
+    name: larsroom_rollershutter
+    entities:
+      - cover.larsroom_roller_shutter_left
+      - cover.larsroom_roller_shutter_right
 
 automation:
   - alias: Toggle roller shutters bedroom Fenna

@@ -1,0 +1,12 @@
+# sensor:
+#   - platform: enphase_envoy
+#     name: enphase
+#     ip_address: 192.168.1.47
+#     monitored_conditions:
+#       - production
+#       - daily_production
+#       - seven_days_production
+#       - lifetime_production
+#       - consumption
+#       - daily_consumption
+#       - inverters

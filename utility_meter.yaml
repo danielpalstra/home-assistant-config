@@ -1,17 +1,21 @@
-daily_power_offpeak:
-  source: sensor.power_consumption_low
+daily_energy_offpeak:
+  # Energy Consumption (low/offpeak/1)
+  source: sensor.energy_consumption_offpeak_throttled
   cycle: daily
-daily_power_peak:
-  source: sensor.power_consumption_normal
+daily_energy_peak:
+  # Energy Consumption (normal/peak/2)
+  source: sensor.energy_consumption_peak_throttled
   cycle: daily
 daily_gas:
   source: sensor.gas_consumption
   cycle: daily
-monthly_power_offpeak:
-  source: sensor.power_consumption_low
+monthly_energy_offpeak:
+  # Energy Consumption (low/offpeak/1)
+  source: sensor.energy_consumption_offpeak_throttled
   cycle: monthly
-monthly_power_peak:
-  source: sensor.power_consumption_normal
+monthly_energy_peak:
+  # Energy Consumption (normal/peak/2)
+  source: sensor.energy_consumption_peak_throttled
   cycle: monthly
 monthly_gas:
   source: sensor.gas_consumption

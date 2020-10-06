@@ -21,3 +21,4 @@ ip_bans.yaml
 .*
 !/.gitignore
 !.travis.yml
+www/community

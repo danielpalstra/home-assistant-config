@@ -2,21 +2,22 @@
     name: Energy
     icon: 'mdi:power-plug'
     cards:
-      - id: 22072acec7af4ea092814a30ad060f75
-        type: entities
-        title: Energy usage
-        show_header_toggle: false
-        entities:
-          - sensor.power_consumption
-          - sensor.hourly_gas_consumption
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.power_consumption_throttled
+          - entity: sensor.power_consumption_phase_l1
         name: POWER CONSUMPTION
         show:
           graph: bar
-        hours_to_show: 96
-        points_per_hour: 0.25
+        hours_to_show: 24
+        points_per_hour: 1
+      - type: entities
+        title: Energy usage
+        show_header_toggle: false
+        entities:
+          - sensor.daily_energy_offpeak
+          - sensor.daily_energy_peak
+          - sensor.hourly_gas_consumption
+
       - type: custom:mini-graph-card
         entities:
           - entity: sensor.hourly_gas_consumption
@@ -24,7 +25,7 @@
         name: GAS CONSUMPTION
         show:
           graph: bar
-        color: "#fcdf03"
+        # color: "#fcdf03"
         hours_to_show: 96
         points_per_hour: 0.25
       - type: custom:mini-graph-card
@@ -53,35 +54,19 @@
         show_header_toggle: false
         entities:
           - sensor.power_tariff
-          - sensor.power_consumption_low
-          - sensor.power_consumption_normal
+          - sensor.energy_consumption_tarif_1
+          - sensor.energy_consumption_tarif_2
           - sensor.gas_consumption
       - type: entities
         title: Utility Meter
         show_header_toggle: false
         entities:
-          - sensor.daily_power_offpeak
-          - sensor.daily_power_peak
-          - sensor.monthly_power_offpeak
-          - sensor.monthly_power_peak
+          - sensor.daily_energy_offpeak
+          - sensor.daily_energy_peak
+          - sensor.monthly_energy_offpeak
+          - sensor.monthly_energy_peak
           - sensor.daily_gas
           - sensor.monthly_gas
-      # - id: c6b8e62de9de43539a2e94223879cccd
-      #   type: entities
-      #   title: Kitchen Fridge
-      #   show_header_toggle: false
-      #   entities:
-      #     - sensor.temperature_158d0001826df8
-      #     - sensor.humidity_158d0001826df8
-      #     - sensor.fridge_power_consumption
-      #     - sensor.fridge_power_today
-      # - id: 182964fec706461a8fd9c9daf5ef5a1c
-      #   type: entities
-      #   title: Storage Fridge
-      #   show_header_toggle: false
-      #   entities:
-      #     - sensor.temperature_158d00019d3006
-      #     - sensor.humidity_158d00019d3006
       - type: entities
         title: Garden
         show_header_toggle: false
@@ -91,12 +76,6 @@
           - sensor.hlw8012_power
           - sensor.hlw8012_voltage
       - type: entities
-        title: Batteries
-        show_header_toggle: false
-        entities:
-          - sensor.ipad_van_daniel_en_laura_battery_state
-          - sensor.ipad_van_daniel_en_laura_battery_level
-      - type: entities
         title: Couch plug
         show_header_toggle: false
         entities:
@@ -105,12 +84,32 @@
           - sensor.couch_energy
           - sensor.couch_plug_temperature
           - sensor.couch_plug_overheated
-      - type: entities
-        title: General plug
-        show_header_toggle: false
+      - type: custom:mini-graph-card
         entities:
-          - switch.general_switch
-          - sensor.general_power
-          - sensor.general_energy
-          - sensor.general_plug_temperature
-          - sensor.general_plug_overheated
+          - entity: sensor.power_production
+        name: POWER PRODUCTION
+        show:
+          graph: bar
+        hours_to_show: 96
+        points_per_hour: 1
+        hour24: true
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.power_production
+        name: POWER PRODUCTION
+        show:
+          graph: bar
+        hours_to_show: 24
+        points_per_hour: 1
+        hour24: true
+      - type: custom:mini-graph-card
+        entities:
+          # - entity: sensor.energy_daily
+          - entity: sensor.daily_energy_offpeak
+          - entity: sensor.daily_energy_peak
+        name: Energy consumption
+        hours_to_show: 168
+        aggregate_func: max
+        group_by: date
+        show:
+          graph: bar

@@ -1,0 +1,68 @@
+input_boolean:
+  hall_down_stairs_auto_lights:
+    name: Auto turn on hall down stairs lights
+    initial: 'off'
+    icon: mdi:robot
+  hall_downstairs_presence:
+    name: Hall downstairs presence
+    initial: false
+    icon: mdi:walk
+  hall_upstairs_presence:
+    name: Hall upstairs presence
+    initial: false
+    icon: mdi:walk
+
+automation:
+  - alias: Turn on frontdoor light on hall switch
+    initial_state: 'true'
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.hall_downstairs_light
+          scene_id: 26
+    action:
+      - service: light.toggle
+        data:
+          entity_id: light.front_door
+    # hall downstairs presence
+  - alias: Turn on hall downstairs presence on motion
+    initial_state: 'true'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.hall_motion_occupancy
+        to: 'on'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.hall_downstairs_presence
+      - service: timer.cancel
+        entity_id: timer.hall_downstairs_presence
+
+  - alias: Start timer to turn off hall downstairs presence
+    initial_state: 'true'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.hall_motion_occupancy
+        to: 'off'
+    action:
+      - service: timer.start
+        data:
+          entity_id: timer.hall_downstairs_presence
+
+  - alias: Turn off hall downstairs presence when timer is finished
+    initial_state: 'true'
+    trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.hall_downstairs_presence
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.hall_downstairs_presence
+
+
+timer:
+  hall_downstairs_presence:
+    duration: '00:05:00'
+  hall_upstairs_presence:
+    duration: '00:05:00'

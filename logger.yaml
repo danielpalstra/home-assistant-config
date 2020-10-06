@@ -17,6 +17,9 @@ logs:
   songpal.containers: error
   # homeassistant.helpers.script: info
   root: warn
+  zigpy_deconz: info
+  custom_components.hacs: warn
+  hacs: warn
   #homeassistant.components.automation: debug
   #homeassistant.components.input_boolean: debug
   # miio.device: debug

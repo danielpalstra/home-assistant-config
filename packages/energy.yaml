@@ -43,20 +43,14 @@ automation:
 
 sensor:
   - platform: filter
-    name: "power consumption throttled"
-    entity_id: sensor.power_consumption
+    name: "energy consumption peak throttled"
+    entity_id: sensor.energy_consumption_tarif_2
     filters:
       - filter: throttle
         window_size: 10
   - platform: filter
-    name: "power consumption normal throttled"
-    entity_id: sensor.power_consumption_normal
-    filters:
-      - filter: throttle
-        window_size: 10
-  - platform: filter
-    name: "power consumption low throttled"
-    entity_id: sensor.power_consumption_low
+    name: "energy consumption offpeak throttled"
+    entity_id: sensor.energy_consumption_tarif_1
     filters:
       - filter: throttle
         window_size: 10

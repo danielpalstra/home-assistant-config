@@ -66,6 +66,11 @@
         tap_action:
           action: toggle
       - type: entity-button
+        name: Roller Shutter Lars
+        entity: cover.larsroom_rollershutter
+        tap_action:
+          action: toggle
+      - type: entity-button
         entity: scene.concentrate
         tap_action:
           action: call-service

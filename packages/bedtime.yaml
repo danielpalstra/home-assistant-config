@@ -5,7 +5,7 @@ input_boolean:
     icon: mdi:sleep
 
 automation:
-  # Turn on bedtime, turn off livingroom devices and arm the alarm
+  # Turn on bedtime, turn off livingroom devices
   - alias: Bed time
     initial_state: 'true'
     trigger:
@@ -13,14 +13,11 @@ automation:
         entity_id: input_boolean.bed_time
         from: 'off'
         to: 'on'
-      - platform: event
-        event_type: click
-        event_data:
-          entity_id: binary_sensor.switch_158d00014a11c5
-          click_type: long_click_press
     action:
       - service: script.turn_off_multimedia_devices
       - service: script.turn_off_lights
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.guest_mode
 
   # Turn off bed time at 6 am
   - alias: Bed time - Turn off

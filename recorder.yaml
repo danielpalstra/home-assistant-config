@@ -21,10 +21,6 @@ exclude:
     - sensor.swap_use
     - sensor.memory_free
     - sensor.memory_use
-    - sensor.power_consumption_phase_l1
-    - sensor.power_consumption_normal
-    - sensor.power_consumption_low
-    - sensor.power_consumption
     - sensor.couch_power
   domains:
     - group

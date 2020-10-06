@@ -16,7 +16,7 @@
         entities:
           - input_boolean.bed_time
           - input_boolean.wakeup_time
-          - input_boolean.vacuum_on_leave
+          # - input_boolean.vacuum_on_leave
           # - vacuum.xiaomi_vacuum_cleaner
       - id: bd3ce1939f364da6a1a57a8b94e836e4
         type: entities
@@ -47,14 +47,15 @@
         entities:
           - cover.fennaroom_rollershutter
           - camera.fennacam
+          - cover.larsroom_roller_shutter_left_level_2
+          - cover.larsroom_roller_shutter_right_level
           # - light.fennaroom_sleep_light
           # - input_boolean.sleep_trainer_enabled
           # - input_select.sleep_trainer_mode
           # - sensor.fennaroom_temperature
           # - sensor.fennaroom_humidity
-      - id: 5311e8c9e1864e29a834e074571c5201
         # type: entities
-        type: glance
+      - type: glance
         title: House Modes
         show_header_toggle: false
         entities:
