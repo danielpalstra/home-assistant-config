@@ -1,0 +1,54 @@
+input_boolean:
+  evening_time:
+    name: Evening mode
+    initial: 'off'
+    icon: mdi:weather-sunset-down
+
+automation:
+  # Turn on evening time scene when ligth < 100 lux and people at home or guest mode is on
+  - alias: Toggle evening time lights when < 100 lux between 15:30 and 22:30
+    initial_state: 'true'
+    trigger:
+    - platform: numeric_state
+      entity_id: sensor.livingroom_light
+      below: 20
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: 'input_boolean.evening_time'
+          state: 'off'
+        - condition: state
+          entity_id: 'light.livingroom'
+          state: 'off'
+        - condition: time
+          before: '22:30:00'
+          after: '15:30:00'
+        - condition: state
+          entity_id: 'input_boolean.bed_time'
+          state: 'off'
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: 'input_boolean.away_mode'
+              state: 'off'
+            - condition: state
+              entity_id: 'input_boolean.guest_mode'
+              state: 'on'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.evening_time
+
+  # Turn on kitchen and livingroom lights when evening mode is turned on
+  - alias: Turn on livingroom and kitchen lights when evening_time is turned on
+    initial_state: 'true'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.evening_time
+        from: 'off'
+        to: 'on'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.relax
+      - service: scene.turn_on
+        entity_id: scene.kitchen_dimmed

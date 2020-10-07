@@ -10,14 +10,6 @@
           - scene.movie
           - scene.concentrate
           - input_select.last_scene
-      - type: entities
-        title: Triggers
-        show_header_toggle: false
-        entities:
-          - input_boolean.bed_time
-          - input_boolean.wakeup_time
-          # - input_boolean.vacuum_on_leave
-          # - vacuum.xiaomi_vacuum_cleaner
       - id: bd3ce1939f364da6a1a57a8b94e836e4
         type: entities
         title: Livingroom
@@ -46,19 +38,16 @@
         show_header_toggle: false
         entities:
           - cover.fennaroom_rollershutter
+          - cover.larsroom_rollershutter
           - camera.fennacam
-          - cover.larsroom_roller_shutter_left_level_2
-          - cover.larsroom_roller_shutter_right_level
-          # - light.fennaroom_sleep_light
-          # - input_boolean.sleep_trainer_enabled
-          # - input_select.sleep_trainer_mode
-          # - sensor.fennaroom_temperature
-          # - sensor.fennaroom_humidity
-        # type: entities
       - type: glance
         title: House Modes
         show_header_toggle: false
+        columns: 3
         entities:
+          - entity: input_boolean.bed_time
+            tap_action:
+              action: toggle
           - entity: input_boolean.away_mode
             tap_action:
               action: toggle
@@ -68,6 +57,8 @@
           - entity: input_boolean.vacation_mode
             tap_action:
               action: toggle
+          - entity: input_boolean.evening_time
+          - entity: input_boolean.wakeup_time
       - id: 593660e3ece14563908d8e299ff54dd6
         type: thermostat
         entity: climate.remote_gw_thermo_089a1e

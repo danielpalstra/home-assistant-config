@@ -6,11 +6,29 @@
       cards:
         - type: entity-button
           entity: light.livingroom
+          friendly_name: Downlights
+          icon: mdi:lightbulb-outline
+          tap_action:
+            action: toggle
+        - type: entity-button
+          entity: light.livingroom_downlights
           icon: mdi:lightbulb-outline
           tap_action:
             action: toggle
         - type: entity-button
           entity: light.kitchen
+          icon: mdi:lightbulb-outline
+          tap_action:
+            action: toggle
+    - type: horizontal-stack
+      cards:
+        - type: entity-button
+          entity: light.hall_downstairs
+          icon: mdi:lightbulb-outline
+          tap_action:
+            action: toggle
+        - type: entity-button
+          entity: light.hall_upstairs
           icon: mdi:lightbulb-outline
           tap_action:
             action: toggle

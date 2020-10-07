@@ -55,6 +55,12 @@ sensor:
       - filter: throttle
         window_size: 10
   - platform: filter
+    name: "power consumption throttled"
+    entity_id: sensor.power_consumption
+    filters:
+      - filter: throttle
+        window_size: 10
+  - platform: filter
     name: "couch power throttled"
     entity_id: sensor.couch_power
     filters:

@@ -212,3 +212,27 @@
   entities:
     light.kitchen:
       state: off
+
+- id: dining_bright
+  name: Dining Bright
+  entities:
+    light.dining:
+      state: true
+      brightness: 255
+- id: dining_dimmed
+  name: Dining Dimmed
+  entities:
+    light.dining:
+      state: 'on'
+      brightness: 3
+- id: dining_normal
+  name: Dining Normal
+  entities:
+    light.dining:
+      state: 'on'
+      brightness: 127
+- id: dining_off
+  name: Dining Off
+  entities:
+    light.dining:
+      state: off

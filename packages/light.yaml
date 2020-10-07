@@ -3,7 +3,6 @@ light:
     name: Livingroom
     entities:
       - light.bank
-      # - light.kast
       - light.tv_kast
       - light.livingroom_downlights
   - platform: group
@@ -71,19 +70,28 @@ input_select:
     # initial: 'All Off'
     icon: mdi:floor-lamp
 
+  dining_scenes:
+    name: Dining scenes
+    options:
+      - dining_bright
+      - dining_dimmed
+      - dining_normal
+      - dining_off
+    icon: mdi:floor-lamp
+
 # Sun sensors
 sensor:
   - platform: template
     sensors:
       nextsunrise:
-        friendly_name: 'Next Sun Rise'
+        friendly_name: 'Next sunrise'
         value_template: "{{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom('%-H:%M') }}"
         icon_template: mdi:weather-sunset-up
 
   - platform: template
     sensors:
       nextsunset:
-        friendly_name: 'Next Sun Set'
+        friendly_name: 'Next sunset'
         value_template: "{{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom('%-H:%M') }}"
         icon_template: mdi:weather-sunset-down
 
@@ -113,6 +121,7 @@ script:
           transition: 30
 
 automation:
+  # Livingroom scene scroller 
   - alias: Scroll livingroom scenes on switch press
     initial_state: 'true'
     trigger:
@@ -125,7 +134,6 @@ automation:
       - service: input_select.select_next
         data:
           entity_id: input_select.livingroom_scenes
-
   - alias: Set selected livingroom scene
     initial_state: 'true'
     trigger:
@@ -136,6 +144,59 @@ automation:
         data_template:
           entity_id: >
             scene.{{ states("input_select.livingroom_scenes") }}
+  
+  # Dining scene scroller
+  - alias: Scroll dining scenes on switch press
+    initial_state: 'true'
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.dinner_table
+          scene_id: 26
+    action:
+      - service: input_select.select_next
+        data:
+          entity_id: input_select.dining_scenes
+  - alias: Set selected dining scene
+    initial_state: 'true'
+    trigger:
+      - platform: state
+        entity_id: input_select.dining_scenes
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            scene.{{ states("input_select.dining_scenes") }}
+  
+  # Kitchen scene scroller
+  - alias: Scroll kitchen scenes on switch press
+    initial_state: 'true'
+    trigger:
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.kitchen_island
+          scene_id: 26
+      - platform: event
+        event_type: zwave.scene_activated
+        event_data:
+          entity_id: zwave.kitchen_cabinets
+          scene_id: 26
+    action:
+      - service: input_select.select_next
+        data:
+          entity_id: input_select.kitchen_scenes
+  - alias: Set selected dining scene
+    initial_state: 'true'
+    trigger:
+      - platform: state
+        entity_id: input_select.kitchen_scenes
+    action:
+      - service: scene.turn_on
+        data_template:
+          entity_id: >
+            scene.{{ states("input_select.kitchen_scenes") }}
 
   #################################################
 
@@ -143,39 +204,8 @@ automation:
 
   #################################################
 
-  # Turn on relax scene when ligth < 100 lux and people at home or guest mode is on
-  - alias: Turn on livingroom lights when < 100 lux
-    initial_state: 'true'
-    trigger:
-    - platform: numeric_state
-      entity_id: sensor.livingroom_light
-      below: 20
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: 'light.livingroom'
-          state: 'off'
-        - condition: time
-          before: '22:30:00'
-          after: '15:30:00'
-        - condition: state
-          entity_id: 'input_boolean.bed_time'
-          state: 'off'
-        - condition: or
-          conditions:
-            - condition: state
-              entity_id: 'input_boolean.away_mode'
-              state: 'off'
-            - condition: state
-              entity_id: 'input_boolean.guest_mode'
-              state: 'on'
-    action:
-      - service: scene.turn_on
-        entity_id: scene.relax
-
   # Turn off lights at sunrise
-  - alias: Turn off livingroom at sunrise
+  - alias: Turn off livingroom and kitchen lights at sunrise
     initial_state: 'true'
     trigger:
       - platform: sun
@@ -190,6 +220,8 @@ automation:
     action:
       - service: light.turn_off
         entity_id: light.livingroom
+      - service: light.turn_off
+        entity_id: light.kitchen
 
   #################################################
 
@@ -218,11 +250,7 @@ automation:
     action:
       - service: scene.turn_on
         entity_id: scene.nightlight
-      - service: notify.mobile_app_iphone_van_laura
-        data:
-          title: "Turned on night-lamp at home"
-          message: "Turned on night-lamp at home because the sun set and noone was at home"
-      - service: notify.mobile_app_iphone_van_daniel
+      - service: notify.notify
         data:
           title: "Turned on night-lamp at home"
           message: "Turned on night-lamp at home because the sun set and noone was at home"
@@ -244,7 +272,7 @@ automation:
     action:
       - service: light.turn_off
         entity_id: light.livingroom
-      - service: notify.family
+      - service: notify.notify
         data:
           title: "Turned off lights"
           message: "Turned off the light because noone at home at 22:30"

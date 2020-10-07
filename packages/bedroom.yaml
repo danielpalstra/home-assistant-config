@@ -1,0 +1,15 @@
+automation:
+  - alias: Toggle bedroom ceiling on bedside switch press
+    initial_state: 'true'
+    trigger:
+      - platform: event
+        event_type: state_changed
+        event_data:
+          entity_id: switch.bedside_daniel_relay_1
+      - platform: event
+        event_type: state_changed
+        event_data:
+          entity_id: switch.bedside_laura_relay_1
+    action:
+      - service: switch.toggle
+        entity_id: switch.bedroom_ceiling_relay_0

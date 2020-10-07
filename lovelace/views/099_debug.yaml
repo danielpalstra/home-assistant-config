@@ -32,3 +32,10 @@
         filter:
           include:
             - domain: cover
+      - type: 'custom:auto-entities'
+        card:
+          type: entities
+          title: All Switches
+        filter:
+          include:
+            - domain: switch

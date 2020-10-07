@@ -1,12 +1,12 @@
 input_boolean:
   wakeup_time:
-    name: Wake up time
+    name: Wakeup Mode
     initial: 'off'
     icon: mdi:bell-sleep
 
 automation:
   # Trigger wakeup time on movement in the morning
-  - alias: Trigger wakeup time on motion in the morning
+  - alias: Toggle wakeup time on motion in the morning
     initial_state: 'true'
     trigger:
       - platform: state

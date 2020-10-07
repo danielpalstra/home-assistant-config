@@ -22,5 +22,10 @@ exclude:
     - sensor.memory_free
     - sensor.memory_use
     - sensor.couch_power
+    # Use the throttled one
+    - sensor.energy_consumption_tarif_1
+    - sensor.energy_consumption_tarif_2
+    - sensor.power_consumption
+    - sensor.power_consumption_phase_l1
   domains:
     - group
