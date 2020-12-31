@@ -60,15 +60,15 @@ script:
     alias: Turn off all media devices
     sequence:
       - service: media_player.turn_off
-        entity_id: media_player.mini
-      - service: media_player.turn_off
-        entity_id: media_player.sony_bravia_tv
-      - service: media_player.turn_off
-        entity_id: media_player.woonkamertv
-      - service: media_player.turn_off
-        entity_id: media_player.sony_audio5882
-      - service: media_player.turn_off
-        entity_id: media_player.htzf9
+        entity_id: all
+      # - service: media_player.turn_off
+      #   entity_id: media_player.sony_bravia_tv
+      # - service: media_player.turn_off
+      #   entity_id: media_player.woonkamertv
+      # - service: media_player.turn_off
+      #   entity_id: media_player.sony_audio5882
+      # - service: media_player.turn_off
+      #   entity_id: media_player.htzf9
   # Radio station sources: https://www.hendrikjansen.nl/henk/streaming.html
   radio:
     alias: Listen radio on Chromecast

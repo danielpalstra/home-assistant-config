@@ -2,9 +2,15 @@
   name: Climate
   icon: 'mdi:home-thermometer-outline'
   cards:
-    # Weather forecast
-    - type: weather-forecast
-      entity: weather.br_unknown_station
+    - type: vertical-stack
+      cards:
+      # Weather forecast
+      - type: weather-forecast
+        entity: weather.br_unknown_station
+      # Thermostat
+      - id: 593660e3ece14563908d8e299ff54dd6
+        type: thermostat
+        entity: climate.remote_gw_thermo_089a1e
 
     # Livingroom
     - type: vertical-stack
@@ -37,23 +43,37 @@
         points_per_hour: 0.25
 
     # Kitchen
-    - type: vertical-stack
-      cards: 
-      - type: horizontal-stack
-        cards:
-        - type: custom:mini-graph-card
-          entities:
-            - sensor.kitchen_temperature
-          name: KITCHEN
-          hours_to_show: 96
-          points_per_hour: 0.25
-        - type: custom:mini-graph-card
-          entities:
-            - sensor.kitchen_temperature_humidity
-          line_color: '#3498db'
-          name: KITCHEN
-          hours_to_show: 96
-          points_per_hour: 0.25
+    # - type: vertical-stack
+    #   cards: 
+    #   - type: horizontal-stack
+    #     cards:
+    #     - type: custom:mini-graph-card
+    #       entities:
+    #         - sensor.kitchen_temperature
+    #       name: KITCHEN
+    #       hours_to_show: 96
+    #       points_per_hour: 0.25
+    #     - type: custom:mini-graph-card
+    #       entities:
+    #         - sensor.kitchen_temperature_humidity
+    #       line_color: '#3498db'
+    #       name: KITCHEN
+    #       hours_to_show: 96
+    #       points_per_hour: 0.25
+    #     # 24 HOUR
+    #     - type: custom:mini-graph-card
+    #       entities:
+    #         - sensor.kitchen_temperature
+    #       name: KITCHEN
+    #       hours_to_show: 24
+    #       points_per_hour: 0.1
+    #     - type: custom:mini-graph-card
+    #       entities:
+    #         - sensor.kitchen_temperature_humidity
+    #       line_color: '#3498db'
+    #       name: KITCHEN
+    #       hours_to_show: 24
+    #       points_per_hour: 0.1
 
     # Dining Area
     - type: vertical-stack
@@ -73,6 +93,7 @@
           name: DINING
           hours_to_show: 96
           points_per_hour: 0.25
+
     # Bedroom
     - type: vertical-stack
       cards: 
@@ -148,17 +169,33 @@
         cards:
         - type: custom:mini-graph-card
           entities:
-            - sensor.babyroom_temperature
-          name: BABYROOM
+            - sensor.bedroom_lars_temperature
+          name: LARS BEDROOM 4d
           hours_to_show: 96
           points_per_hour: 0.25
         - type: custom:mini-graph-card
           entities:
-            - sensor.babyroom_temperature_humidity
+            - sensor.bedroom_lars_temperature_humidity
           line_color: '#3498db'
-          name: BABYROOM
+          name: LARS BEDROOM 4d
           hours_to_show: 96
           points_per_hour: 0.25
+        # 24 HOUR
+      - type: horizontal-stack
+        cards:
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.bedroom_lars_temperature
+          name: LARS BEDROOM 24h
+          hours_to_show: 24
+          points_per_hour: 0.1
+        - type: custom:mini-graph-card
+          entities:
+            - sensor.bedroom_lars_temperature_humidity
+          line_color: '#3498db'
+          name: LARS BEDROOM 24h
+          hours_to_show: 24
+          points_per_hour: 0.1
 
     # Entrance hall (disabled)
     # - type: vertical-stack

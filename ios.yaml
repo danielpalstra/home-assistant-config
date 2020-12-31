@@ -1,36 +1,17 @@
-push:
-  categories:
-    - name: Vacuum
-      identifier: 'vacuum'
-      actions:
-        - identifier: 'START_VACUUM'
-          title: 'Start vacuum'
-          activationMode: 'background'
-          authenticationRequired: 'no'
-          destructive: 'no'
-          behavior: 'default'
-        # - identifier: 'SILENCE_ALARM'
-        #   title: 'Silence Alarm'
-        #   activationMode: 'background'
-        #   authenticationRequired: 'yes'
-        #   destructive: 'no'
-        #   behavior: 'textInput'
-        #   textInputButtonTitle: 'Silencio!'
-        #   textInputPlaceholder: 'Placeholder'
-    - name: Alarm
-      identifier: 'alarm'
-      actions:
-        - identifier: 'SOUND_ALARM'
-          title: 'Sound Alarm'
-          activationMode: 'background'
-          authenticationRequired: 'yes'
-          destructive: 'yes'
-          behavior: 'default'
-        - identifier: 'SILENCE_ALARM'
-          title: 'Silence Alarm'
-          activationMode: 'background'
-          authenticationRequired: 'yes'
-          destructive: 'no'
-          behavior: 'textInput'
-          textInputButtonTitle: 'Silencio!'
-          textInputPlaceholder: 'Placeholder'
+  actions:
+    - name: toggle_rollerblinds_fenna
+      background_color: "#3252a8"
+      label:
+        text: "Rollblinds Fenna"
+        color: "#ffffff"
+      icon:
+        icon: window-open
+        color: "#ffffff"
+    - name: toggle_rollerblinds_lars
+      background_color: "#3252a8"
+      label:
+        text: "Rollblinds Lars"
+        color: "#ffffff"
+      icon:
+        icon: window-open
+        color: "#ffffff"

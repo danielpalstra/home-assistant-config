@@ -42,10 +42,18 @@
         entity: media_player.woonkamertv
         name: Livingroom TV Cast
         show_source: true
-        volume_stateless: true
         max_volume: 40
       - type: 'custom:mini-media-player'
         entity: media_player.mini
         show_source: true
-        volume_stateless: true
         max_volume: 40
+      - type: 'custom:mini-media-player'
+        entity: media_player.keuken
+        show_source: true
+        artwork: cover
+        artwork_border: false
+      - type: 'custom:mini-media-player'
+        entity: media_player.eetkamer
+        show_source: true
+        artwork: cover
+        artwork_border: false

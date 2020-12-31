@@ -1,15 +1,39 @@
 automation:
-  - alias: Toggle bedroom ceiling on bedside switch press
+        #  - alias: Toggle bedroom ceiling on bedside switch press
+        #    initial_state: 'true'
+        #    trigger:
+        #      - platform: event
+        #        event_type: state_changed
+        #        event_data:
+        #          entity_id: switch.bedside_daniel_relay_1
+        #      - platform: event
+        #        event_type: state_changed
+        #        event_data:
+        #          entity_id: switch.bedside_laura_relay_1
+        #    condition:
+        #      - condition: template
+        #        value_template: >
+        #          {{ trigger.event.data.new_state.state != 'unavailable' }}
+        #    action:
+        #      - service: switch.toggle
+        #        entity_id: switch.bedroom_ceiling_relay_0
+  - alias: Toggle roller blind Fenna on apple watch action
     initial_state: 'true'
     trigger:
       - platform: event
-        event_type: state_changed
+        event_type: ios.action_fired
         event_data:
-          entity_id: switch.bedside_daniel_relay_1
-      - platform: event
-        event_type: state_changed
-        event_data:
-          entity_id: switch.bedside_laura_relay_1
+          actionID: toggle_rollerblinds_fenna
     action:
-      - service: switch.toggle
-        entity_id: switch.bedroom_ceiling_relay_0
+      - service: cover.toggle
+        entity_id: cover.fennaroom_rollershutter
+  - alias: Toggle roller blind Lars on apple watch action
+    initial_state: 'true'
+    trigger:
+      - platform: event
+        event_type: ios.action_fired
+        event_data:
+          actionID: toggle_rollerblinds_lars
+    action:
+      - service: cover.toggle
+        entity_id: cover.larsroom_rollershutter

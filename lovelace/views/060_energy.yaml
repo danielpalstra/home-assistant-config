@@ -4,12 +4,15 @@
     cards:
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.power_consumption_phase_l1
+          # - entity: sensor.power_consumption_phase_l1
+          - entity: sensor.power_consumption_throttled
         name: POWER CONSUMPTION
         show:
           graph: bar
         hours_to_show: 24
         points_per_hour: 1
+        line_color: "#3486eb"
+        hour24: true
       - type: entities
         title: Energy usage
         show_header_toggle: false
@@ -17,6 +20,21 @@
           - sensor.daily_energy_offpeak
           - sensor.daily_energy_peak
           - sensor.hourly_gas_consumption
+
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.daily_energy_offpeak
+          - sensor.daily_energy_peak
+          - sensor.hourly_gas_consumption
+        name: ENERGY CONSUMPTION
+        hours_to_show: 24
+        points_per_hour: 1
+        line_color: 
+          - "#3486eb"
+          - "#3486eb"
+          - "#ebbd34"
+        hour24: true
+
 
       - type: custom:mini-graph-card
         entities:
@@ -104,12 +122,12 @@
         hour24: true
       - type: custom:mini-graph-card
         entities:
-          # - entity: sensor.energy_daily
           - entity: sensor.daily_energy_offpeak
           - entity: sensor.daily_energy_peak
         name: Energy consumption
         hours_to_show: 168
         aggregate_func: max
         group_by: date
+        hour24: true
         show:
           graph: bar

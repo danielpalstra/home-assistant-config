@@ -9,6 +9,9 @@
         entity: light.livingroom
         icon: mdi:lightbulb-outline
       - type: light
+        entity: light.livingroom_downlights
+        icon: mdi:lightbulb-outline
+      - type: light
         entity: light.dining
         icon: mdi:lightbulb-outline
       - type: light

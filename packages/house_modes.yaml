@@ -12,6 +12,16 @@ input_boolean:
     initial: 'off'
     icon: mdi:airplane-takeoff
 
+input_select:
+  house_mode:
+    name: 'House Mode'
+    options:
+      - Morning
+      - Daytime
+      - Evening
+      - Night
+      - Away
+
 automation:
   - alias: 'Turn on away mode when everybody leaves'
     trigger:
