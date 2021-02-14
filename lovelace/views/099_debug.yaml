@@ -39,3 +39,24 @@
         filter:
           include:
             - domain: switch
+      - type: 'custom:auto-entities'
+        card:
+          type: entities
+          title: All Zwave
+        filter:
+          include:
+            - domain: zwave
+      - type: 'custom:auto-entities'
+        card:
+          type: entities
+          title: All Lars
+        filter:
+          include:
+            - name: "*Lars*"
+      - type: 'custom:auto-entities'
+        card:
+          type: entities
+          title: All Attic
+        filter:
+          include:
+            - name: "*Attic*"

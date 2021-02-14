@@ -1,6 +1,13 @@
   - path: info
     icon: 'mdi:clipboard-text'
     cards:
+      - type: logbook
+        entities:
+          - binary_sensor.kitchen_front_motion_occupancy
+          - fan.ceiling_fan
+          - fan.living_room_fan
+          - light.ceiling_lights
+        hours_to_show: 24
       - type: entities
         title: Garbage
         show_header_toggle: false

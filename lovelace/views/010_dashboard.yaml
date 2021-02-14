@@ -10,8 +10,7 @@
           - scene.movie
           - scene.concentrate
           - input_select.last_scene
-      - id: bd3ce1939f364da6a1a57a8b94e836e4
-        type: entities
+      - type: entities
         title: Livingroom
         show_header_toggle: false
         entities:
@@ -20,6 +19,7 @@
           - light.livingroom_downlights
           # - switch.christmas_tree
           - cover.livingroom_screens
+          - input_number.evening_light_treshold
           - sensor.livingroom_light
           - sensor.livingroom_temperature
           - sensor.livingroom_humidity
@@ -121,12 +121,15 @@
       #       name: Papier
       #     - entity: sensor.trash_rest
       #       name: Restafval
-      - id: 32ba7996776b4987a243a21359e3dd14
-        type: entities
-        title: System
-        show_header_toggle: false
-        entities:
-          - sensor.update_available
-          - sensor.ha_installed_version
-          - sensor.ssl_certificate_expiry
-          - sensor.ha_uptime
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: System
+          show_header_toggle: false
+        filter:
+          include:
+            # Do not give away hass instance url
+            - name: "Cert *"
+            - entity_id: sensor.update_available
+            - entity_id: sensor.ha_installed_version
+            - entity_id: sensor.ha_uptime

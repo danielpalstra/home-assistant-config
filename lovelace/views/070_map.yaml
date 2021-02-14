@@ -1,0 +1,9 @@
+  - path: map
+    icon: 'mdi:map'
+    panel: true
+    cards:
+      - type: map
+        entities:
+          - person.daniel
+          - person.laura
+          - zone.home

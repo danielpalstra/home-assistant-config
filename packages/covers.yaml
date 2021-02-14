@@ -2,6 +2,12 @@
 rflink:
   port: /dev/rflink
 
+zwave:
+  device_config:
+    cover.larsroom_roller_shutter_right:
+      invert_openclose_buttons: true
+      invert_percent: true
+
 cover:
   - platform: rflink
     devices:

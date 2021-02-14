@@ -1,6 +1,6 @@
-sensor:
-  - platform: enphase_envoy
-    name: enphase
-    ip_address: 192.168.1.47
-    monitored_conditions:
-      - inverters
+# sensor:
+#   - platform: enphase_envoy
+#     name: enphase
+#     ip_address: 192.168.1.47
+#     monitored_conditions:
+#       - inverters

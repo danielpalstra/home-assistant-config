@@ -4,14 +4,24 @@ input_boolean:
     initial: 'off'
     icon: mdi:weather-sunset-down
 
+
+input_number:
+  evening_light_treshold:
+    name: Evening Light Treshold
+    initial: 20
+    min: 0
+    max: 60
+    step: 2
+
 automation:
-  # Turn on evening time scene when ligth < 100 lux and people at home or guest mode is on
+  # Turn on evening mode when light < evening_light_treshold and people at home or guest mode is on
   - alias: Toggle evening time lights when < 100 lux between 15:30 and 22:30
     initial_state: 'true'
     trigger:
     - platform: numeric_state
       entity_id: sensor.livingroom_light
       below: 20
+      # below: "{{ states('input_number.evening_light_treshold')|float }}"
     condition:
       condition: and
       conditions:
@@ -50,5 +60,5 @@ automation:
     action:
       - service: scene.turn_on
         entity_id: scene.relax
-      - service: scene.turn_on
-        entity_id: scene.kitchen_dimmed
+      - service: light.turn_on
+        entity_id: light.kitchen

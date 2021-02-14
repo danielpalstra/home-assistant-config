@@ -18,8 +18,6 @@
       title: Network
       show_header_toggle: false
       entities:
-        - sensor.speedtest_download
-        - sensor.speedtest_upload
         - sensor.braviatv
         - sensor.philipshue
     - type: custom:auto-entities

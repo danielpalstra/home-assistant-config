@@ -1,6 +1,18 @@
 - path: climate
   name: Climate
   icon: 'mdi:home-thermometer-outline'
+  temperature: &temperature
+    font_size: 75
+    height: 50
+    font_size_header: 10
+    color_thresholds:
+    - value: 18
+      color: "#f39c12"
+    - value: 19
+      color: "#d35400"
+    - value: 21
+      color: "#c0392b"
+
   cards:
     - type: vertical-stack
       cards:
@@ -21,7 +33,7 @@
           entities:
           - sensor.livingroom_light
           # align_icon: left
-          name: LIVING ROOM
+          name: LIVINGROOM
           align_state: center
           show:
             fill: false
@@ -32,15 +44,26 @@
           entities:
             - sensor.livingroom_humidity
           line_color: '#3498db'
-          name: LIVING ROOM
+          name: LIVINGROOM
           hours_to_show: 96
           points_per_hour: 0.25
+      - type: custom:auto-entities
+        card:
+          type: custom:mini-graph-card
+          # title: Batteries
+          show_header_toggle: false
+        filter:
+          include:
+            - entity_id: "*_temperature"
+          exclude:
+            - entity_id: group.*
       - type: custom:mini-graph-card
         entities:
           - sensor.livingroom_temperature
-        name: LIVING ROOM
+        name: LIVINGROOM
         hours_to_show: 96
         points_per_hour: 0.25
+        <<: *temperature
 
     # Kitchen
     # - type: vertical-stack
@@ -165,21 +188,22 @@
     # Babyroom
     - type: vertical-stack
       cards: 
-      - type: horizontal-stack
-        cards:
-        - type: custom:mini-graph-card
-          entities:
-            - sensor.bedroom_lars_temperature
-          name: LARS BEDROOM 4d
-          hours_to_show: 96
-          points_per_hour: 0.25
-        - type: custom:mini-graph-card
-          entities:
-            - sensor.bedroom_lars_temperature_humidity
-          line_color: '#3498db'
-          name: LARS BEDROOM 4d
-          hours_to_show: 96
-          points_per_hour: 0.25
+      # - type: horizontal-stack
+      #   cards:
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.bedroom_lars_temperature
+        name: LARS BEDROOM 4d
+        hours_to_show: 96
+        points_per_hour: 0.25
+        height: 25
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.bedroom_lars_temperature_humidity
+        line_color: '#3498db'
+        name: LARS BEDROOM 4d
+        hours_to_show: 96
+        points_per_hour: 0.25
         # 24 HOUR
       - type: horizontal-stack
         cards:
@@ -246,3 +270,4 @@
     #     - sensor.livingroom_temperature
     #     - sensor.livingroom_humidity
     #     - sensor.livingroom_light
+
